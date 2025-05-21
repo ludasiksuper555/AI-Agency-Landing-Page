@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useCallback, useMemo, memo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import teamData from '../data/teamData';
 import { TeamMember, TeamFilters } from '../types/teamTypes';
-import { filterTeamByPosition, searchTeamMembers, getUniquePositions, sortTeamMembers } from '../utils/teamUtils';
+import { filterTeamByPosition, searchTeamMembers, getUniquePositions, sortTeamMembers, groupTeamByPosition } from '../utils/teamUtils';
 
 const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
   const handleSocialClick = (url: string) => () => {
@@ -126,16 +126,19 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
   );
 };
 
-const Team = () => {
+const Team: React.FC = () => {
   const [filters, setFilters] = useState<TeamFilters>({
     searchTerm: '',
     position: 'all',
+    department: 'all',
     sortBy: 'name',
     sortDirection: 'asc'
   });
   
   const [filteredTeam, setFilteredTeam] = useState<TeamMember[]>(teamData);
   const [uniquePositions, setUniquePositions] = useState<string[]>([]);
+  const [uniqueDepartments, setUniqueDepartments] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   
   // Оновлення фільтрованих даних при зміні фільтрів
   useEffect(() => {
@@ -158,20 +161,26 @@ const Team = () => {
     setUniquePositions(getUniquePositions(teamData));
   }, []);
   
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setFilters(prev => ({ ...prev, searchTerm: e.target.value }));
-  };
+  }, []);
   
-  const handlePositionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handlePositionChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilters(prev => ({ ...prev, position: e.target.value }));
-  };
+  }, []);
   
-  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleDepartmentChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilters(prev => ({ ...prev, department: e.target.value }));
+  }, []);
+  
+  const handleSortChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     const [sortBy, sortDirection] = e.target.value.split('-') as [TeamFilters['sortBy'], TeamFilters['sortDirection']];
     setFilters(prev => ({ ...prev, sortBy, sortDirection }));
-  };
+  }, []);
   
-  const containerAnimation = {
+  // Мемоізація анімацій для покращення продуктивності
+  // Мемоізація анімацій для покращення продуктивності
+  const containerAnimation = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1,
@@ -179,7 +188,29 @@ const Team = () => {
         staggerChildren: 0.1
       }
     }
-  };
+  }), []);
+  
+  // Мемоізація статистики команди
+  const teamStats = useMemo(() => {
+    const positionStats = teamData.reduce((acc, member) => {
+      const position = member.position;
+      acc[position] = (acc[position] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+    
+    const departmentStats = teamData.reduce((acc, member) => {
+      if (member.department) {
+        acc[member.department] = (acc[member.department] || 0) + 1;
+      }
+      return acc;
+    }, {} as Record<string, number>);
+    
+    return {
+      totalMembers: teamData.length,
+      byPosition: positionStats,
+      byDepartment: departmentStats
+    };
+  }, []);
   
   return (
     <div id="team" className="py-20 bg-gray-50">
@@ -197,8 +228,34 @@ const Team = () => {
           </p>
         </motion.div>
         
+        {/* Статистика команди */}
+        <motion.div 
+          className="mb-10 p-6 bg-white rounded-lg shadow-md"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-xl font-semibold text-gray-800 mb-4">Статистика команди</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <p className="text-sm text-gray-600">Загальна кількість</p>
+              <p className="text-2xl font-bold text-blue-600">{teamStats.totalMembers}</p>
+            </div>
+            <div className="bg-green-50 p-4 rounded-lg">
+              <p className="text-sm text-gray-600">Кількість посад</p>
+              <p className="text-2xl font-bold text-green-600">{Object.keys(teamStats.byPosition).length}</p>
+            </div>
+            <div className="bg-purple-50 p-4 rounded-lg">
+              <p className="text-sm text-gray-600">Кількість відділів</p>
+              <p className="text-2xl font-bold text-purple-600">{Object.keys(teamStats.byDepartment).length}</p>
+            </div>
+          </div>
+        </motion.div>
+        
+        {/* Фільтри та пошук */}
         <div className="mb-10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="w-full md:w-1/3">
+          <div className="w-full md:w-1/5">
             <input
               type="text"
               placeholder="Пошук за ім'ям або посадою"
@@ -209,7 +266,7 @@ const Team = () => {
             />
           </div>
           
-          <div className="w-full md:w-1/4">
+          <div className="w-full md:w-1/5">
             <select
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={filters.position}
@@ -225,7 +282,7 @@ const Team = () => {
             </select>
           </div>
           
-          <div className="w-full md:w-1/4">
+          <div className="w-full md:w-1/5">
             <select
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={`${filters.sortBy}-${filters.sortDirection}`}
@@ -240,7 +297,15 @@ const Team = () => {
           </div>
         </div>
         
-        {filteredTeam.length > 0 ? (
+        <div className="flex justify-end mb-4">
+          <TeamExport teamMembers={filteredTeam} />
+        </div>
+        
+        {isLoading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        ) : filteredTeam.length > 0 ? (
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={containerAnimation}
@@ -253,9 +318,27 @@ const Team = () => {
             ))}
           </motion.div>
         ) : (
-          <div className="text-center py-10">
+          <motion.div 
+            className="text-center py-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
             <p className="text-xl text-gray-600">Не знайдено співробітників за вашим запитом.</p>
-          </div>
+            <button 
+              onClick={() => setFilters({
+                searchTerm: '',
+                position: 'all',
+                department: 'all',
+                sortBy: 'name',
+                sortDirection: 'asc'
+              })}
+              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+              aria-label="Скинути всі фільтри"
+            >
+              Скинути фільтри
+            </button>
+          </motion.div>
         )}
       </div>
     </div>
