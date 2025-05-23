@@ -1,0 +1,53 @@
+{
+  "app": {
+    "title": "Trae",
+    "description": "Потужний інструмент для розробників"
+  },
+  "nav": {
+    "home": "Головна",
+    "dashboard": "Панель керування",
+    "profile": "Профіль",
+    "signIn": "Увійти",
+    "signUp": "Зареєструватися"
+  },
+  "theme": {
+    "light": "Світла тема",
+    "dark": "Темна тема",
+    "toggle": "Перемкнути тему"
+  },
+  "language": {
+    "uk": "Українська",
+    "en": "English",
+    "de": "Deutsch",
+    "pl": "Polski",
+    "change": "Змінити мову"
+  },
+  "mgx": {
+    "title": "Інтеграція з MetaGPT X",
+    "description": "Підключіть свій акаунт MetaGPT X для розширених можливостей штучного інтелекту",
+    "authButton": "Увійти через MGX",
+    "integrationButton": "Налаштувати інтеграцію",
+    "learnMore": "Дізнатися більше про MGX",
+    "loading": "Завантаження...",
+    "loggedInAs": "Ви увійшли як",
+    "authRequired": "Для налаштування інтеграції необхідно авторизуватися",
+    "error": "Помилка"
+  },
+  "github": {
+    "title": "Інтеграція з GitHub",
+    "description": "Підключіть свій репозиторій GitHub для синхронізації та аналізу коду",
+    "connectButton": "Підключити GitHub акаунт",
+    "syncButton": "Синхронізувати з GitHub",
+    "analyzeButton": "Аналізувати код з MGX",
+    "connected": "GitHub акаунт підключено",
+    "syncStatus": "Статус синхронізації",
+    "analysisResult": "Результати аналізу"
+  },
+  "browser": {
+    "offlineReady": "Додаток готовий до роботи офлайн",
+    "updateAvailable": "Доступне оновлення додатку",
+    "updateButton": "Оновити додаток",
+    "cacheCleared": "Кеш очищено",
+    "clearCacheButton": "Очистити кеш"
+  }
+}

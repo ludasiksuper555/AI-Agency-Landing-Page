@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import { useUser, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
+import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,6 +32,8 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const { t } = useTranslation('common');
+  
   const publicNavLinks = [
     { name: 'Головна', href: '/#hero' },
     { name: 'Послуги', href: '/#services' },
@@ -37,6 +42,7 @@ const Header = () => {
     { name: 'Тарифи', href: '/#pricing' },
     { name: 'FAQ', href: '/#faq' },
     { name: 'Контакти', href: '/#contact' },
+    { name: t('mgx.title'), href: '/mgx-integration' },
   ];
   
   const privateNavLinks = [
@@ -88,6 +94,10 @@ const Header = () => {
             ))}
             
             <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <LanguageSwitcher className="mr-2" />
+                <ThemeToggle />
+              </div>
               {isSignedIn ? (
                 <div className="flex items-center space-x-4">
                   <Link 
@@ -186,6 +196,10 @@ const Header = () => {
                 </div>
               ) : (
                 <div className="flex flex-col space-y-3 pt-2 border-t border-gray-200 mt-2">
+                  <div className="py-2 flex items-center space-x-2">
+                    <LanguageSwitcher />
+                    <ThemeToggle />
+                  </div>
                   <SignInButton mode="modal">
                     <button 
                       className="text-gray-700 font-medium hover:text-blue-600 transition-colors py-2"

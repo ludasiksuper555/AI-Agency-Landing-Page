@@ -1,0 +1,53 @@
+{
+  "app": {
+    "title": "Trae",
+    "description": "Leistungsstarkes Tool für Entwickler"
+  },
+  "nav": {
+    "home": "Startseite",
+    "dashboard": "Dashboard",
+    "profile": "Profil",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren"
+  },
+  "theme": {
+    "light": "Helles Thema",
+    "dark": "Dunkles Thema",
+    "toggle": "Thema umschalten"
+  },
+  "language": {
+    "uk": "Ukrainisch",
+    "en": "Englisch",
+    "de": "Deutsch",
+    "pl": "Polnisch",
+    "change": "Sprache ändern"
+  },
+  "mgx": {
+    "title": "MetaGPT X Integration",
+    "description": "Verbinden Sie Ihr MetaGPT X-Konto für erweiterte KI-Funktionen",
+    "authButton": "Mit MGX anmelden",
+    "integrationButton": "Integration konfigurieren",
+    "learnMore": "Mehr über MGX erfahren",
+    "loading": "Wird geladen...",
+    "loggedInAs": "Sie sind angemeldet als",
+    "authRequired": "Für die Konfiguration der Integration ist eine Autorisierung erforderlich",
+    "error": "Fehler"
+  },
+  "github": {
+    "title": "GitHub Integration",
+    "description": "Verbinden Sie Ihr GitHub-Repository für Code-Synchronisation und -Analyse",
+    "connectButton": "GitHub-Konto verbinden",
+    "syncButton": "Mit GitHub synchronisieren",
+    "analyzeButton": "Code mit MGX analysieren",
+    "connected": "GitHub-Konto verbunden",
+    "syncStatus": "Synchronisierungsstatus",
+    "analysisResult": "Analyseergebnisse"
+  },
+  "browser": {
+    "offlineReady": "App ist für die Offline-Nutzung bereit",
+    "updateAvailable": "App-Update verfügbar",
+    "updateButton": "App aktualisieren",
+    "cacheCleared": "Cache geleert",
+    "clearCacheButton": "Cache leeren"
+  }
+}

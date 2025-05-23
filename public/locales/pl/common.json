@@ -1,0 +1,53 @@
+{
+  "app": {
+    "title": "Trae",
+    "description": "Potężne narzędzie dla programistów"
+  },
+  "nav": {
+    "home": "Strona główna",
+    "dashboard": "Panel sterowania",
+    "profile": "Profil",
+    "signIn": "Zaloguj się",
+    "signUp": "Zarejestruj się"
+  },
+  "theme": {
+    "light": "Jasny motyw",
+    "dark": "Ciemny motyw",
+    "toggle": "Przełącz motyw"
+  },
+  "language": {
+    "uk": "Ukraiński",
+    "en": "Angielski",
+    "de": "Niemiecki",
+    "pl": "Polski",
+    "change": "Zmień język"
+  },
+  "mgx": {
+    "title": "Integracja MetaGPT X",
+    "description": "Połącz swoje konto MetaGPT X, aby uzyskać zaawansowane możliwości AI",
+    "authButton": "Zaloguj się przez MGX",
+    "integrationButton": "Konfiguruj integrację",
+    "learnMore": "Dowiedz się więcej o MGX",
+    "loading": "Ładowanie...",
+    "loggedInAs": "Jesteś zalogowany jako",
+    "authRequired": "Autoryzacja jest wymagana do konfiguracji integracji",
+    "error": "Błąd"
+  },
+  "github": {
+    "title": "Integracja GitHub",
+    "description": "Połącz swoje repozytorium GitHub do synchronizacji i analizy kodu",
+    "connectButton": "Połącz konto GitHub",
+    "syncButton": "Synchronizuj z GitHub",
+    "analyzeButton": "Analizuj kod z MGX",
+    "connected": "Konto GitHub połączone",
+    "syncStatus": "Status synchronizacji",
+    "analysisResult": "Wyniki analizy"
+  },
+  "browser": {
+    "offlineReady": "Aplikacja jest gotowa do pracy offline",
+    "updateAvailable": "Dostępna aktualizacja aplikacji",
+    "updateButton": "Aktualizuj aplikację",
+    "cacheCleared": "Pamięć podręczna wyczyszczona",
+    "clearCacheButton": "Wyczyść pamięć podręczną"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "app": {
+    "title": "Trae",
+    "description": "Powerful tool for developers"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "theme": {
+    "light": "Light theme",
+    "dark": "Dark theme",
+    "toggle": "Toggle theme"
+  },
+  "language": {
+    "uk": "Ukrainian",
+    "en": "English",
+    "de": "German",
+    "pl": "Polish",
+    "change": "Change language"
+  },
+  "mgx": {
+    "title": "MetaGPT X Integration",
+    "description": "Connect your MetaGPT X account for advanced AI capabilities",
+    "authButton": "Sign in with MGX",
+    "integrationButton": "Configure Integration",
+    "learnMore": "Learn more about MGX",
+    "loading": "Loading...",
+    "loggedInAs": "You are logged in as",
+    "authRequired": "Authorization is required to configure integration",
+    "error": "Error"
+  },
+  "github": {
+    "title": "GitHub Integration",
+    "description": "Connect your GitHub repository for code synchronization and analysis",
+    "connectButton": "Connect GitHub Account",
+    "syncButton": "Sync with GitHub",
+    "analyzeButton": "Analyze Code with MGX",
+    "connected": "GitHub account connected",
+    "syncStatus": "Synchronization status",
+    "analysisResult": "Analysis results"
+  },
+  "browser": {
+    "offlineReady": "App is ready for offline use",
+    "updateAvailable": "App update available",
+    "updateButton": "Update app",
+    "cacheCleared": "Cache cleared",
+    "clearCacheButton": "Clear cache"
+  }
+}
