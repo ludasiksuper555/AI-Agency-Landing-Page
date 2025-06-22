@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "iso27001": {
+    "enabled": true,
+    "requirements": {
+      "dataEncryption": true,
+      "accessControl": true,
+      "auditLogging": true,
+      "incidentResponse": true
+    },
+    "sensitiveDataPatterns": [
+      { "name": "Паролі", "pattern": "(password|passwd|pwd)\\s*[:=]\\s*['\"](.+?)['\"]" },
+      {
+        "name": "API ключі",
+        "pattern": "(api[_-]?key|apikey|api[_-]?token)\\s*[:=]\\s*['\"](.+?)['\"]"
+      },
+      {
+        "name": "Токени доступу",
+        "pattern": "(access[_-]?token|accesstoken|refresh[_-]?token)\\s*[:=]\\s*['\"](.+?)['\"]"
+      },
+      {
+        "name": "Приватні ключі",
+        "pattern": "-----BEGIN\\s+(?:RSA|DSA|EC|OPENSSH)\\s+PRIVATE\\s+KEY-----"
+      },
+      {
+        "name": "AWS ключі",
+        "pattern": "(?:A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}"
+      },
+      { "name": "GitHub токени", "pattern": "(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9_]{36}" }
+    ]
+  },
+  "git": {
+    "requireGpgSign": true,
+    "requireCommitMessage": true,
+    "minCommitMessageLength": 10,
+    "commitMessageTemplate": "[ТИП]: короткий опис змін\n\nДетальний опис змін\n\nПов'язані задачі: #номер"
+  },
+  "security": {
+    "auditLogPath": "security-audit.log",
+    "notifyOnSensitiveData": true,
+    "blockPushOnSensitiveData": true,
+    "require2FA": true
+  },
+  "compliance": {
+    "checkBeforeCommit": true,
+    "checkBeforePush": true,
+    "generateComplianceReport": true,
+    "complianceReportPath": "docs/compliance"
+  }
+}

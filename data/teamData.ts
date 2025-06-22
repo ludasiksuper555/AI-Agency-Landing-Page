@@ -1,89 +1,123 @@
-// Файл з даними про команду
-// Цей файл можна легко оновлювати, додаючи, видаляючи або змінюючи інформацію про співробітників
+// Team data file for meat consulting company
+// This file can be easily updated by adding, removing or changing employee information
 
-type TeamMember = {
-  id: string;
-  name: string;
-  position: string;
-  bio: string;
-  imageUrl: string;
-  socialLinks?: {
-    linkedin?: string;
-    twitter?: string;
-    email?: string;
-  };
-};
+import { TeamMember } from '../types/teamTypes';
 
-// Приклади зображень використовують placeholder сервіс, в реальному проекті замініть на реальні фото
+// Example images use placeholder service, replace with real photos in actual project
 const teamData: TeamMember[] = [
   {
     id: 'tm-001',
-    name: 'Олександр Петренко',
-    position: 'Головний AI розробник',
-    bio: 'Експерт з машинного навчання та нейронних мереж з 8-річним досвідом. Спеціалізується на розробці алгоритмів для обробки природної мови.',
-    imageUrl: 'https://via.placeholder.com/400x500?text=Олександр+П.',
+    name: 'Alexander Ludasik',
+    position: 'Chief Meat Production Technologist',
+    department: 'Production',
+    bio: 'Expert in meat processing technologies with 8 years of experience. Specializes in developing new recipes and optimizing production processes.',
+    imageUrl: 'https://via.placeholder.com/400x500?text=Alexander+L.',
+    skills: [
+      'Meat Processing',
+      'HACCP',
+      'Quality Control',
+      'Recipe Development',
+      'Production Optimization',
+    ],
     socialLinks: {
-      linkedin: 'https://linkedin.com/in/oleksandr-petrenko',
-      twitter: 'https://twitter.com/oleksandr_ai',
-      email: 'oleksandr@aiagency.ua'
-    }
+      linkedin: 'https://linkedin.com/in/alexander-ludasik',
+      twitter: 'https://twitter.com/alexander_meat',
+      email: 'alexander@meatconsulting.com',
+      github: 'https://github.com/alexander-meat',
+    },
   },
   {
     id: 'tm-002',
-    name: 'Марія Коваленко',
-    position: 'AI дизайнер інтерфейсів',
-    bio: 'Поєднує принципи UX/UI дизайну з можливостями штучного інтелекту для створення інтуїтивних та персоналізованих інтерфейсів.',
-    imageUrl: 'https://via.placeholder.com/400x500?text=Марія+К.',
+    name: 'Maria Ludasik',
+    position: 'Meat Products Marketing Specialist',
+    department: 'Marketing',
+    bio: 'Develops strategies for promoting meat products in Ukraine and abroad. Expert in branding and packaging of meat products.',
+    imageUrl: 'https://via.placeholder.com/400x500?text=Maria+L.',
+    skills: [
+      'Food Product Marketing',
+      'Branding',
+      'Package Design',
+      'Market Analysis',
+      'Strategic Planning',
+    ],
     socialLinks: {
-      linkedin: 'https://linkedin.com/in/maria-kovalenko',
-      email: 'maria@aiagency.ua'
-    }
+      linkedin: 'https://linkedin.com/in/maria-ludasik',
+      email: 'maria@meatconsulting.com',
+    },
   },
   {
     id: 'tm-003',
-    name: 'Іван Мельник',
-    position: 'Менеджер проектів',
-    bio: 'Відповідає за успішну реалізацію AI-проектів від концепції до впровадження. Має сертифікацію PMP та досвід управління технологічними проектами.',
-    imageUrl: 'https://via.placeholder.com/400x500?text=Іван+М.',
+    name: 'Ivan Ludasik',
+    position: 'Meat Products Export Expert',
+    department: 'Export',
+    bio: 'Responsible for developing export directions and product certification for international markets. Has experience working with European quality standards.',
+    imageUrl: 'https://via.placeholder.com/400x500?text=Ivan+L.',
+    skills: [
+      'International Trade',
+      'Certification',
+      'Logistics',
+      'Customs Clearance',
+      'International Standards',
+    ],
     socialLinks: {
-      linkedin: 'https://linkedin.com/in/ivan-melnyk',
-      email: 'ivan@aiagency.ua'
-    }
+      linkedin: 'https://linkedin.com/in/ivan-ludasik',
+      email: 'ivan@meatconsulting.com',
+    },
   },
   {
     id: 'tm-004',
-    name: 'Наталія Шевченко',
-    position: 'Аналітик даних',
-    bio: 'Спеціалізується на аналізі великих обсягів даних та створенні моделей для прогнозування бізнес-показників. Експерт з Python та R.',
-    imageUrl: 'https://via.placeholder.com/400x500?text=Наталія+Ш.',
+    name: 'Natalia Ludasik',
+    position: 'Meat Market Analyst',
+    department: 'Analytics',
+    bio: 'Specializes in analyzing meat market trends in Ukraine and worldwide. Develops price forecasts and demand for various types of meat products.',
+    imageUrl: 'https://via.placeholder.com/400x500?text=Natalia+L.',
+    skills: [
+      'Market Analysis',
+      'Price Forecasting',
+      'Consumer Research',
+      'Export Analytics',
+      'Statistical Analysis',
+    ],
     socialLinks: {
-      linkedin: 'https://linkedin.com/in/natalia-shevchenko',
-      twitter: 'https://twitter.com/natalia_data',
-      email: 'natalia@aiagency.ua'
-    }
+      linkedin: 'https://linkedin.com/in/natalia-ludasik',
+      twitter: 'https://twitter.com/natalia_meat',
+      email: 'natalia@meatconsulting.com',
+      github: 'https://github.com/natalia-market',
+    },
   },
   {
     id: 'tm-005',
-    name: 'Сергій Ковальчук',
-    position: 'Розробник AI-інтеграцій',
-    bio: 'Відповідає за інтеграцію AI-рішень з існуючими бізнес-системами. Має глибокі знання API та мікросервісної архітектури.',
-    imageUrl: 'https://via.placeholder.com/400x500?text=Сергій+К.',
+    name: 'Sergey Ludasik',
+    position: 'Meat Processing Equipment Consultant',
+    department: 'Technology',
+    bio: 'Expert in selecting and configuring equipment for meat processing enterprises. Has experience in optimizing production lines and implementing new technologies.',
+    imageUrl: 'https://via.placeholder.com/400x500?text=Sergey+L.',
+    skills: [
+      'Meat Processing Equipment',
+      'Production Automation',
+      'Energy Efficiency',
+      'Technical Audit',
+      'Workshop Design',
+    ],
     socialLinks: {
-      linkedin: 'https://linkedin.com/in/serhii-kovalchuk',
-      email: 'serhii@aiagency.ua'
-    }
+      linkedin: 'https://linkedin.com/in/sergey-ludasik',
+      email: 'sergey@meatconsulting.com',
+      github: 'https://github.com/sergey-tech',
+    },
   },
   {
     id: 'tm-006',
-    name: 'Юлія Бондаренко',
-    position: 'Менеджер з розвитку бізнесу',
-    bio: 'Відповідає за пошук нових клієнтів та розвиток партнерських відносин. Має досвід роботи в IT-консалтингу та продажах B2B рішень.',
-    imageUrl: 'https://via.placeholder.com/400x500?text=Юлія+Б.',
+    name: 'Julia Ludasik',
+    position: 'Quality and Certification Specialist',
+    department: 'Quality',
+    bio: 'Responsible for implementing quality control systems at meat processing enterprises. Certified HACCP auditor and food safety expert.',
+    imageUrl: 'https://via.placeholder.com/400x500?text=Julia+L.',
+    skills: ['HACCP', 'ISO 22000', 'Quality Audit', 'Food Safety', 'Regulatory Documentation'],
     socialLinks: {
-      linkedin: 'https://linkedin.com/in/yulia-bondarenko',
-      email: 'yulia@aiagency.ua'
-    }
-  }
+      linkedin: 'https://linkedin.com/in/julia-ludasik',
+      email: 'julia@meatconsulting.com',
+    },
+  },
 ];
 
-export default teamData;
+export { teamData };

@@ -4,6 +4,12 @@
   "printWidth": 100,
   "singleQuote": true,
   "trailingComma": "es5",
-  "jsxBracketSameLine": false,
-  "arrowParens": "avoid"
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "proseWrap": "preserve",
+  "useTabs": false
 }

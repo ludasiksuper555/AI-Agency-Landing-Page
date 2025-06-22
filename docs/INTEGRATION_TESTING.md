@@ -75,7 +75,7 @@ const server = setupServer(
       ctx.status(200),
       ctx.json({
         token: 'fake-jwt-token',
-        expires_at: '2099-12-31T23:59:59Z'
+        expires_at: '2099-12-31T23:59:59Z',
       })
     );
   })
@@ -132,7 +132,7 @@ const server = setupServer(
     return res(
       ctx.status(200),
       ctx.json({
-        message: 'Повідомлення успішно надіслано'
+        message: 'Повідомлення успішно надіслано',
       })
     );
   })
@@ -145,17 +145,11 @@ afterAll(() => server.close());
 describe('Contact Form Integration', () => {
   test('форма контактів відправляє дані та показує повідомлення про успіх', async () => {
     const mockSubmit = jest.fn();
-    
-    render(
-      <Contact 
-        title="Зв'яжіться з нами" 
-        email="contact@example.com" 
-        onSubmit={mockSubmit} 
-      />
-    );
+
+    render(<Contact title="Зв'яжіться з нами" email="contact@example.com" onSubmit={mockSubmit} />);
 
     // Заповнюємо форму
-    const nameInput = screen.getByLabelText('Ім\'я');
+    const nameInput = screen.getByLabelText("Ім'я");
     const emailInput = screen.getByLabelText('Email');
     const messageInput = screen.getByLabelText('Повідомлення');
     const submitButton = screen.getByRole('button', { name: 'Надіслати' });
@@ -169,7 +163,7 @@ describe('Contact Form Integration', () => {
     expect(mockSubmit).toHaveBeenCalledWith({
       name: 'Тест Тестович',
       email: 'test@example.com',
-      message: 'Тестове повідомлення'
+      message: 'Тестове повідомлення',
     });
 
     // Перевіряємо, що з'явилося повідомлення про успіх
@@ -180,13 +174,7 @@ describe('Contact Form Integration', () => {
   });
 
   test('форма контактів показує помилки валідації', async () => {
-    render(
-      <Contact 
-        title="Зв'яжіться з нами" 
-        email="contact@example.com" 
-        onSubmit={() => {}} 
-      />
-    );
+    render(<Contact title="Зв'яжіться з нами" email="contact@example.com" onSubmit={() => {}} />);
 
     // Намагаємося відправити порожню форму
     const submitButton = screen.getByRole('button', { name: 'Надіслати' });
@@ -206,7 +194,7 @@ describe('Contact Form Integration', () => {
 
     // Перевіряємо, що з'явилося повідомлення про некоректний email
     await waitFor(() => {
-      expect(screen.getByText("Некоректний формат email")).toBeInTheDocument();
+      expect(screen.getByText('Некоректний формат email')).toBeInTheDocument();
     });
   });
 });
@@ -342,26 +330,26 @@ name: Integration Tests
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16.x'
-    - name: Install dependencies
-      run: npm ci
-    - name: Run integration tests
-      run: npm test -- --testPathPattern=integration
-    - name: Run E2E tests
-      run: npm run cypress:run
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run integration tests
+        run: npm test -- --testPathPattern=integration
+      - name: Run E2E tests
+        run: npm run cypress:run
 ```
 
 ## Висновок

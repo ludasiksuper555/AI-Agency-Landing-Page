@@ -8,7 +8,16 @@
     "dashboard": "Dashboard",
     "profile": "Profil",
     "signIn": "Anmelden",
-    "signUp": "Registrieren"
+    "signUp": "Registrieren",
+    "services": "Dienstleistungen",
+    "team": "Unser Team",
+    "marketAnalytics": "Marktanalyse",
+    "export": "Export",
+    "testimonials": "Referenzen",
+    "contact": "Kontakt",
+    "blog": "Blog",
+    "user": "Benutzer",
+    "toggleMenu": "Menü umschalten"
   },
   "theme": {
     "light": "Helles Thema",
@@ -29,13 +38,13 @@
     "integrationButton": "Integration konfigurieren",
     "learnMore": "Mehr über MGX erfahren",
     "loading": "Wird geladen...",
-    "loggedInAs": "Sie sind angemeldet als",
-    "authRequired": "Für die Konfiguration der Integration ist eine Autorisierung erforderlich",
+    "loggedInAs": "Angemeldet als",
+    "authRequired": "Authentifizierung für die Integrationseinrichtung erforderlich",
     "error": "Fehler"
   },
   "github": {
-    "title": "GitHub Integration",
-    "description": "Verbinden Sie Ihr GitHub-Repository für Code-Synchronisation und -Analyse",
+    "title": "GitHub-Integration",
+    "description": "Verbinden Sie Ihr GitHub-Repository für Code-Synchronisierung und -Analyse",
     "connectButton": "GitHub-Konto verbinden",
     "syncButton": "Mit GitHub synchronisieren",
     "analyzeButton": "Code mit MGX analysieren",
@@ -49,5 +58,176 @@
     "updateButton": "App aktualisieren",
     "cacheCleared": "Cache geleert",
     "clearCacheButton": "Cache leeren"
+  },
+  "hero": {
+    "title": "Fleisch-Consulting",
+    "subtitle": "Professionelle Lösungen für die Fleischindustrie",
+    "description": "Wir helfen Fleisch- und Wurstherstellern, ihre Effizienz und Wettbewerbsfähigkeit auf dem ukrainischen Markt und im Ausland zu steigern.",
+    "ctaButton": "Beratung anfragen",
+    "learnMoreButton": "Mehr erfahren"
+  },
+  "services": {
+    "title": "Unsere Dienstleistungen",
+    "description": "Wir bieten umfassende Lösungen für die Fleischindustrie",
+    "marketAnalysis": {
+      "title": "Fleischmarktanalyse",
+      "description": "Detaillierte Marktforschung, Wettbewerbsanalyse und Verbrauchertrends für strategische Entscheidungsfindung."
+    },
+    "productPromotion": {
+      "title": "Produktförderungsstrategien",
+      "description": "Entwicklung effektiver Marketingstrategien zur Steigerung des Absatzes und der Markenbekanntheit."
+    },
+    "productionOptimization": {
+      "title": "Produktionsoptimierung",
+      "description": "Analyse und Verbesserung von Produktionsprozessen zur Steigerung der Effizienz und Senkung der Kosten."
+    },
+    "exportConsulting": {
+      "title": "Export-Beratung",
+      "description": "Umfassende Unterstützung beim Eintritt in internationale Märkte, einschließlich Zertifizierung und Logistik."
+    }
+  },
+  "features": {
+    "title": "Unsere Vorteile",
+    "description": "Warum Kunden uns für die Implementierung von KI-Lösungen wählen",
+    "items": [
+      {
+        "title": "Modernste Technologien",
+        "description": "Wir nutzen die neuesten Errungenschaften in den Bereichen künstliche Intelligenz und maschinelles Lernen."
+      },
+      {
+        "title": "Individueller Ansatz",
+        "description": "Jede Lösung wird unter Berücksichtigung der Besonderheiten Ihres Unternehmens und Ihrer Bedürfnisse entwickelt."
+      },
+      {
+        "title": "Skalierbarkeit",
+        "description": "Unsere Lösungen skalieren problemlos mit dem Wachstum Ihres Unternehmens."
+      },
+      {
+        "title": "Datensicherheit",
+        "description": "Wir gewährleisten höchsten Schutz für Ihre Daten und vertraulichen Informationen."
+      },
+      {
+        "title": "24/7 Support",
+        "description": "Unser Support-Team steht rund um die Uhr zur Verfügung, um alle Probleme zu lösen."
+      },
+      {
+        "title": "Schnelle Integration",
+        "description": "Minimale Implementierungszeit für Lösungen in Ihre bestehende Infrastruktur."
+      }
+    ]
+  },
+  "team": {
+    "title": "Unser Team",
+    "description": "Fachleute mit langjähriger Erfahrung in der Fleischindustrie",
+    "memberImageAlt": "Teammitglied-Foto",
+    "socialLinks": {
+      "linkedin": "LinkedIn-Profil",
+      "twitter": "Twitter-Profil",
+      "facebook": "Facebook-Profil",
+      "instagram": "Instagram-Profil",
+      "email": "E-Mail",
+      "github": "GitHub-Profil"
+    },
+    "stats": {
+      "title": "Team-Statistiken",
+      "totalMembers": "Gesamtanzahl der Mitglieder",
+      "positions": "Anzahl der Positionen",
+      "departments": "Anzahl der Abteilungen"
+    },
+    "filters": {
+      "searchPlaceholder": "Nach Name oder Position suchen",
+      "searchAriaLabel": "Mitarbeiter suchen",
+      "positionLabel": "Nach Position filtern",
+      "allPositions": "Alle Positionen",
+      "sortLabel": "Sortieren nach",
+      "sortOptions": {
+        "nameAZ": "Name (A-Z)",
+        "nameZA": "Name (Z-A)",
+        "positionAZ": "Position (A-Z)",
+        "positionZA": "Position (Z-A)"
+      },
+      "noResults": "Keine Mitarbeiter gefunden, die Ihrer Suche entsprechen",
+      "resetFilters": "Filter zurücksetzen",
+      "resetFiltersAriaLabel": "Alle Suchfilter zurücksetzen"
+    }
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "description": "Haben Sie Fragen oder sind Sie bereit, ein Projekt zu starten? Füllen Sie das Formular aus, und wir melden uns in Kürze bei Ihnen",
+    "success": {
+      "title": "Vielen Dank für Ihre Nachricht!",
+      "message": "Wir werden uns in Kürze mit Ihnen in Verbindung setzen."
+    },
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Ihr Name"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "ihre@email.com"
+      },
+      "phone": {
+        "label": "Telefon",
+        "placeholder": "+380 XX XXX XX XX"
+      },
+      "message": {
+        "label": "Nachricht",
+        "placeholder": "Beschreiben Sie Ihr Projekt oder Ihre Frage"
+      },
+      "submit": "Nachricht senden",
+      "submitting": "Wird gesendet..."
+    }
+  },
+  "testimonials": {
+    "title": "Kundenbewertungen",
+    "description": "Was unsere Kunden über die Zusammenarbeit mit uns sagen",
+    "items": [
+      {
+        "name": "Ivan Petrenko",
+        "position": "Direktor, Fleischparadies",
+        "text": "Die Zusammenarbeit mit Fleisch-Consulting ermöglichte es uns, die Produktionseffizienz um 30% zu steigern und die Produktqualität deutlich zu verbessern."
+      },
+      {
+        "name": "Anna Kovalenko",
+        "position": "Marketing-Managerin, Premium-Fleisch",
+        "text": "Dank der vom Fleisch-Consulting-Team entwickelten Marketingstrategien stiegen unsere Verkäufe in nur 6 Monaten um 45%."
+      },
+      {
+        "name": "Petro Vasylenko",
+        "position": "Inhaber, Traditionelle Würste",
+        "text": "Der professionelle Ansatz und das tiefe Wissen über die Fleischindustrie machen Fleisch-Consulting zum idealen Geschäftspartner für jeden Hersteller."
+      }
+    ]
+  },
+  "footer": {
+    "company_name": "Fleisch-Consulting",
+    "company_description": "Wir helfen Fleisch- und Wurstherstellern, ihre Effizienz und Wettbewerbsfähigkeit auf dem ukrainischen Markt und im Ausland zu steigern.",
+    "social": {
+      "facebook": "Facebook-Seite",
+      "twitter": "Twitter-Profil",
+      "github": "GitHub-Profil"
+    },
+    "services": {
+      "title": "Dienstleistungen",
+      "market_analysis": "Fleischmarktanalyse",
+      "promotion_strategies": "Produktförderungsstrategien",
+      "production_optimization": "Produktionsoptimierung",
+      "export_consulting": "Export-Beratung"
+    },
+    "company": {
+      "title": "Unternehmen",
+      "about": "Über uns",
+      "team": "Team",
+      "careers": "Karriere",
+      "blog": "Blog"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "address": "Kiew, Ukraine",
+      "email": "info@meatconsulting.ua",
+      "phone": "+380 44 123 4567"
+    },
+    "copyright": "© {year} Fleisch-Consulting. Alle Rechte vorbehalten."
   }
 }

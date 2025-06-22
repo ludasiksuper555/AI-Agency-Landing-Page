@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Офлайн - Trae AI Agency</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .icon {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        opacity: 0.8;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        opacity: 0.9;
+      }
+
+      .features {
+        text-align: left;
+        margin: 30px 0;
+      }
+
+      .feature {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+      }
+
+      .feature-icon {
+        margin-right: 12px;
+        font-size: 1.2rem;
+      }
+
+      .retry-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+      }
+
+      .retry-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .status {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+      }
+
+      .online {
+        background: rgba(34, 197, 94, 0.2);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+      }
+
+      .offline {
+        background: rgba(239, 68, 68, 0.2);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="icon pulse">📡</div>
+      <h1>Ви працюєте офлайн</h1>
+      <p>
+        Схоже, у вас немає підключення до інтернету. Не хвилюйтеся - деякі функції все ще доступні!
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          <span class="feature-icon">✅</span>
+          <span>Перегляд раніше завантажених сторінок</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">✅</span>
+          <span>Збереження форм для відправки пізніше</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">✅</span>
+          <span>Доступ до кешованого контенту</span>
+        </div>
+      </div>
+
+      <button class="retry-btn" onclick="checkConnection()">Перевірити підключення</button>
+
+      <div id="status" class="status offline">
+        <span id="status-text">Статус: Офлайн</span>
+      </div>
+    </div>
+
+    <script>
+      function updateConnectionStatus() {
+        const status = document.getElementById('status');
+        const statusText = document.getElementById('status-text');
+
+        if (navigator.onLine) {
+          status.className = 'status online';
+          statusText.textContent = 'Статус: Онлайн - Підключення відновлено!';
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        } else {
+          status.className = 'status offline';
+          statusText.textContent = 'Статус: Офлайн';
+        }
+      }
+
+      function checkConnection() {
+        updateConnectionStatus();
+        if (navigator.onLine) {
+          window.location.reload();
+        }
+      }
+
+      // Listen for online/offline events
+      window.addEventListener('online', updateConnectionStatus);
+      window.addEventListener('offline', updateConnectionStatus);
+
+      // Initial status check
+      updateConnectionStatus();
+
+      // Periodic connection check
+      setInterval(() => {
+        if (navigator.onLine) {
+          fetch('/', { method: 'HEAD', cache: 'no-cache' })
+            .then(() => {
+              window.location.reload();
+            })
+            .catch(() => {
+              // Still offline
+            });
+        }
+      }, 30000); // Check every 30 seconds
+    </script>
+  </body>
+</html>

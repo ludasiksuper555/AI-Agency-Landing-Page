@@ -1,0 +1,155 @@
+{
+  "login": {
+    "success": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ItCi0LXRgdGC0L7QstC40Lkg0JrQvtGA0LjRgdGC0YPQstCw0YciLCJpYXQiOjE1MTYyMzkwMjIsInJvbGUiOiJ1c2VyIn0.4Cj7SvnH4nKxRmVpGXbOQZKgTJp_nQx7Yv9f5jIIQaQ",
+      "user": {
+        "id": "123456",
+        "email": "user@example.com",
+        "firstName": "Тестовий",
+        "lastName": "Користувач",
+        "role": "user"
+      }
+    },
+    "error": {
+      "error": "invalid_credentials",
+      "message": "Невірний email або пароль"
+    }
+  },
+  "user_profile": {
+    "id": "123456",
+    "email": "user@example.com",
+    "firstName": "Тестовий",
+    "lastName": "Користувач",
+    "role": "user",
+    "createdAt": "2023-01-15T10:30:00Z",
+    "lastLogin": "2023-06-20T14:25:30Z",
+    "settings": {
+      "language": "uk",
+      "theme": "light",
+      "notifications": true
+    }
+  },
+  "content": {
+    "pages": [
+      {
+        "id": "home",
+        "title": "Головна сторінка",
+        "slug": "home",
+        "content": "Вміст головної сторінки",
+        "seo": {
+          "title": "AI Agency - Інноваційні рішення для бізнесу",
+          "description": "Ми допомагаємо бізнесу впроваджувати штучний інтелект для оптимізації процесів та збільшення прибутку.",
+          "keywords": "AI, штучний інтелект, бізнес, оптимізація"
+        }
+      },
+      {
+        "id": "about",
+        "title": "Про нас",
+        "slug": "about",
+        "content": "Інформація про компанію",
+        "seo": {
+          "title": "Про AI Agency - Наша історія та місія",
+          "description": "Дізнайтеся більше про нашу компанію, нашу місію та цінності.",
+          "keywords": "AI Agency, про нас, місія, цінності"
+        }
+      },
+      {
+        "id": "services",
+        "title": "Послуги",
+        "slug": "services",
+        "content": "Опис наших послуг",
+        "seo": {
+          "title": "Послуги AI Agency - Рішення для вашого бізнесу",
+          "description": "Ми пропонуємо широкий спектр послуг з впровадження штучного інтелекту для різних галузей бізнесу.",
+          "keywords": "послуги, AI рішення, впровадження, консультації"
+        }
+      }
+    ],
+    "page": {
+      "id": "home",
+      "title": "Головна сторінка",
+      "slug": "home",
+      "content": "<h1>Ласкаво просимо до AI Agency</h1><p>Ми допомагаємо бізнесу впроваджувати інноваційні рішення на базі штучного інтелекту.</p>",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "title": "Інноваційні AI рішення для вашого бізнесу",
+          "subtitle": "Ми допомагаємо компаніям впроваджувати технології штучного інтелекту для оптимізації процесів та збільшення прибутку",
+          "ctaText": "Дізнатися більше",
+          "ctaLink": "#services",
+          "backgroundImage": "/images/hero-bg.jpg"
+        },
+        {
+          "id": "services",
+          "type": "services",
+          "title": "Наші послуги",
+          "services": [
+            {
+              "id": "service-1",
+              "title": "AI консультації",
+              "description": "Експертні консультації з впровадження штучного інтелекту у ваш бізнес",
+              "icon": "consultation"
+            },
+            {
+              "id": "service-2",
+              "title": "Розробка AI рішень",
+              "description": "Розробка кастомізованих рішень на базі штучного інтелекту для ваших потреб",
+              "icon": "development"
+            },
+            {
+              "id": "service-3",
+              "title": "Інтеграція AI",
+              "description": "Інтеграція AI технологій з вашими існуючими системами та процесами",
+              "icon": "integration"
+            }
+          ]
+        }
+      ],
+      "seo": {
+        "title": "AI Agency - Інноваційні рішення для бізнесу",
+        "description": "Ми допомагаємо бізнесу впроваджувати штучний інтелект для оптимізації процесів та збільшення прибутку.",
+        "keywords": "AI, штучний інтелект, бізнес, оптимізація"
+      }
+    }
+  },
+  "services": {
+    "analysis": {
+      "id": "analysis-123",
+      "result": {
+        "sentiment": "positive",
+        "keywords": ["інновації", "технології", "розвиток", "оптимізація"],
+        "summary": "Текст має позитивний тон та фокусується на інноваційних технологіях та їх впливі на розвиток бізнесу."
+      },
+      "createdAt": "2023-06-20T15:30:00Z"
+    }
+  },
+  "error": {
+    "not_found": {
+      "code": "not_found",
+      "message": "Ресурс не знайдено"
+    },
+    "unauthorized": {
+      "code": "unauthorized",
+      "message": "Необхідна авторизація для доступу до цього ресурсу"
+    },
+    "forbidden": {
+      "code": "forbidden",
+      "message": "У вас немає прав для доступу до цього ресурсу"
+    },
+    "validation": {
+      "code": "validation_error",
+      "message": "Помилка валідації",
+      "errors": [
+        {
+          "field": "email",
+          "message": "Введіть коректну адресу електронної пошти"
+        },
+        {
+          "field": "password",
+          "message": "Пароль повинен містити не менше 8 символів"
+        }
+      ]
+    }
+  }
+}

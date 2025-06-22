@@ -1,0 +1,69 @@
+# =============================================================================
+# AI Agency Landing Page - Grafana Datasources Configuration
+# =============================================================================
+# Datasource configuration for Grafana monitoring dashboards
+
+apiVersion: 1
+
+datasources:
+  # Prometheus datasource
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true
+    jsonData:
+      httpMethod: POST
+      manageAlerts: true
+      prometheusType: Prometheus
+      prometheusVersion: 2.40.0
+      cacheLevel: 'High'
+      disableMetricsLookup: false
+      incrementalQuerying: true
+      incrementalQueryOverlapWindow: 10m
+      queryTimeout: 60s
+      timeInterval: 15s
+      exemplarTraceIdDestinations:
+        - name: trace_id
+          datasourceUid: jaeger
+    secureJsonData:
+      # Add authentication if needed
+      # basicAuthPassword: 'password'
+    uid: prometheus-uid
+    version: 1
+
+  # Additional datasource for logs (if using Loki)
+  # - name: Loki
+  #   type: loki
+  #   access: proxy
+  #   url: http://loki:3100
+  #   editable: true
+  #   jsonData:
+  #     maxLines: 1000
+  #     derivedFields:
+  #       - datasourceUid: jaeger
+  #         matcherRegex: "traceID=(\\w+)"
+  #         name: TraceID
+  #         url: "$${__value.raw}"
+  #   uid: loki-uid
+  #   version: 1
+
+  # Additional datasource for traces (if using Jaeger)
+  # - name: Jaeger
+  #   type: jaeger
+  #   access: proxy
+  #   url: http://jaeger:16686
+  #   editable: true
+  #   jsonData:
+  #     tracesToLogs:
+  #       datasourceUid: loki
+  #       tags: ['job', 'instance', 'pod', 'namespace']
+  #       mappedTags: [{ key: 'service.name', value: 'service' }]
+  #       mapTagNamesEnabled: false
+  #       spanStartTimeShift: '1h'
+  #       spanEndTimeShift: '1h'
+  #       filterByTraceID: false
+  #       filterBySpanID: false
+  #   uid: jaeger-uid
+  #   version: 1

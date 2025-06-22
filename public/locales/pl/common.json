@@ -5,10 +5,19 @@
   },
   "nav": {
     "home": "Strona główna",
-    "dashboard": "Panel sterowania",
+    "dashboard": "Panel",
     "profile": "Profil",
     "signIn": "Zaloguj się",
-    "signUp": "Zarejestruj się"
+    "signUp": "Zarejestruj się",
+    "services": "Usługi",
+    "team": "Nasz zespół",
+    "marketAnalytics": "Analiza rynku",
+    "export": "Eksport",
+    "testimonials": "Referencje",
+    "contact": "Kontakt",
+    "blog": "Blog",
+    "user": "Użytkownik",
+    "toggleMenu": "Przełącz menu"
   },
   "theme": {
     "light": "Jasny motyw",
@@ -24,13 +33,13 @@
   },
   "mgx": {
     "title": "Integracja MetaGPT X",
-    "description": "Połącz swoje konto MetaGPT X, aby uzyskać zaawansowane możliwości AI",
+    "description": "Połącz swoje konto MetaGPT X, aby uzyskać zaawansowane funkcje AI",
     "authButton": "Zaloguj się przez MGX",
-    "integrationButton": "Konfiguruj integrację",
+    "integrationButton": "Skonfiguruj integrację",
     "learnMore": "Dowiedz się więcej o MGX",
     "loading": "Ładowanie...",
-    "loggedInAs": "Jesteś zalogowany jako",
-    "authRequired": "Autoryzacja jest wymagana do konfiguracji integracji",
+    "loggedInAs": "Zalogowany jako",
+    "authRequired": "Wymagana autoryzacja do konfiguracji integracji",
     "error": "Błąd"
   },
   "github": {
@@ -44,10 +53,181 @@
     "analysisResult": "Wyniki analizy"
   },
   "browser": {
-    "offlineReady": "Aplikacja jest gotowa do pracy offline",
+    "offlineReady": "Aplikacja gotowa do pracy offline",
     "updateAvailable": "Dostępna aktualizacja aplikacji",
     "updateButton": "Aktualizuj aplikację",
     "cacheCleared": "Pamięć podręczna wyczyszczona",
     "clearCacheButton": "Wyczyść pamięć podręczną"
+  },
+  "hero": {
+    "title": "Mięsny Konsulting",
+    "subtitle": "Profesjonalne rozwiązania dla przemysłu mięsnego",
+    "description": "Pomagamy producentom mięsa i wędlin zwiększyć efektywność i konkurencyjność na rynku ukraińskim i za granicą.",
+    "ctaButton": "Zamów konsultację",
+    "learnMoreButton": "Dowiedz się więcej"
+  },
+  "services": {
+    "title": "Nasze usługi",
+    "description": "Oferujemy kompleksowe rozwiązania dla przemysłu mięsnego",
+    "marketAnalysis": {
+      "title": "Analiza rynku mięsnego",
+      "description": "Szczegółowe badania rynku, analiza konkurencji i trendów konsumenckich dla strategicznych decyzji."
+    },
+    "productPromotion": {
+      "title": "Strategie promocji produktów",
+      "description": "Opracowanie skutecznych strategii marketingowych w celu zwiększenia sprzedaży i rozpoznawalności marki."
+    },
+    "productionOptimization": {
+      "title": "Optymalizacja produkcji",
+      "description": "Analiza i ulepszanie procesów produkcyjnych w celu zwiększenia wydajności i obniżenia kosztów."
+    },
+    "exportConsulting": {
+      "title": "Doradztwo eksportowe",
+      "description": "Kompleksowe wsparcie w wejściu na rynki międzynarodowe, w tym certyfikacja i logistyka."
+    }
+  },
+  "features": {
+    "title": "Nasze zalety",
+    "description": "Dlaczego klienci wybierają nas do wdrażania rozwiązań AI",
+    "items": [
+      {
+        "title": "Najnowocześniejsze technologie",
+        "description": "Wykorzystujemy najnowsze osiągnięcia w dziedzinie sztucznej inteligencji i uczenia maszynowego."
+      },
+      {
+        "title": "Indywidualne podejście",
+        "description": "Każde rozwiązanie jest opracowywane z uwzględnieniem specyfiki Twojej firmy i potrzeb."
+      },
+      {
+        "title": "Skalowalność",
+        "description": "Nasze rozwiązania bez problemu skalują się wraz z rozwojem Twojej firmy."
+      },
+      {
+        "title": "Bezpieczeństwo danych",
+        "description": "Zapewniamy najwyższy poziom ochrony Twoich danych i informacji poufnych."
+      },
+      {
+        "title": "Wsparcie 24/7",
+        "description": "Nasz zespół wsparcia jest dostępny przez całą dobę, aby rozwiązać wszelkie problemy."
+      },
+      {
+        "title": "Szybka integracja",
+        "description": "Minimalny czas wdrożenia rozwiązań do istniejącej infrastruktury."
+      }
+    ]
+  },
+  "team": {
+    "title": "Nasz zespół",
+    "description": "Specjaliści z wieloletnim doświadczeniem w branży mięsnej",
+    "memberImageAlt": "Zdjęcie członka zespołu",
+    "socialLinks": {
+      "linkedin": "Profil LinkedIn",
+      "twitter": "Profil Twitter",
+      "facebook": "Profil Facebook",
+      "instagram": "Profil Instagram",
+      "email": "E-mail",
+      "github": "Profil GitHub"
+    },
+    "stats": {
+      "title": "Statystyki zespołu",
+      "totalMembers": "Łączna liczba członków",
+      "positions": "Liczba stanowisk",
+      "departments": "Liczba działów"
+    },
+    "filters": {
+      "searchPlaceholder": "Szukaj według nazwiska lub stanowiska",
+      "searchAriaLabel": "Szukaj pracowników",
+      "positionLabel": "Filtruj według stanowiska",
+      "allPositions": "Wszystkie stanowiska",
+      "sortLabel": "Sortuj według",
+      "sortOptions": {
+        "nameAZ": "Nazwisko (A-Z)",
+        "nameZA": "Nazwisko (Z-A)",
+        "positionAZ": "Stanowisko (A-Z)",
+        "positionZA": "Stanowisko (Z-A)"
+      },
+      "noResults": "Nie znaleziono pracowników odpowiadających Twojemu wyszukiwaniu",
+      "resetFilters": "Resetuj filtry",
+      "resetFiltersAriaLabel": "Resetuj wszystkie filtry wyszukiwania"
+    }
+  },
+  "contact": {
+    "title": "Skontaktuj się z nami",
+    "description": "Masz pytania lub jesteś gotowy rozpocząć projekt? Wypełnij formularz, a my wkrótce się z Tobą skontaktujemy",
+    "success": {
+      "title": "Dziękujemy za wiadomość!",
+      "message": "Wkrótce się z Tobą skontaktujemy."
+    },
+    "form": {
+      "name": {
+        "label": "Imię i nazwisko",
+        "placeholder": "Twoje imię i nazwisko"
+      },
+      "email": {
+        "label": "E-mail",
+        "placeholder": "twoj@email.com"
+      },
+      "phone": {
+        "label": "Telefon",
+        "placeholder": "+380 XX XXX XX XX"
+      },
+      "message": {
+        "label": "Wiadomość",
+        "placeholder": "Opisz swój projekt lub pytanie"
+      },
+      "submit": "Wyślij wiadomość",
+      "submitting": "Wysyłanie..."
+    }
+  },
+  "testimonials": {
+    "title": "Opinie klientów",
+    "description": "Co nasi klienci mówią o współpracy z nami",
+    "items": [
+      {
+        "name": "Ivan Petrenko",
+        "position": "Dyrektor, Mięsny Raj",
+        "text": "Współpraca z Mięsnym Konsultingiem pozwoliła nam zwiększyć wydajność produkcji o 30% i znacznie poprawić jakość produktów."
+      },
+      {
+        "name": "Anna Kovalenko",
+        "position": "Kierownik marketingu, Premium Mięso",
+        "text": "Dzięki strategiom marketingowym opracowanym przez zespół Mięsnego Konsultingu nasza sprzedaż wzrosła o 45% w ciągu zaledwie 6 miesięcy."
+      },
+      {
+        "name": "Petro Vasylenko",
+        "position": "Właściciel, Tradycyjne Kiełbasy",
+        "text": "Profesjonalne podejście i głęboka wiedza o przemyśle mięsnym czynią Mięsny Konsulting idealnym partnerem biznesowym dla każdego producenta."
+      }
+    ]
+  },
+  "footer": {
+    "company_name": "Mięsny Konsulting",
+    "company_description": "Pomagamy producentom mięsa i wędlin zwiększyć efektywność i konkurencyjność na rynku ukraińskim i za granicą.",
+    "social": {
+      "facebook": "Strona Facebook",
+      "twitter": "Profil Twitter",
+      "github": "Profil GitHub"
+    },
+    "services": {
+      "title": "Usługi",
+      "market_analysis": "Analiza rynku mięsnego",
+      "promotion_strategies": "Strategie promocji produktów",
+      "production_optimization": "Optymalizacja produkcji",
+      "export_consulting": "Doradztwo eksportowe"
+    },
+    "company": {
+      "title": "Firma",
+      "about": "O nas",
+      "team": "Zespół",
+      "careers": "Kariera",
+      "blog": "Blog"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "address": "Kijów, Ukraina",
+      "email": "info@meatconsulting.ua",
+      "phone": "+380 44 123 4567"
+    },
+    "copyright": "© {year} Mięsny Konsulting. Wszelkie prawa zastrzeżone."
   }
 }

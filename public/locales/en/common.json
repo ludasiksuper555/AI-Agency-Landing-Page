@@ -8,19 +8,28 @@
     "dashboard": "Dashboard",
     "profile": "Profile",
     "signIn": "Sign In",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "services": "Services",
+    "team": "Our Team",
+    "marketAnalytics": "Market Analytics",
+    "export": "Export",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "blog": "Blog",
+    "user": "User",
+    "toggleMenu": "Toggle Menu"
   },
   "theme": {
-    "light": "Light theme",
-    "dark": "Dark theme",
-    "toggle": "Toggle theme"
+    "light": "Light Theme",
+    "dark": "Dark Theme",
+    "toggle": "Toggle Theme"
   },
   "language": {
     "uk": "Ukrainian",
     "en": "English",
     "de": "German",
     "pl": "Polish",
-    "change": "Change language"
+    "change": "Change Language"
   },
   "mgx": {
     "title": "MetaGPT X Integration",
@@ -29,8 +38,8 @@
     "integrationButton": "Configure Integration",
     "learnMore": "Learn more about MGX",
     "loading": "Loading...",
-    "loggedInAs": "You are logged in as",
-    "authRequired": "Authorization is required to configure integration",
+    "loggedInAs": "Logged in as",
+    "authRequired": "Authentication required for integration setup",
     "error": "Error"
   },
   "github": {
@@ -40,14 +49,195 @@
     "syncButton": "Sync with GitHub",
     "analyzeButton": "Analyze Code with MGX",
     "connected": "GitHub account connected",
-    "syncStatus": "Synchronization status",
-    "analysisResult": "Analysis results"
+    "syncStatus": "Sync Status",
+    "analysisResult": "Analysis Results"
   },
   "browser": {
     "offlineReady": "App is ready for offline use",
     "updateAvailable": "App update available",
-    "updateButton": "Update app",
+    "updateButton": "Update App",
     "cacheCleared": "Cache cleared",
-    "clearCacheButton": "Clear cache"
+    "clearCacheButton": "Clear Cache"
+  },
+  "hero": {
+    "title": "Meat Consulting",
+    "subtitle": "Professional Solutions for the Meat Industry",
+    "description": "We help meat and sausage producers increase efficiency and competitiveness in the Ukrainian market and abroad.",
+    "ctaButton": "Request Consultation",
+    "learnMoreButton": "Learn More"
+  },
+  "services": {
+    "title": "Our Services",
+    "description": "We offer comprehensive solutions for the meat industry",
+    "marketAnalysis": {
+      "title": "Meat Market Analysis",
+      "description": "Detailed market research, competitor analysis, and consumer trends for strategic decision-making."
+    },
+    "productPromotion": {
+      "title": "Product Promotion Strategies",
+      "description": "Development of effective marketing strategies to increase sales and brand awareness."
+    },
+    "productionOptimization": {
+      "title": "Production Optimization",
+      "description": "Analysis and improvement of production processes to increase efficiency and reduce costs."
+    },
+    "exportConsulting": {
+      "title": "Export Consulting",
+      "description": "Comprehensive support for entering international markets, including certification and logistics."
+    }
+  },
+  "features": {
+    "title": "Our Advantages",
+    "description": "Why clients choose us for implementing AI solutions",
+    "items": [
+      {
+        "title": "Cutting-edge Technologies",
+        "description": "We use the latest advancements in artificial intelligence and machine learning."
+      },
+      {
+        "title": "Individual Approach",
+        "description": "Each solution is developed taking into account the specifics of your business and needs."
+      },
+      {
+        "title": "Scalability",
+        "description": "Our solutions easily scale with the growth of your business."
+      },
+      {
+        "title": "Data Security",
+        "description": "We ensure the highest level of protection for your data and confidential information."
+      },
+      {
+        "title": "24/7 Support",
+        "description": "Our support team is available around the clock to resolve any issues."
+      },
+      {
+        "title": "Quick Integration",
+        "description": "Minimal implementation time for solutions into your existing infrastructure."
+      }
+    ]
+  },
+  "team": {
+    "title": "Our Team",
+    "description": "Professionals with years of experience in the meat industry",
+    "memberImageAlt": "Team member photo",
+    "socialLinks": {
+      "linkedin": "LinkedIn profile",
+      "twitter": "Twitter profile",
+      "facebook": "Facebook profile",
+      "instagram": "Instagram profile",
+      "email": "Email",
+      "github": "GitHub profile"
+    },
+    "stats": {
+      "title": "Team Statistics",
+      "totalMembers": "Total Members",
+      "positionsCount": "Number of Positions",
+      "departmentsCount": "Number of Departments"
+    },
+    "filters": {
+      "searchPlaceholder": "Search by name or position",
+      "searchAriaLabel": "Search employees",
+      "positionLabel": "Filter by position",
+      "allPositions": "All positions",
+      "departmentLabel": "Filter by department",
+      "allDepartments": "All departments",
+      "sortLabel": "Sort by",
+      "sortNameAsc": "Name (A-Z)",
+      "sortNameDesc": "Name (Z-A)",
+      "sortPositionAsc": "Position (A-Z)",
+      "sortPositionDesc": "Position (Z-A)",
+      "sortOptions": {
+        "nameAZ": "Name (A-Z)",
+        "nameZA": "Name (Z-A)",
+        "positionAZ": "Position (A-Z)",
+        "positionZA": "Position (Z-A)"
+      },
+      "resetButton": "Reset filters",
+      "resetFiltersAriaLabel": "Reset all search filters"
+    },
+    "noResults": "No team members found",
+    "export": {
+      "button": "Export data"
+    },
+    "photo": "Photo of"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Have questions or ready to start a project? Fill out the form and we'll get back to you shortly",
+    "success": {
+      "title": "Thank you for your message!",
+      "message": "We will contact you shortly."
+    },
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your@email.com"
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "+380 XX XXX XX XX"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Describe your project or question"
+      },
+      "submit": "Send Message",
+      "submitting": "Sending..."
+    }
+  },
+  "testimonials": {
+    "title": "Client Testimonials",
+    "description": "What our clients say about working with us",
+    "items": [
+      {
+        "name": "Ivan Petrenko",
+        "position": "Director, Meat Paradise",
+        "text": "Collaboration with Meat Consulting allowed us to increase production efficiency by 30% and significantly improve product quality."
+      },
+      {
+        "name": "Anna Kovalenko",
+        "position": "Marketing Manager, Premium Meat",
+        "text": "Thanks to the marketing strategies developed by the Meat Consulting team, our sales increased by 45% in just 6 months."
+      },
+      {
+        "name": "Petro Vasylenko",
+        "position": "Owner, Traditional Sausages",
+        "text": "The professional approach and deep knowledge of the meat industry make Meat Consulting an ideal business partner for any producer."
+      }
+    ]
+  },
+  "footer": {
+    "company_name": "Meat Consulting",
+    "company_description": "We help meat and sausage producers increase efficiency and competitiveness in the Ukrainian market and abroad.",
+    "social": {
+      "facebook": "Facebook page",
+      "twitter": "Twitter profile",
+      "github": "GitHub profile"
+    },
+    "services": {
+      "title": "Services",
+      "market_analysis": "Meat Market Analysis",
+      "promotion_strategies": "Product Promotion Strategies",
+      "production_optimization": "Production Optimization",
+      "export_consulting": "Export Consulting"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "team": "Team",
+      "careers": "Careers",
+      "blog": "Blog"
+    },
+    "contact": {
+      "title": "Contact",
+      "address": "Kyiv, Ukraine",
+      "email": "info@meatconsulting.ua",
+      "phone": "+380 44 123 4567"
+    },
+    "copyright": "© {year} Meat Consulting. All rights reserved."
   }
 }

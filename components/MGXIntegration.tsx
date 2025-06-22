@@ -1,15 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { authenticateWithMGX, getMGXUserInfo, configureMGXIntegration } from '../utils/mgxUtils';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
+import React, { useEffect, useState } from 'react';
+
+import {
+  analyzeCodeWithMGX,
+  authenticateWithMGX,
+  configureMGXIntegration,
+  getMGXUserInfo,
+  syncWithGitHub,
+} from '../utils/mgxUtils';
 
 const MGXIntegration: React.FC = () => {
   const { t } = useTranslation('common');
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userInfo, setUserInfo] = useState<{username: string; email: string} | null>(null);
+  const [userInfo, setUserInfo] = useState<{ username: string; email: string } | null>(null);
+  const [gitHubConnected, setGitHubConnected] = useState(false);
+  const [syncStatus, setSyncStatus] = useState('');
+  const [codeAnalysisResult, setCodeAnalysisResult] = useState('');
   const { code } = router.query;
 
   useEffect(() => {
@@ -27,13 +37,13 @@ const MGXIntegration: React.FC = () => {
         // Зберігаємо токен в localStorage
         localStorage.setItem('mgx_token', authResponse.token);
         setIsAuthenticated(true);
-        
+
         // Отримуємо інформацію про користувача
         const user = await getMGXUserInfo(authResponse.token);
         if (user) {
           setUserInfo({
             username: user.username,
-            email: user.email
+            email: user.email,
           });
         }
       }
@@ -46,8 +56,73 @@ const MGXIntegration: React.FC = () => {
 
   const handleMGXAuth = () => {
     setIsLoading(true);
-    // Перенаправлення на сторінку авторизації MGX
-    window.location.href = 'https://mgx.dev/chat/p125h#2-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0';
+    // Перенаправлення на сторінку авторизації MGX для м'ясної аналітики
+    window.location.href = 'https://mgx.dev/meat-analytics/auth';
+  };
+
+  const handleGitHubAuth = () => {
+    setIsLoading(true);
+    // Імітація підключення до GitHub
+    setTimeout(() => {
+      setGitHubConnected(true);
+      setIsLoading(false);
+    }, 1500);
+  };
+
+  const handleGitHubSync = async () => {
+    setIsLoading(true);
+    try {
+      const token = localStorage.getItem('mgx_token');
+      if (!token) {
+        alert(t('mgx.authRequired'));
+        setIsLoading(false);
+        return;
+      }
+
+      const result = await syncWithGitHub(token, {
+        repository: 'meat-analytics/market-data',
+        branch: 'main',
+        commitMessage: 'Sync meat market data',
+      });
+
+      setSyncStatus(result.message);
+    } catch (error) {
+      console.error('GitHub sync error:', error);
+      setSyncStatus('Sync failed: ' + (error instanceof Error ? error.message : 'Unknown error'));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleCodeAnalysis = async () => {
+    setIsLoading(true);
+    try {
+      const token = localStorage.getItem('mgx_token');
+      if (!token) {
+        alert(t('mgx.authRequired'));
+        setIsLoading(false);
+        return;
+      }
+
+      const result = await analyzeCodeWithMGX(token, {
+        repository: 'meat-analytics/market-data',
+        branch: 'main',
+        analysisType: 'full',
+      });
+
+      if (result.success && result.analysis) {
+        setCodeAnalysisResult(result.analysis);
+      } else {
+        setCodeAnalysisResult('Analysis failed: ' + result.message);
+      }
+    } catch (error) {
+      console.error('Code analysis error:', error);
+      setCodeAnalysisResult(
+        'Analysis failed: ' + (error instanceof Error ? error.message : 'Unknown error')
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleMGXIntegration = async () => {
@@ -58,12 +133,14 @@ const MGXIntegration: React.FC = () => {
         alert(t('mgx.authRequired'));
         return;
       }
-      
+
       const result = await configureMGXIntegration(token, {
-        appId: 'trae-app',
-        locale: router.locale || 'uk'
+        appId: 'meat-consulting-app',
+        locale: router.locale || 'uk',
+        industry: 'meat',
+        dataTypes: ['market', 'production', 'export'],
       });
-      
+
       if (result.success) {
         alert(result.message);
       } else {
@@ -79,32 +156,33 @@ const MGXIntegration: React.FC = () => {
   return (
     <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 my-8">
       <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
-        {t('mgx.title')}
+        Аналітика м'ясного ринку
       </h2>
-      
+
       <p className="text-gray-600 dark:text-gray-300 mb-6">
-        {t('mgx.description')}
+        Інтеграція з MGX дозволяє отримати доступ до аналітичних даних м'ясного ринку України та
+        світу, включаючи тенденції цін, обсяги виробництва та експорту м'ясної продукції.
       </p>
-      
+
       <div className="flex flex-col space-y-4">
         {!isAuthenticated ? (
           <button
             onClick={handleMGXAuth}
             disabled={isLoading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50"
+            className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 disabled:opacity-50"
             aria-label={t('mgx.authButton')}
             tabIndex={0}
           >
             {isLoading ? t('mgx.loading') : t('mgx.authButton')}
           </button>
         ) : null}
-        
+
         {isAuthenticated && userInfo && (
           <div className="text-center text-gray-700 dark:text-gray-300 py-2 mb-4">
             {t('mgx.loggedInAs')}: <span className="font-semibold">{userInfo.username}</span>
           </div>
         )}
-        
+
         {isAuthenticated && (
           <>
             <button
@@ -116,12 +194,12 @@ const MGXIntegration: React.FC = () => {
             >
               {isLoading ? t('mgx.loading') : t('mgx.integrationButton')}
             </button>
-            
+
             <div className="border-t border-gray-200 dark:border-gray-700 my-4 pt-4">
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">
-                GitHub Integration
+                Інтеграція з даними ринку
               </h3>
-              
+
               {!gitHubConnected ? (
                 <button
                   onClick={handleGitHubAuth}
@@ -137,7 +215,7 @@ const MGXIntegration: React.FC = () => {
                   <div className="text-sm text-green-600 dark:text-green-400 mb-3">
                     GitHub account connected
                   </div>
-                  
+
                   <button
                     onClick={handleGitHubSync}
                     disabled={isLoading}
@@ -147,13 +225,13 @@ const MGXIntegration: React.FC = () => {
                   >
                     {isLoading ? t('mgx.loading') : 'Sync with GitHub'}
                   </button>
-                  
+
                   {syncStatus && (
                     <div className="text-sm text-gray-600 dark:text-gray-400 mb-3 p-2 bg-gray-100 dark:bg-gray-700 rounded">
                       {syncStatus}
                     </div>
                   )}
-                  
+
                   <button
                     onClick={handleCodeAnalysis}
                     disabled={isLoading}
@@ -163,7 +241,7 @@ const MGXIntegration: React.FC = () => {
                   >
                     {isLoading ? t('mgx.loading') : 'Analyze Code with MGX'}
                   </button>
-                  
+
                   {codeAnalysisResult && (
                     <div className="text-sm text-gray-600 dark:text-gray-400 mb-3 p-2 bg-gray-100 dark:bg-gray-700 rounded max-h-40 overflow-y-auto">
                       {codeAnalysisResult}
@@ -174,12 +252,12 @@ const MGXIntegration: React.FC = () => {
             </div>
           </>
         )}
-        
+
         <Link
-          href="https://mgx.dev/docs"
+          href="https://mgx.dev/meat-analytics/docs"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-center text-blue-500 hover:text-blue-700 transition-colors duration-300"
+          className="text-center text-red-500 hover:text-red-700 transition-colors duration-300"
           aria-label={t('mgx.learnMore')}
           tabIndex={0}
         >

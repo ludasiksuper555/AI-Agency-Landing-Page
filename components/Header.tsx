@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from 'react';
+'use client';
+// Тимчасово закоментовано імпорт Clerk
+// import { useUser, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
 import { motion } from 'framer-motion';
-import { useUser, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import { useEffect, useState } from 'react';
+
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isSignedIn, user } = useUser();
+  // Тимчасово закоментовано використання Clerk
+  // const { isSignedIn, user } = useUser();
+  const isSignedIn = false; // Тимчасово встановлюємо як false
+  const user: { firstName?: string; fullName?: string } | null = null; // Тимчасово встановлюємо як null
   const router = useRouter();
 
   useEffect(() => {
@@ -33,42 +39,61 @@ const Header = () => {
   };
 
   const { t } = useTranslation('common');
-  
+
   const publicNavLinks = [
-    { name: 'Головна', href: '/#hero' },
-    { name: 'Послуги', href: '/#services' },
-    { name: 'Переваги', href: '/#features' },
-    { name: 'Відгуки', href: '/#testimonials' },
-    { name: 'Тарифи', href: '/#pricing' },
-    { name: 'FAQ', href: '/#faq' },
-    { name: 'Контакти', href: '/#contact' },
-    { name: t('mgx.title'), href: '/mgx-integration' },
+    { name: t('nav.home'), href: '/#hero' },
+    { name: t('nav.services'), href: '/#services' },
+    { name: t('nav.team'), href: '/#team' },
+    { name: t('nav.marketAnalytics'), href: '/#market-analytics' },
+    { name: t('nav.export'), href: '/#export' },
+    { name: t('nav.testimonials'), href: '/#testimonials' },
+    { name: t('nav.contact'), href: '/#contact' },
+    { name: t('nav.blog'), href: '/blog' },
   ];
-  
+
   const privateNavLinks = [
     ...publicNavLinks,
-    { name: 'Профіль', href: '/profile' },
-    { name: 'Панель керування', href: '/dashboard' },
+    { name: t('nav.profile'), href: '/profile' },
+    { name: t('nav.dashboard'), href: '/dashboard' },
   ];
-  
+
   const navLinks = isSignedIn ? privateNavLinks : publicNavLinks;
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          <motion.div
+            className="flex items-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <a href="#" className="flex items-center">
-              <span className="text-2xl font-bold text-blue-600 mr-2">AI</span>
-              <span className={`text-2xl font-bold ${isScrolled ? 'text-gray-800' : 'text-white'}`}>Agency</span>
+            <a href="#">
+              <svg
+                className="w-8 h-8 mr-2 text-red-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className={`text-2xl font-bold ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+              >
+                {t('footer.company_name')}
+              </motion.span>
             </a>
           </motion.div>
 
@@ -83,6 +108,7 @@ const Header = () => {
                 }`}
               >
                 <motion.span
+                  className="flex items-center space-x-4"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -92,45 +118,67 @@ const Header = () => {
                 </motion.span>
               </Link>
             ))}
-            
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <LanguageSwitcher className="mr-2" />
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mr-2"
+            >
+              <div>
+                <LanguageSwitcher />
                 <ThemeToggle />
               </div>
               {isSignedIn ? (
                 <div className="flex items-center space-x-4">
-                  <Link 
-                    href="/profile" 
-                    className={`text-sm font-medium transition-colors duration-300 ${isScrolled ? 'text-gray-800 hover:text-blue-600' : 'text-white hover:text-blue-200'}`}
+                  <Link
+                    href="/profile"
+                    className={`text-sm font-medium transition-colors duration-300 ${isScrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-200'}`}
                   >
-                    {user?.firstName || 'Профіль'}
+                    {user?.firstName || t('nav.profile')}
                   </Link>
-                  <UserButton 
+                  {/* Тимчасово закоментовано компонент UserButton */}
+                  {/* <UserButton
                     afterSignOutUrl="/"
                     appearance={{
                       elements: {
-                        userButtonAvatarBox: `border-2 ${isScrolled ? 'border-blue-600' : 'border-white'}`
+                        userButtonAvatarBox: `border-2 ${isScrolled ? 'border-red-600' : 'border-white'}`
                       }
                     }}
-                  />
+                  /> */}
+                  <button
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${isScrolled ? 'bg-white text-red-600 hover:bg-gray-100 border border-red-600' : 'bg-white text-red-600 hover:bg-red-50'}`}
+                  >
+                    {t('nav.profile')}
+                  </button>
                 </div>
               ) : (
                 <div className="flex items-center space-x-2">
-                  <SignInButton mode="modal">
-                    <button className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${isScrolled ? 'bg-white text-blue-600 hover:bg-gray-100 border border-blue-600' : 'bg-white text-blue-600 hover:bg-blue-50'}`}>
+                  {/* Тимчасово закоментовано компоненти SignInButton і SignUpButton */}
+                  {/* <SignInButton mode="modal">
+                    <button className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${isScrolled ? 'bg-white text-red-600 hover:bg-gray-100 border border-red-600' : 'bg-white text-red-600 hover:bg-red-50'}`}>
                       Увійти
                     </button>
                   </SignInButton>
-                  
+
                   <SignUpButton mode="modal">
-                    <button className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${isScrolled ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-blue-600 text-white hover:bg-blue-700'}`}>
+                    <button className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${isScrolled ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-red-600 text-white hover:bg-red-700'}`}>
                       Зареєструватися
                     </button>
-                  </SignUpButton>
+                  </SignUpButton> */}
+                  <button
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${isScrolled ? 'bg-white text-red-600 hover:bg-gray-100 border border-red-600' : 'bg-white text-red-600 hover:bg-red-50'}`}
+                  >
+                    {t('nav.signIn')}
+                  </button>
+                  <button
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${isScrolled ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-red-600 text-white hover:bg-red-700'}`}
+                  >
+                    {t('nav.signUp')}
+                  </button>
                 </div>
               )}
-            </div>
+            </motion.div>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -141,14 +189,9 @@ const Header = () => {
               className={`p-2 rounded-md focus:outline-none ${
                 isScrolled ? 'text-gray-700' : 'text-white'
               }`}
-              aria-label="Відкрити меню"
+              aria-label={t('nav.toggleMenu')}
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMobileMenuOpen ? (
                   <path
                     strokeLinecap="round"
@@ -182,17 +225,23 @@ const Header = () => {
                 <a
                   key={index}
                   href={link.href}
-                  className="text-gray-700 font-medium hover:text-blue-600 transition-colors py-2"
+                  className="text-gray-700 font-medium hover:text-red-600 transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
-              
+
               {isSignedIn ? (
                 <div className="flex items-center space-x-2 py-2">
-                  <UserButton afterSignOutUrl="/" />
-                  <span className="text-gray-700 font-medium">{user?.fullName || 'Користувач'}</span>
+                  {/* Тимчасово закоментовано компонент UserButton */}
+                  {/* <UserButton afterSignOutUrl="/" /> */}
+                  <button className="text-gray-700 font-medium hover:text-red-600 transition-colors py-2">
+                    {t('nav.profile')}
+                  </button>
+                  <span className="text-gray-700 font-medium">
+                    {user?.fullName || t('nav.user')}
+                  </span>
                 </div>
               ) : (
                 <div className="flex flex-col space-y-3 pt-2 border-t border-gray-200 mt-2">
@@ -200,21 +249,28 @@ const Header = () => {
                     <LanguageSwitcher />
                     <ThemeToggle />
                   </div>
-                  <SignInButton mode="modal">
-                    <button 
-                      className="text-gray-700 font-medium hover:text-blue-600 transition-colors py-2"
+                  {/* Тимчасово закоментовано компоненти SignInButton і SignUpButton */}
+                  {/* <SignInButton mode="modal">
+                    <button
+                      className="text-gray-700 font-medium hover:text-red-600 transition-colors py-2"
                     >
                       Увійти
                     </button>
                   </SignInButton>
-                  
+
                   <SignUpButton mode="modal">
-                    <button 
-                      className="bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors py-2 px-4 rounded-md"
+                    <button
+                      className="bg-red-600 text-white font-medium hover:bg-red-700 transition-colors py-2 px-4 rounded-md"
                     >
                       Реєстрація
                     </button>
-                  </SignUpButton>
+                  </SignUpButton> */}
+                  <button className="text-gray-700 font-medium hover:text-red-600 transition-colors py-2">
+                    {t('nav.signIn')}
+                  </button>
+                  <button className="bg-red-600 text-white font-medium hover:bg-red-700 transition-colors py-2 px-4 rounded-md">
+                    {t('nav.signUp')}
+                  </button>
                 </div>
               )}
             </div>

@@ -1,5 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
+import { render, screen } from '@testing-library/react';
+
 import Services from './Services';
 
 // Мок для framer-motion
@@ -15,7 +17,9 @@ jest.mock('framer-motion', () => ({
 describe('Services Component', () => {
   it('рендериться без помилок', () => {
     render(<Services />);
-    expect(screen.getByRole('region', { name: /послуги/i }) || document.querySelector('section')).toBeTruthy();
+    expect(
+      screen.getByRole('region', { name: /послуги/i }) || document.querySelector('section')
+    ).toBeTruthy();
   });
 
   it('відображає заголовок секції', () => {
@@ -27,23 +31,25 @@ describe('Services Component', () => {
 
   it('відображає список послуг', () => {
     render(<Services />);
-    
+
     // Перевіряємо наявність карток послуг
-    const serviceCards = screen.getAllByRole('article') || document.querySelectorAll('.service-card');
+    const serviceCards =
+      screen.getAllByRole('article') || document.querySelectorAll('.service-card');
     expect(serviceCards.length).toBeGreaterThan(0);
   });
 
   it('кожна послуга має заголовок та опис', () => {
     render(<Services />);
-    
+
     // Отримуємо всі картки послуг
-    const serviceCards = screen.getAllByRole('article') || document.querySelectorAll('.service-card');
-    
+    const serviceCards =
+      screen.getAllByRole('article') || document.querySelectorAll('.service-card');
+
     // Перевіряємо, що кожна картка має заголовок та опис
     serviceCards.forEach(card => {
       const cardTitle = card.querySelector('h3') || card.querySelector('.service-title');
       const cardDescription = card.querySelector('p') || card.querySelector('.service-description');
-      
+
       expect(cardTitle).toBeTruthy();
       expect(cardDescription).toBeTruthy();
     });
@@ -51,7 +57,7 @@ describe('Services Component', () => {
 
   it('відображає іконки для послуг', () => {
     render(<Services />);
-    
+
     // Перевіряємо наявність іконок
     const icons = document.querySelectorAll('svg') || document.querySelectorAll('.service-icon');
     expect(icons.length).toBeGreaterThan(0);

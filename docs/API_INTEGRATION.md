@@ -55,15 +55,15 @@ async function getUserProfile() {
     const response = await fetch('https://api.example.com/v1/users/profile', {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${yourJwtToken}`,
-        'Content-Type': 'application/json'
-      }
+        Authorization: `Bearer ${yourJwtToken}`,
+        'Content-Type': 'application/json',
+      },
     });
-    
+
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    
+
     const data = await response.json();
     return data;
   } catch (error) {
@@ -88,17 +88,17 @@ async function createProject(project: Project): Promise<{ id: string }> {
     const response = await fetch('https://api.example.com/v1/projects', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${yourJwtToken}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${yourJwtToken}`,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(project)
+      body: JSON.stringify(project),
     });
-    
+
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.message || `HTTP error! Status: ${response.status}`);
     }
-    
+
     return await response.json();
   } catch (error) {
     console.error('Error creating project:', error);
@@ -111,16 +111,16 @@ async function createProject(project: Project): Promise<{ id: string }> {
 
 API повертає стандартні HTTP-коди статусу для індикації успіху або невдачі запиту:
 
-| Код статусу | Опис |
-|------------|-------|
-| 200 | OK - Запит успішно виконано |
-| 201 | Created - Ресурс успішно створено |
-| 400 | Bad Request - Неправильний запит |
-| 401 | Unauthorized - Необхідна аутентифікація |
-| 403 | Forbidden - Доступ заборонено |
-| 404 | Not Found - Ресурс не знайдено |
-| 429 | Too Many Requests - Перевищено ліміт запитів |
-| 500 | Internal Server Error - Внутрішня помилка сервера |
+| Код статусу | Опис                                              |
+| ----------- | ------------------------------------------------- |
+| 200         | OK - Запит успішно виконано                       |
+| 201         | Created - Ресурс успішно створено                 |
+| 400         | Bad Request - Неправильний запит                  |
+| 401         | Unauthorized - Необхідна аутентифікація           |
+| 403         | Forbidden - Доступ заборонено                     |
+| 404         | Not Found - Ресурс не знайдено                    |
+| 429         | Too Many Requests - Перевищено ліміт запитів      |
+| 500         | Internal Server Error - Внутрішня помилка сервера |
 
 ### Структура відповіді з помилкою
 

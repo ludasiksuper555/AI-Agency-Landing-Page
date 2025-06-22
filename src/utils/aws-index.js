@@ -1,34 +1,55 @@
 /**
  * AWS Integration Index
- * 
+ *
  * Цей файл експортує всі утиліти для інтеграції з AWS AGI сервісами
  * з дотриманням вимог ISO 27001.
  */
 
 // Імпорт та експорт основних модулів
-import awsIntegration, { AWSIntegration } from './aws-integration';
-import securityUtils from './security-utils';
-import auditLogger from './audit-logger';
+import {
+  cleanupOldLogs,
+  generateAuditReport,
+  getSecurityLogs,
+  logSecurityEvent,
+} from './audit-logger';
+import { AWSIntegration, awsIntegration } from './aws-integration';
+import {
+  checkISO27001Compliance,
+  decryptData,
+  encryptData,
+  generateSecureHash,
+  verifyDataIntegrity,
+} from './security-utils';
 
-// Експорт всіх компонентів для зручного імпорту
-export {
-  awsIntegration as default,
-  AWSIntegration,
-  securityUtils,
-  auditLogger
+// Створення об'єктів для зворотної сумісності
+const auditLogger = {
+  logSecurityEvent,
+  getSecurityLogs,
+  generateAuditReport,
+  cleanupOldLogs,
 };
 
-// Експорт окремих функцій з модулів для прямого використання
-export const {
+const securityUtils = {
   encryptData,
   decryptData,
   generateSecureHash,
   verifyDataIntegrity,
-  checkISO27001Compliance
-} = securityUtils;
+  checkISO27001Compliance,
+};
 
-export const {
-  logSecurityEvent,
+// Експорт всіх компонентів та функцій
+export {
+  auditLogger,
+  AWSIntegration,
+  awsIntegration,
+  checkISO27001Compliance,
+  cleanupOldLogs,
+  decryptData,
+  encryptData,
+  generateAuditReport,
+  generateSecureHash,
   getSecurityLogs,
-  generateAuditReport
-} = auditLogger;
+  logSecurityEvent,
+  securityUtils,
+  verifyDataIntegrity,
+};

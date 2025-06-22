@@ -1,0 +1,26 @@
+{
+  "admin": {
+    "email": "admin@aiagency.com",
+    "password": "admin-password-123",
+    "firstName": "Адміністратор",
+    "lastName": "Системи",
+    "role": "admin",
+    "permissions": ["read", "write", "delete", "manage_users"]
+  },
+  "user": {
+    "email": "user@example.com",
+    "password": "user-password-123",
+    "firstName": "Тестовий",
+    "lastName": "Користувач",
+    "role": "user",
+    "permissions": ["read", "write"]
+  },
+  "editor": {
+    "email": "editor@aiagency.com",
+    "password": "editor-password-123",
+    "firstName": "Редактор",
+    "lastName": "Контенту",
+    "role": "editor",
+    "permissions": ["read", "write", "publish"]
+  }
+}

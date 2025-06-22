@@ -44,6 +44,7 @@ export default Header;
 Компонент Header відображає верхню навігаційну панель сайту. Він адаптивний і змінює свій вигляд залежно від стану аутентифікації користувача.
 
 **Props:**
+
 - `isAuthenticated` (boolean): Визначає, чи аутентифікований користувач
 - `userName` (string): Ім'я користувача для відображення
 - `logoUrl` (string): URL логотипу
@@ -52,11 +53,7 @@ export default Header;
 **Приклад використання:**
 
 ```tsx
-<Header 
-  isAuthenticated={true} 
-  userName="John Doe" 
-  onLogout={() => handleLogout()} 
-/>
+<Header isAuthenticated={true} userName="John Doe" onLogout={() => handleLogout()} />
 ```
 
 ### Hero
@@ -89,6 +86,7 @@ export default Hero;
 Компонент Hero відображає головну секцію сторінки з великим заголовком, підзаголовком та кнопкою заклику до дії (CTA).
 
 **Props:**
+
 - `title` (string): Головний заголовок
 - `subtitle` (string): Підзаголовок або короткий опис
 - `backgroundImage` (string): URL фонового зображення
@@ -141,6 +139,7 @@ export default Features;
 Компонент Features відображає секцію з функціями або перевагами продукту у вигляді карток.
 
 **Props:**
+
 - `title` (string): Заголовок секції
 - `subtitle` (string): Підзаголовок секції
 - `features` (array): Масив об'єктів з інформацією про функції
@@ -154,23 +153,23 @@ const featuresList = [
     id: '1',
     title: 'Аналіз даних',
     description: 'Потужні інструменти для аналізу великих обсягів даних',
-    icon: 'chart-bar'
+    icon: 'chart-bar',
   },
   {
     id: '2',
     title: 'Машинне навчання',
     description: 'Алгоритми машинного навчання для прогнозування та класифікації',
-    icon: 'brain'
+    icon: 'brain',
   },
   // Інші функції
 ];
 
-<Features 
-  title="Інноваційні можливості" 
-  subtitle="Відкрийте для себе потужні функції нашої платформи" 
-  features={featuresList} 
-  columns={3} 
-/>
+<Features
+  title="Інноваційні можливості"
+  subtitle="Відкрийте для себе потужні функції нашої платформи"
+  features={featuresList}
+  columns={3}
+/>;
 ```
 
 ### Testimonials
@@ -211,6 +210,7 @@ export default Testimonials;
 Компонент Testimonials відображає карусель з відгуками клієнтів.
 
 **Props:**
+
 - `title` (string): Заголовок секції
 - `subtitle` (string): Підзаголовок секції
 - `testimonials` (array): Масив об'єктів з відгуками
@@ -227,16 +227,16 @@ const testimonialsList = [
     company: 'Tech Solutions',
     content: 'Ця платформа повністю змінила наш підхід до аналізу даних. Рекомендую!',
     avatar: '/images/avatars/alex.jpg',
-    rating: 5
+    rating: 5,
   },
   // Інші відгуки
 ];
 
-<Testimonials 
-  title="Що кажуть наші клієнти" 
-  subtitle="Відгуки від компаній, які вже використовують нашу платформу" 
-  testimonials={testimonialsList} 
-/>
+<Testimonials
+  title="Що кажуть наші клієнти"
+  subtitle="Відгуки від компаній, які вже використовують нашу платформу"
+  testimonials={testimonialsList}
+/>;
 ```
 
 ### Contact
@@ -256,7 +256,7 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({
-  title = 'Зв\'яжіться з нами',
+  title = "Зв'яжіться з нами",
   subtitle,
   email = 'contact@example.com',
   phone,
@@ -275,6 +275,7 @@ export default Contact;
 Компонент Contact відображає контактну форму та інформацію для зв'язку.
 
 **Props:**
+
 - `title` (string): Заголовок секції
 - `subtitle` (string): Підзаголовок секції
 - `email` (string): Контактна електронна адреса
@@ -287,13 +288,13 @@ export default Contact;
 **Приклад використання:**
 
 ```tsx
-<Contact 
-  title="Зв'яжіться з нашою командою" 
-  subtitle="Маєте питання? Ми завжди раді допомогти!" 
-  email="support@aiagency.com" 
-  phone="+380 44 123 4567" 
-  address="вул. Хрещатик, 1, Київ, 01001" 
-  onSubmit={handleContactFormSubmit} 
+<Contact
+  title="Зв'яжіться з нашою командою"
+  subtitle="Маєте питання? Ми завжди раді допомогти!"
+  email="support@aiagency.com"
+  phone="+380 44 123 4567"
+  address="вул. Хрещатик, 1, Київ, 01001"
+  onSubmit={handleContactFormSubmit}
 />
 ```
 
@@ -349,6 +350,7 @@ export default Footer;
 Компонент Footer відображає нижню частину сторінки з посиланнями, соціальними мережами та іншою інформацією.
 
 **Props:**
+
 - `logo` (string): URL логотипу
 - `columns` (array): Масив колонок з посиланнями
 - `socialLinks` (array): Масив посилань на соціальні мережі
@@ -366,9 +368,9 @@ const footerColumns = [
     title: 'Компанія',
     links: [
       { title: 'Про нас', url: '/about' },
-      { title: 'Кар\'єра', url: '/careers' },
+      { title: "Кар'єра", url: '/careers' },
       { title: 'Блог', url: '/blog' },
-    ]
+    ],
   },
   {
     title: 'Ресурси',
@@ -376,7 +378,7 @@ const footerColumns = [
       { title: 'Документація', url: '/docs' },
       { title: 'Навчальні матеріали', url: '/tutorials' },
       { title: 'FAQ', url: '/faq' },
-    ]
+    ],
   },
 ];
 
@@ -386,12 +388,12 @@ const socialLinks = [
   { platform: 'linkedin', url: 'https://linkedin.com/company/aiagency' },
 ];
 
-<Footer 
-  columns={footerColumns} 
-  socialLinks={socialLinks} 
-  showLanguageSwitcher={true} 
-  onLanguageChange={(lang) => setLanguage(lang)} 
-/>
+<Footer
+  columns={footerColumns}
+  socialLinks={socialLinks}
+  showLanguageSwitcher={true}
+  onLanguageChange={lang => setLanguage(lang)}
+/>;
 ```
 
 ## Кращі практики використання компонентів
@@ -403,10 +405,10 @@ const socialLinks = [
 ```tsx
 <div className="landing-page">
   <Header isAuthenticated={isLoggedIn} userName={user.name} onLogout={handleLogout} />
-  <Hero 
-    title="Революційні AI-рішення" 
-    subtitle="Підвищіть ефективність вашого бізнесу" 
-    onCtaClick={handleHeroCta} 
+  <Hero
+    title="Революційні AI-рішення"
+    subtitle="Підвищіть ефективність вашого бізнесу"
+    onCtaClick={handleHeroCta}
   />
   <Features features={featuresData} />
   <Testimonials testimonials={testimonialsData} />
@@ -439,7 +441,7 @@ const socialLinks = [
 4. Компоненти доступні з клавіатури
 
 ```tsx
-<button 
+<button
   onClick={handleClick}
   onKeyDown={handleKeyDown}
   aria-label="Відкрити меню"

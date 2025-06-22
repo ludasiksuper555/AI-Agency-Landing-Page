@@ -1,0 +1,124 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# JavaScript, TypeScript, JSX, TSX
+[*.{js,jsx,ts,tsx}]
+indent_style = space
+indent_size = 2
+max_line_length = 100
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 2
+
+# CSS, SCSS, SASS
+[*.{css,scss,sass}]
+indent_style = space
+indent_size = 2
+
+# HTML files
+[*.html]
+indent_style = space
+indent_size = 2
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# XML files
+[*.xml]
+indent_style = space
+indent_size = 2
+
+# Configuration files
+[*.{config.js,config.ts}]
+indent_style = space
+indent_size = 2
+
+# Package files
+[package.json]
+indent_style = space
+indent_size = 2
+
+# Environment files
+[.env*]
+indent_style = space
+indent_size = 2
+
+# Docker files
+[Dockerfile*]
+indent_style = space
+indent_size = 2
+
+[docker-compose*.yml]
+indent_style = space
+indent_size = 2
+
+# Git files
+[.git*]
+indent_style = space
+indent_size = 2
+
+# Test files
+[*.{test,spec}.{js,ts,tsx}]
+indent_style = space
+indent_size = 2
+
+# Cypress files
+[cypress/**/*.{js,ts}]
+indent_style = space
+indent_size = 2
+
+# Storybook files
+[*.stories.{js,ts,tsx}]
+indent_style = space
+indent_size = 2
+
+# License and legal files
+[{LICENSE,COPYING,COPYRIGHT}]
+trim_trailing_whitespace = false
+
+# Makefile
+[{Makefile,makefile}]
+indent_style = tab
+indent_size = 4
+
+# Python files (if any)
+[*.py]
+indent_style = space
+indent_size = 4
+max_line_length = 88
+
+# Shell scripts
+[*.{sh,bash}]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+
+# Windows batch files
+[*.{bat,cmd}]
+end_of_line = crlf
+
+# PowerShell files
+[*.ps1]
+indent_style = space
+indent_size = 4
+end_of_line = crlf

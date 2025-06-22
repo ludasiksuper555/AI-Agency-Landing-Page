@@ -1,5 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
+import { render, screen } from '@testing-library/react';
+
 import Footer from './Footer';
 
 describe('Footer Component', () => {
@@ -31,7 +33,7 @@ describe('Footer Component', () => {
     render(<Footer />);
     const navLinks = screen.getAllByRole('navigation');
     expect(navLinks.length).toBeGreaterThan(0);
-    
+
     // Перевіряємо наявність типових посилань у футері
     const commonLinks = ['Про нас', 'Послуги', 'Контакти', 'Політика конфіденційності'];
     commonLinks.forEach(linkText => {
@@ -42,7 +44,7 @@ describe('Footer Component', () => {
 
   it('має правильну структуру з розділами', () => {
     render(<Footer />);
-    
+
     // Перевіряємо наявність основних розділів футера
     const sections = screen.getAllByRole('region', { hidden: true });
     expect(sections.length).toBeGreaterThanOrEqual(0);

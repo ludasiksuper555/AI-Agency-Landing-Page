@@ -110,6 +110,7 @@ netlify deploy --prod
 Для настройки непрерывного развертывания:
 
 1. Добавьте секреты в настройках вашего GitHub репозитория:
+
    - `VERCEL_TOKEN` - токен API Vercel
    - `VERCEL_ORG_ID` - ID организации Vercel
    - `VERCEL_PROJECT_ID` - ID проекта Vercel

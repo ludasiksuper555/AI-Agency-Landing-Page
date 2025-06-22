@@ -1,0 +1,258 @@
+{
+  "navigation": {
+    "uk": [
+      {
+        "id": "home",
+        "label": "Головна",
+        "url": "/"
+      },
+      {
+        "id": "services",
+        "label": "Послуги",
+        "url": "/#services"
+      },
+      {
+        "id": "about",
+        "label": "Про нас",
+        "url": "/about"
+      },
+      {
+        "id": "team",
+        "label": "Команда",
+        "url": "/#team"
+      },
+      {
+        "id": "contact",
+        "label": "Контакти",
+        "url": "/contact"
+      }
+    ],
+    "en": [
+      {
+        "id": "home",
+        "label": "Home",
+        "url": "/en"
+      },
+      {
+        "id": "services",
+        "label": "Services",
+        "url": "/en#services"
+      },
+      {
+        "id": "about",
+        "label": "About",
+        "url": "/en/about"
+      },
+      {
+        "id": "team",
+        "label": "Team",
+        "url": "/en#team"
+      },
+      {
+        "id": "contact",
+        "label": "Contact",
+        "url": "/en/contact"
+      }
+    ]
+  },
+  "home": {
+    "uk": {
+      "hero": {
+        "title": "Інноваційні AI рішення для вашого бізнесу",
+        "subtitle": "Ми допомагаємо компаніям впроваджувати технології штучного інтелекту для оптимізації процесів та збільшення прибутку",
+        "ctaText": "Дізнатися більше",
+        "ctaLink": "#services",
+        "backgroundImage": "/images/hero-bg.jpg"
+      },
+      "services": {
+        "title": "Наші послуги",
+        "subtitle": "Ми пропонуємо широкий спектр послуг з впровадження штучного інтелекту",
+        "items": [
+          {
+            "id": "service-1",
+            "title": "AI консультації",
+            "description": "Експертні консультації з впровадження штучного інтелекту у ваш бізнес",
+            "icon": "consultation"
+          },
+          {
+            "id": "service-2",
+            "title": "Розробка AI рішень",
+            "description": "Розробка кастомізованих рішень на базі штучного інтелекту для ваших потреб",
+            "icon": "development"
+          },
+          {
+            "id": "service-3",
+            "title": "Інтеграція AI",
+            "description": "Інтеграція AI технологій з вашими існуючими системами та процесами",
+            "icon": "integration"
+          }
+        ]
+      },
+      "team": {
+        "title": "Наша команда",
+        "subtitle": "Познайомтеся з нашими експертами в галузі штучного інтелекту",
+        "members": [
+          {
+            "id": "member-1",
+            "name": "Олександр Петренко",
+            "position": "CEO & Засновник",
+            "bio": "Експерт з штучного інтелекту з більш ніж 10-річним досвідом роботи в галузі",
+            "photo": "/images/team/alex.jpg",
+            "social": {
+              "linkedin": "https://linkedin.com/in/alex-petrenko",
+              "twitter": "https://twitter.com/alex_petrenko"
+            }
+          },
+          {
+            "id": "member-2",
+            "name": "Марія Коваленко",
+            "position": "CTO",
+            "bio": "Технічний директор з глибоким розумінням AI технологій та їх практичного застосування",
+            "photo": "/images/team/maria.jpg",
+            "social": {
+              "linkedin": "https://linkedin.com/in/maria-kovalenko",
+              "github": "https://github.com/maria-kovalenko"
+            }
+          },
+          {
+            "id": "member-3",
+            "name": "Іван Мельник",
+            "position": "AI Архітектор",
+            "bio": "Розробник архітектури AI рішень з фокусом на масштабованість та ефективність",
+            "photo": "/images/team/ivan.jpg",
+            "social": {
+              "linkedin": "https://linkedin.com/in/ivan-melnyk",
+              "github": "https://github.com/ivan-melnyk"
+            }
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Відгуки клієнтів",
+        "subtitle": "Що кажуть наші клієнти про співпрацю з нами",
+        "items": [
+          {
+            "id": "testimonial-1",
+            "text": "AI Agency допомогли нам впровадити систему аналізу даних, яка значно підвищила ефективність нашого бізнесу. Рекомендую!",
+            "author": "Олег Сидоренко",
+            "position": "CEO, TechUkraine",
+            "photo": "/images/testimonials/oleg.jpg"
+          },
+          {
+            "id": "testimonial-2",
+            "text": "Завдяки рішенням від AI Agency ми змогли автоматизувати багато рутинних процесів та зосередитися на стратегічному розвитку.",
+            "author": "Наталія Шевченко",
+            "position": "COO, InnoHub",
+            "photo": "/images/testimonials/natalia.jpg"
+          }
+        ]
+      },
+      "contact": {
+        "title": "Зв'яжіться з нами",
+        "subtitle": "Готові почати? Напишіть нам, і ми зв'яжемося з вами найближчим часом",
+        "address": "вул. Хрещатик 10, Київ, Україна",
+        "email": "contact@aiagency.com",
+        "phone": "+380 44 123 4567"
+      }
+    },
+    "en": {
+      "hero": {
+        "title": "Innovative AI Solutions for Your Business",
+        "subtitle": "We help companies implement artificial intelligence technologies to optimize processes and increase profits",
+        "ctaText": "Learn More",
+        "ctaLink": "#services",
+        "backgroundImage": "/images/hero-bg.jpg"
+      },
+      "services": {
+        "title": "Our Services",
+        "subtitle": "We offer a wide range of artificial intelligence implementation services",
+        "items": [
+          {
+            "id": "service-1",
+            "title": "AI Consulting",
+            "description": "Expert consulting on implementing artificial intelligence in your business",
+            "icon": "consultation"
+          },
+          {
+            "id": "service-2",
+            "title": "AI Solution Development",
+            "description": "Development of customized artificial intelligence-based solutions for your needs",
+            "icon": "development"
+          },
+          {
+            "id": "service-3",
+            "title": "AI Integration",
+            "description": "Integration of AI technologies with your existing systems and processes",
+            "icon": "integration"
+          }
+        ]
+      },
+      "team": {
+        "title": "Our Team",
+        "subtitle": "Meet our experts in the field of artificial intelligence",
+        "members": [
+          {
+            "id": "member-1",
+            "name": "Oleksandr Petrenko",
+            "position": "CEO & Founder",
+            "bio": "Artificial intelligence expert with more than 10 years of experience in the industry",
+            "photo": "/images/team/alex.jpg",
+            "social": {
+              "linkedin": "https://linkedin.com/in/alex-petrenko",
+              "twitter": "https://twitter.com/alex_petrenko"
+            }
+          },
+          {
+            "id": "member-2",
+            "name": "Maria Kovalenko",
+            "position": "CTO",
+            "bio": "Technical director with a deep understanding of AI technologies and their practical application",
+            "photo": "/images/team/maria.jpg",
+            "social": {
+              "linkedin": "https://linkedin.com/in/maria-kovalenko",
+              "github": "https://github.com/maria-kovalenko"
+            }
+          },
+          {
+            "id": "member-3",
+            "name": "Ivan Melnyk",
+            "position": "AI Architect",
+            "bio": "Developer of AI solution architecture with a focus on scalability and efficiency",
+            "photo": "/images/team/ivan.jpg",
+            "social": {
+              "linkedin": "https://linkedin.com/in/ivan-melnyk",
+              "github": "https://github.com/ivan-melnyk"
+            }
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Client Testimonials",
+        "subtitle": "What our clients say about working with us",
+        "items": [
+          {
+            "id": "testimonial-1",
+            "text": "AI Agency helped us implement a data analysis system that significantly improved our business efficiency. Highly recommended!",
+            "author": "Oleg Sydorenko",
+            "position": "CEO, TechUkraine",
+            "photo": "/images/testimonials/oleg.jpg"
+          },
+          {
+            "id": "testimonial-2",
+            "text": "Thanks to solutions from AI Agency, we were able to automate many routine processes and focus on strategic development.",
+            "author": "Natalia Shevchenko",
+            "position": "COO, InnoHub",
+            "photo": "/images/testimonials/natalia.jpg"
+          }
+        ]
+      },
+      "contact": {
+        "title": "Contact Us",
+        "subtitle": "Ready to get started? Write to us and we will contact you soon",
+        "address": "10 Khreshchatyk St., Kyiv, Ukraine",
+        "email": "contact@aiagency.com",
+        "phone": "+380 44 123 4567"
+      }
+    }
+  }
+}

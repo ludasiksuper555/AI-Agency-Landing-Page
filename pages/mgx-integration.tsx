@@ -1,9 +1,10 @@
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Header from '../components/Header';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 import MGXIntegration from '../components/MGXIntegration';
 
 export default function MGXIntegrationPage() {
@@ -12,7 +13,9 @@ export default function MGXIntegrationPage() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
       <Head>
-        <title>{t('mgx.title')} | {t('app.title')}</title>
+        <title>
+          {t('mgx.title')} | {t('app.title')}
+        </title>
         <meta name="description" content={t('mgx.description')} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -24,7 +27,7 @@ export default function MGXIntegrationPage() {
           <h1 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
             {t('mgx.title')}
           </h1>
-          
+
           <MGXIntegration />
         </div>
       </main>

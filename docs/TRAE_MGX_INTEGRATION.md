@@ -60,7 +60,7 @@ sequenceDiagram
    export const MGX_CONFIG = {
      apiKey: process.env.MGX_API_KEY,
      endpoint: 'https://mgx.dev/api',
-     version: 'v1'
+     version: 'v1',
    };
    ```
 3. Налаштуйте перенаправлення OAuth у консолі MGX:
@@ -75,13 +75,14 @@ sequenceDiagram
    export const GITHUB_CONFIG = {
      clientId: process.env.GITHUB_CLIENT_ID,
      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-     redirectUri: 'https://your-trae-app.com/api/auth/callback/github'
+     redirectUri: 'https://your-trae-app.com/api/auth/callback/github',
    };
    ```
 
 ### 3. Оптимізація для браузера
 
 1. Налаштуйте кешування статичних ресурсів:
+
    ```javascript
    // next.config.js
    module.exports = {
@@ -108,11 +109,13 @@ sequenceDiagram
 ### Необхідні доробки
 
 1. **Розширення MGXIntegration компонента**:
+
    - Додати підтримку оновлення токенів
    - Реалізувати повний цикл OAuth 2.0
    - Додати функціонал для роботи з GitHub через MGX API
 
 2. **Покращення взаємодії з браузером**:
+
    - Впровадити Service Worker для офлайн-функціональності
    - Оптимізувати завантаження ресурсів через стратегії кешування
    - Додати підтримку PWA (Progressive Web App)

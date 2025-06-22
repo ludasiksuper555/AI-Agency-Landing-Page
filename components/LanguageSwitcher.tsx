@@ -1,6 +1,6 @@
-import React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import React from 'react';
 
 interface LanguageSwitcherProps {
   className?: string;
@@ -26,7 +26,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = '' }) =
     <div className={`language-switcher ${className}`}>
       <select
         value={router.locale || i18n.language || 'uk'}
-        onChange={(e) => handleLanguageChange(e.target.value)}
+        onChange={e => handleLanguageChange(e.target.value)}
         className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded px-2 py-1 text-sm dark:text-gray-200"
         aria-label={t('language.change', 'Змінити мову')}
       >

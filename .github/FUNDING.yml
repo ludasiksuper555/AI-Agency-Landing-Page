@@ -1,12 +1,12 @@
-# Эти настройки определяют платформы для спонсорства проекта
+# These are supported funding model platforms
 
-github: [username] # Замените на ваше имя пользователя GitHub
-patreon: # Замените на ваше имя пользователя Patreon
-open_collective: # Замените на ваше имя в Open Collective
-ko_fi: # Замените на ваше имя пользователя Ko-fi
-tidelift: # Замените на имя пакета/платформы и имя пользователя
-community_bridge: # Замените на название проекта в Community Bridge
-liberapay: # Замените на ваше имя пользователя Liberapay
-issuehunt: # Замените на ваше имя пользователя IssueHunt
-otechie: # Замените на ваше имя пользователя Otechie
-custom: # Замените на до 4 пользовательских URL спонсорства
+github: [ludasiksuper555] # GitHub Sponsors
+patreon: ai-agency-landing # Patreon page
+open_collective: ai-agency-landing # Open Collective
+ko_fi: aiagency # Ko-fi page
+tidelift: # npm/ai-agency-landing
+community_bridge: # AI Agency Landing Page
+liberapay: aiagency # Liberapay username
+issuehunt: ludasiksuper555 # IssueHunt username
+otechie: ludasiksuper555 # Otechie username
+custom: ['https://paypal.me/aiagency', 'https://www.buymeacoffee.com/aiagency'] # Custom funding URLs

@@ -1,5 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+
 import Header from './Header';
 
 // Мокаємо модулі, які використовуються в компоненті
@@ -44,11 +46,17 @@ jest.mock('@clerk/nextjs', () => ({
     userId: mockIsSignedIn ? 'user_123' : null,
   }),
   useUser: () => (mockIsSignedIn ? mockUserSignedIn : mockUserSignedOut),
-  SignedIn: ({ children }: { children: React.ReactNode }) => (mockIsSignedIn ? <>{children}</> : null),
-  SignedOut: ({ children }: { children: React.ReactNode }) => (!mockIsSignedIn ? <>{children}</> : null),
+  SignedIn: ({ children }: { children: React.ReactNode }) =>
+    mockIsSignedIn ? <>{children}</> : null,
+  SignedOut: ({ children }: { children: React.ReactNode }) =>
+    !mockIsSignedIn ? <>{children}</> : null,
   UserButton: () => <button data-testid="user-button">Профіль користувача</button>,
-  SignInButton: ({ children }: { children: React.ReactNode; mode: string }) => <div data-testid="sign-in-button">{children}</div>,
-  SignUpButton: ({ children }: { children: React.ReactNode; mode: string }) => <div data-testid="sign-up-button">{children}</div>,
+  SignInButton: ({ children }: { children: React.ReactNode; mode: string }) => (
+    <div data-testid="sign-in-button">{children}</div>
+  ),
+  SignUpButton: ({ children }: { children: React.ReactNode; mode: string }) => (
+    <div data-testid="sign-up-button">{children}</div>
+  ),
 }));
 
 describe('Header Component', () => {
@@ -60,8 +68,10 @@ describe('Header Component', () => {
     // Мокуємо window.scrollY
     Object.defineProperty(window, 'scrollY', { value: 0, writable: true });
     // Мокуємо addEventListener та removeEventListener
-    window.addEventListener = jest.fn();
-    window.removeEventListener = jest.fn();
+    window.addEventListener = jest.fn() as jest.MockedFunction<typeof window.addEventListener>;
+    window.removeEventListener = jest.fn() as jest.MockedFunction<
+      typeof window.removeEventListener
+    >;
   });
 
   it('рендериться без помилок', () => {
@@ -93,28 +103,31 @@ describe('Header Component', () => {
   it('відкриває мобільне меню при натисканні на кнопку', () => {
     render(<Header />);
     const menuButton = screen.getByLabelText('Відкрити меню');
-    
+
     // Спочатку меню закрите
     expect(screen.queryByText('Головна')).not.toBeVisible();
-    
+
     // Відкриваємо меню
     fireEvent.click(menuButton);
-    
+
     // Тепер меню має бути відкритим
     expect(screen.getByText('Головна')).toBeVisible();
   });
 
   it('змінює стиль при прокрутці сторінки', () => {
     render(<Header />);
-    
+
     // Імітуємо прокрутку сторінки
     Object.defineProperty(window, 'scrollY', { value: 100 });
     // Викликаємо обробник прокрутки
-    const scrollCallback = window.addEventListener.mock.calls.find(
-      (call) => call[0] === 'scroll'
-    )[1];
-    scrollCallback();
-    
+    const mockAddEventListener = window.addEventListener as jest.MockedFunction<
+      typeof window.addEventListener
+    >;
+    const scrollCallback = mockAddEventListener.mock.calls.find(call => call[0] === 'scroll')?.[1];
+    if (scrollCallback && typeof scrollCallback === 'function') {
+      scrollCallback(new Event('scroll'));
+    }
+
     // Перевіряємо, що стиль змінився
     const header = screen.getByRole('banner');
     expect(header).toHaveClass('bg-white');
@@ -124,12 +137,12 @@ describe('Header Component', () => {
   it('відображає інтерфейс для авторизованого користувача', () => {
     // Встановлюємо стан авторизації
     mockIsSignedIn = true;
-    
+
     render(<Header />);
-    
+
     // Перевіряємо наявність кнопки профілю користувача
     expect(screen.getByTestId('user-button')).toBeInTheDocument();
-    
+
     // Перевіряємо відсутність кнопок входу та реєстрації
     expect(screen.queryByText('Увійти')).not.toBeInTheDocument();
     expect(screen.queryByText('Зареєструватися')).not.toBeInTheDocument();

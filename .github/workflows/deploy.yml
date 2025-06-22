@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   workflow_dispatch:
     inputs:
       environment:
@@ -19,53 +19,53 @@ jobs:
   security_scan:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
-        cache: 'npm'
-    - name: Install dependencies
-      run: npm ci --legacy-peer-deps
-    - name: Перевірка залежностей на вразливості
-      run: npx audit-ci --moderate
-    - name: Сканування коду на вразливості
-      uses: aquasecurity/trivy-action@master
-      with:
-        scan-type: 'fs'
-        ignore-unfixed: true
-        format: 'sarif'
-        output: 'trivy-results.sarif'
-        severity: 'CRITICAL,HIGH'
-    - name: Перевірка відповідності ISO 27001
-      run: |
-        echo "Перевірка відповідності вимогам ISO 27001"
-        if [ -f "./src/utils/security-utils.js" ]; then
-          echo "Модуль безпеки знайдено"
-          node -e "const { checkISO27001Compliance } = require('./src/utils/security-utils'); console.log(checkISO27001Compliance() ? 'ISO 27001 compliance check passed' : 'ISO 27001 compliance check failed');"
-        else
-          echo "Модуль безпеки не знайдено"
-          exit 1
-        fi
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Перевірка залежностей на вразливості
+        run: npx audit-ci --moderate
+      - name: Сканування коду на вразливості
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+      - name: Перевірка відповідності ISO 27001
+        run: |
+          echo "Перевірка відповідності вимогам ISO 27001"
+          if [ -f "./src/utils/security-utils.js" ]; then
+            echo "Модуль безпеки знайдено"
+            node -e "const { checkISO27001Compliance } = require('./src/utils/security-utils'); console.log(checkISO27001Compliance() ? 'ISO 27001 compliance check passed' : 'ISO 27001 compliance check failed');"
+          else
+            echo "Модуль безпеки не знайдено"
+            exit 1
+          fi
 
   test:
     needs: security_scan
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
-        cache: 'npm'
-    - name: Install dependencies
-      run: npm ci --legacy-peer-deps
-    - name: Lint
-      run: npm run lint
-    - name: Type check
-      run: npm run type-check
-    - name: Test
-      run: npm run test
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Type check
+        run: npm run type-check
+      - name: Test
+        run: npm run test
 
   deploy:
     needs: test
@@ -73,127 +73,127 @@ jobs:
     environment: ${{ github.event.inputs.environment || 'production' }}
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
-        cache: 'npm'
-    - name: Install dependencies
-      run: npm ci --legacy-peer-deps
-    - name: Build
-      run: npm run build
-      env:
-        NEXT_PUBLIC_SITE_URL: https://ludasiksuper555.github.io/AI-Agency-Landing-Page
-    - name: Export static files
-      run: npm run export || npm run build
-    - name: Перевірка безпеки (ISO 27001)
-      run: |
-        echo "Перевірка відповідності вимогам ISO 27001"
-        if [ -f "./src/utils/security-utils.js" ]; then
-          echo "Модуль безпеки знайдено"
-          node -e "const { checkISO27001Compliance } = require('./src/utils/security-utils'); console.log(checkISO27001Compliance() ? 'ISO 27001 compliance check passed' : 'ISO 27001 compliance check failed');"
-        else
-          echo "Модуль безпеки не знайдено"
-          exit 1
-        fi
-    - name: Підготовка AWS інтеграції
-      if: success()
-      run: |
-        echo "Підготовка AWS інтеграції"
-        if [ -f "./src/utils/aws-integration.js" ]; then
-          echo "AWS інтеграція знайдена"
-          node -e "const { AWSIntegration } = require('./src/utils/aws-integration'); console.log('AWS інтеграція готова до використання');"
-        else
-          echo "AWS інтеграція не знайдена"
-          exit 1
-        fi
-    - name: Налаштування AWS AGI сервісів
-      if: success()
-      run: |
-        echo "Налаштування AWS AGI сервісів"
-        if [ -f "./src/utils/aws-index.js" ]; then
-          echo "AWS AGI сервіси готові до використання"
-          node -e "const awsIntegration = require('./src/utils/aws-index').default; console.log('AWS AGI сервіси успішно налаштовані');"
-        fi
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./out
-        publish_branch: gh-pages
-        cname: ludasiksuper555.github.io/AI-Agency-Landing-Page
-    - name: Notify deployment status
-      if: always()
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: deployments
-        SLACK_COLOR: ${{ job.status }}
-        SLACK_TITLE: Deployment Status
-        SLACK_MESSAGE: 'Розгортання на GitHub Pages ${{ job.status }} :rocket: | Середовище: ${{ github.event.inputs.environment || "production" }}'
-        SLACK_FOOTER: 'https://github.com/ludasiksuper555/AI-Agency-Landing-Page'
-        
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://ludasiksuper555.github.io/rules
+      - name: Export static files
+        run: npm run export || npm run build
+      - name: Перевірка безпеки (ISO 27001)
+        run: |
+          echo "Перевірка відповідності вимогам ISO 27001"
+          if [ -f "./src/utils/security-utils.js" ]; then
+            echo "Модуль безпеки знайдено"
+            node -e "const { checkISO27001Compliance } = require('./src/utils/security-utils'); console.log(checkISO27001Compliance() ? 'ISO 27001 compliance check passed' : 'ISO 27001 compliance check failed');"
+          else
+            echo "Модуль безпеки не знайдено"
+            exit 1
+          fi
+      - name: Підготовка AWS інтеграції
+        if: success()
+        run: |
+          echo "Підготовка AWS інтеграції"
+          if [ -f "./src/utils/aws-integration.js" ]; then
+            echo "AWS інтеграція знайдена"
+            node -e "const { AWSIntegration } = require('./src/utils/aws-integration'); console.log('AWS інтеграція готова до використання');"
+          else
+            echo "AWS інтеграція не знайдена"
+            exit 1
+          fi
+      - name: Налаштування AWS AGI сервісів
+        if: success()
+        run: |
+          echo "Налаштування AWS AGI сервісів"
+          if [ -f "./src/utils/aws-index.js" ]; then
+            echo "AWS AGI сервіси готові до використання"
+            node -e "const awsIntegration = require('./src/utils/aws-index').default; console.log('AWS AGI сервіси успішно налаштовані');"
+          fi
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          cname: ludasiksuper555.github.io/rules
+      - name: Notify deployment status
+        if: always()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: deployments
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_TITLE: Deployment Status
+          SLACK_MESSAGE: 'Розгортання на GitHub Pages ${{ job.status }} :rocket: | Середовище: ${{ github.event.inputs.environment || "production" }}'
+          SLACK_FOOTER: 'https://github.com/ludasiksuper555/rules'
+
   lighthouse:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Lighthouse Audit
-      uses: treosh/lighthouse-ci-action@v9
-      with:
-        urls: |
-          https://ludasiksuper555.github.io/AI-Agency-Landing-Page
-        uploadArtifacts: true
-        temporaryPublicStorage: true
-    - name: Notify Lighthouse results
-      if: always()
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: deployments
-        SLACK_COLOR: ${{ job.status }}
-        SLACK_TITLE: Lighthouse Audit
-        SLACK_MESSAGE: 'Lighthouse аудит завершено ${{ job.status }} :chart_with_upwards_trend:'
-        SLACK_FOOTER: 'https://github.com/ludasiksuper555/AI-Agency-Landing-Page'
-        
+      - uses: actions/checkout@v3
+      - name: Lighthouse Audit
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: |
+            https://ludasiksuper555.github.io/rules
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+      - name: Notify Lighthouse results
+        if: always()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: deployments
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_TITLE: Lighthouse Audit
+          SLACK_MESSAGE: 'Lighthouse аудит завершено ${{ job.status }} :chart_with_upwards_trend:'
+          SLACK_FOOTER: 'https://github.com/ludasiksuper555/rules'
+
   security_audit:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
-        cache: 'npm'
-    - name: Install dependencies
-      run: npm ci --legacy-peer-deps
-    - name: Аудит безпеки (ISO 27001)
-      run: |
-        echo "Проведення аудиту безпеки за стандартами ISO 27001"
-        if [ -f "./src/utils/audit-logger.js" ]; then
-          node -e "const { generateAuditReport } = require('./src/utils/audit-logger'); generateAuditReport().then(report => console.log('Звіт аудиту безпеки створено'));"
-        fi
-    - name: Перевірка AWS AGI інтеграції
-      run: |
-        echo "Перевірка інтеграції з AWS AGI сервісами"
-        if [ -f "./src/utils/aws-integration.js" ]; then
-          node -e "const { AWSIntegration } = require('./src/utils/aws-integration'); console.log('Перевірка інтеграції з AWS AGI сервісами завершена');"
-        fi
-    - name: Збереження звіту аудиту
-      uses: actions/upload-artifact@v3
-      with:
-        name: security-audit-report
-        path: logs/security-audit-report.json
-        retention-days: 90
-    - name: Notify Security Audit results
-      if: always()
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: security
-        SLACK_COLOR: ${{ job.status }}
-        SLACK_TITLE: ISO 27001 Security Audit
-        SLACK_MESSAGE: 'Аудит безпеки ISO 27001 завершено ${{ job.status }} :lock:'
-        SLACK_FOOTER: 'https://github.com/ludasiksuper555/AI-Agency-Landing-Page'
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Аудит безпеки (ISO 27001)
+        run: |
+          echo "Проведення аудиту безпеки за стандартами ISO 27001"
+          if [ -f "./src/utils/audit-logger.js" ]; then
+            node -e "const { generateAuditReport } = require('./src/utils/audit-logger'); generateAuditReport().then(report => console.log('Звіт аудиту безпеки створено'));"
+          fi
+      - name: Перевірка AWS AGI інтеграції
+        run: |
+          echo "Перевірка інтеграції з AWS AGI сервісами"
+          if [ -f "./src/utils/aws-integration.js" ]; then
+            node -e "const { AWSIntegration } = require('./src/utils/aws-integration'); console.log('Перевірка інтеграції з AWS AGI сервісами завершена');"
+          fi
+      - name: Збереження звіту аудиту
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-audit-report
+          path: logs/security-audit-report.json
+          retention-days: 90
+      - name: Notify Security Audit results
+        if: always()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: security
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_TITLE: ISO 27001 Security Audit
+          SLACK_MESSAGE: 'Аудит безпеки ISO 27001 завершено ${{ job.status }} :lock:'
+          SLACK_FOOTER: 'https://github.com/ludasiksuper555/rules'

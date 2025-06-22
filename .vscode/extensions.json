@@ -1,0 +1,39 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-typescript-next",
+    "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-json",
+    "christian-kohler.path-intellisense",
+    "formulahendry.auto-rename-tag",
+    "ms-vscode.vscode-jest",
+    "orta.vscode-jest",
+    "ms-vscode.test-adapter-converter",
+    "hbenl.vscode-test-explorer",
+    "streetsidesoftware.code-spell-checker",
+    "ms-vscode.vscode-github-issue-notebooks",
+    "github.vscode-pull-request-github",
+    "ms-vscode.vscode-github-actions",
+    "sonarsource.sonarlint-vscode",
+    "snyk-security.snyk-vulnerability-scanner",
+    "ms-vscode.vscode-security",
+    "redhat.vscode-yaml",
+    "ms-vscode.vscode-markdown",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "ms-vscode.vscode-npm-script",
+    "christian-kohler.npm-intellisense",
+    "ms-vscode.vscode-node-debug2",
+    "ms-vscode.vscode-chrome-debug",
+    "ms-vscode.vscode-edge-debug2",
+    "ms-vscode.hexeditor",
+    "ms-vscode.vscode-git-graph",
+    "eamodio.gitlens"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.vscode-typescript",
+    "hookyqr.beautify",
+    "ms-vscode.vscode-css"
+  ]
+}

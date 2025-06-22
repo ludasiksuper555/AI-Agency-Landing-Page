@@ -2,12 +2,10 @@ module.exports = {
   '*.{js,jsx,ts,tsx}': [
     'eslint --fix',
     'prettier --write',
-    'jest --bail --findRelatedTests',
+    'tsc --noEmit --skipLibCheck',
+    'jest --bail --findRelatedTests --passWithNoTests',
   ],
-  '*.{json,md}': [
-    'prettier --write',
-  ],
-  '*.{css,scss}': [
-    'prettier --write',
-  ],
+  '*.{json,md,yml,yaml}': ['prettier --write'],
+  '*.{css,scss}': ['prettier --write'],
+  'package*.json': ['npm audit --audit-level=moderate'],
 };

@@ -1,0 +1,239 @@
+components/ClerkProvider.tsx(28,9): error TS6133: 'locale' is declared but its value is never read.
+components/ClerkProvider.tsx(46,13): error TS7030: Not all code paths return a value.
+components/Contact.tsx(58,11): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; animate: { opacity: number; y: number; }; transition: { duration: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Contact.tsx(72,17): error TS2322: Type '{ children: Element[]; initial: { opacity: number; }; animate: { opacity: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/ContactForm.tsx(84,7): error TS2322: Type '{ children: Element[]; onSubmit: (e: FormEvent<Element>) => Promise<void>; className: string; initial: { opacity: number; y: number; }; animate: { opacity: number; y: number; }; transition: { ...; }; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'onSubmit' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/ContentfulRenderer.tsx(26,28): error TS6133: 'node' is declared but its value is never read.
+components/ContentfulRenderer.tsx(29,28): error TS6133: 'node' is declared but its value is never read.
+components/ContentfulRenderer.tsx(32,28): error TS6133: 'node' is declared but its value is never read.
+components/ContentfulRenderer.tsx(35,28): error TS6133: 'node' is declared but its value is never read.
+components/ContentfulRenderer.tsx(38,28): error TS6133: 'node' is declared but its value is never read.
+components/ContentfulRenderer.tsx(41,28): error TS6133: 'node' is declared but its value is never read.
+components/ContentfulRenderer.tsx(44,28): error TS6133: 'node' is declared but its value is never read.
+components/ContentfulRenderer.tsx(47,26): error TS6133: 'node' is declared but its value is never read.
+components/ContentfulRenderer.tsx(50,26): error TS6133: 'node' is declared but its value is never read.
+components/ContentfulRenderer.tsx(53,28): error TS6133: 'node' is declared but its value is never read.
+components/ContentfulRenderer.tsx(56,24): error TS6133: 'node' is declared but its value is never read.
+components/ExportOpportunitiesMap.tsx(232,15): error TS2322: Type '{ children: Element; key: string; initial: { scale: number; }; animate: { scale: number; }; whileHover: { scale: number; }; className: string; style: { left: string; top: string; transform: "translate(-50%, -50%)"; }; onClick: () => void; title: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/ExportOpportunitiesMap.tsx(252,13): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; animate: { opacity: number; y: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/FAQ.tsx(52,11): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/FAQ.tsx(68,15): error TS2322: Type '{ children: Element[]; key: number; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; delay: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/FAQ.tsx(100,21): error TS2322: Type '{ children: Element; initial: { opacity: number; height: number; }; animate: { opacity: number; height: string; }; exit: { opacity: number; height: number; }; transition: { duration: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Features.tsx(48,11): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Features.tsx(64,15): error TS2322: Type '{ children: Element[]; key: number; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; delay: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Footer.tsx(19,13): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Footer.tsx(67,13): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; delay: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Footer.tsx(99,13): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; delay: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Footer.tsx(131,13): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; delay: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Footer.tsx(147,11): error TS2322: Type '{ children: Element; initial: { opacity: number; }; whileInView: { opacity: number; }; viewport: { once: true; }; transition: { duration: number; delay: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Header.test.tsx(121,52): error TS2339: Property 'mock' does not exist on type '{ <K extends keyof WindowEventMap>(type: K, listener: (this: Window, ev: WindowEventMap[K]) => any, options?: boolean | AddEventListenerOptions | undefined): void; (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | ... 1 more ... | undefined): void; } & { ...; }'.
+components/Header.test.tsx(121,68): error TS7006: Parameter 'call' implicitly has an 'any' type.
+components/Header.tsx(1,10): error TS6133: 'AnimatePresence' is declared but its value is never read.
+components/Header.tsx(9,1): error TS6133: 'ThemeContextType' is declared but its value is never read.
+components/Header.tsx(20,9): error TS6133: 'router' is declared but its value is never read.
+components/Header.tsx(126,28): error TS2339: Property 'firstName' does not exist on type 'never'.
+components/Header.tsx(206,13): error TS2322: Type '{ children: Element; className: string; initial: { opacity: number; height: number; }; animate: { opacity: number; height: string; }; transition: { duration: number; }; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Header.tsx(231,28): error TS2339: Property 'fullName' does not exist on type 'never'.
+components/Hero.stories.tsx(1,47): error TS2307: Cannot find module '@storybook/react' or its corresponding type declarations.
+components/Hero.stories.tsx(14,47): error TS7006: Parameter 'args' implicitly has an 'any' type.
+components/Hero.tsx(17,11): error TS2322: Type '{ children: Element[]; initial: { opacity: number; x: number; }; animate: { opacity: number; x: number; }; transition: { duration: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Hero.tsx(27,15): error TS2322: Type '{ children: string; whileHover: { scale: number; }; whileTap: { scale: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Hero.tsx(34,15): error TS2322: Type '{ children: string; whileHover: { scale: number; }; whileTap: { scale: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Hero.tsx(45,11): error TS2322: Type '{ children: Element; initial: { opacity: number; x: number; }; animate: { opacity: number; x: number; }; transition: { duration: number; delay: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Layout.tsx(3,1): error TS6133: 'ThemeContextType' is declared but its value is never read.
+components/MeatPriceMonitor.tsx(3,17): error TS6133: 'useEffect' is declared but its value is never read.
+components/MeatPriceMonitor.tsx(30,3): error TS2322: Type '{ productId: string; productName: string; currentPrice: number; previousPrice: number; priceChange: number; priceChangePercent: number; lastUpdated: string; currency: string; category: string; trend: string; }[]' is not assignable to type 'PriceData[]'.
+  Type '{ productId: string; productName: string; currentPrice: number; previousPrice: number; priceChange: number; priceChangePercent: number; lastUpdated: string; currency: string; category: string; trend: string; }' is not assignable to type 'PriceData'.
+    Types of property 'trend' are incompatible.
+      Type 'string' is not assignable to type '"up" | "down" | "stable"'.
+components/MeatPriceMonitor.tsx(100,7): error TS2322: Type '{ children: Element[]; initial: { opacity: number; x: number; }; animate: { opacity: number; x: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/MeatPriceMonitor.tsx(124,3): error TS6133: 'userId' is declared but its value is never read.
+components/MockClerkProvider.tsx(60,13): error TS7030: Not all code paths return a value.
+components/Pricing.tsx(60,11): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Pricing.tsx(76,15): error TS2322: Type '{ children: (false | Element)[]; key: number; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; delay: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/RAG/RAGProvider.tsx(25,10): error TS6133: 'contentfulAvailable' is declared but its value is never read.
+components/RAG/RAGProvider.tsx(47,11): error TS2322: Type 'string' is not assignable to type '("metadata" | "fields" | "sys" | "metadata.concepts" | "sys.type" | "sys.id" | "sys.createdAt" | "sys.updatedAt" | "sys.revision" | "sys.space" | "sys.locale" | "sys.environment" | "sys.contentSourceMaps" | "sys.contentSourceMapsLookup" | "sys.contentType" | "metadata.tags")[]'.
+components/Recommendations/CreateRecommendation.tsx(14,8): error TS2307: Cannot find module '@chakra-ui/react' or its corresponding type declarations.
+components/Recommendations/CreateRecommendation.tsx(145,27): error TS7006: Parameter 'e' implicitly has an 'any' type.
+components/Recommendations/CreateRecommendation.tsx(164,27): error TS7006: Parameter 'e' implicitly has an 'any' type.
+components/Recommendations/CreateRecommendation.tsx(174,25): error TS7006: Parameter 'e' implicitly has an 'any' type.
+components/Recommendations/RecommendationDetail.tsx(15,8): error TS2307: Cannot find module '@chakra-ui/react' or its corresponding type declarations.
+components/Recommendations/RecommendationDetail.tsx(254,25): error TS7006: Parameter 'e' implicitly has an 'any' type.
+components/Recommendations/RecommendationsList.tsx(15,8): error TS2307: Cannot find module '@chakra-ui/react' or its corresponding type declarations.
+components/Recommendations/RecommendationsList.tsx(196,48): error TS7006: Parameter 'e' implicitly has an 'any' type.
+components/Recommendations/RecommendationsList.tsx(263,38): error TS7006: Parameter 'e' implicitly has an 'any' type.
+components/Recommendations/RecommendationsList.tsx(267,31): error TS7006: Parameter 'e' implicitly has an 'any' type.
+components/Recommendations/RecommendationsList.tsx(296,30): error TS7006: Parameter 'e' implicitly has an 'any' type.
+components/Recommendations/RecommendationsSystem.tsx(4,10): error TS2614: Module '"./CreateRecommendation"' has no exported member 'CreateRecommendation'. Did you mean to use 'import CreateRecommendation from "./CreateRecommendation"' instead?
+components/Recommendations/RecommendationsSystem.tsx(5,10): error TS2614: Module '"./RecommendationDetail"' has no exported member 'RecommendationDetail'. Did you mean to use 'import RecommendationDetail from "./RecommendationDetail"' instead?
+components/Recommendations/RecommendationsSystem.tsx(37,9): error TS6133: 'router' is declared but its value is never read.
+components/Recommendations/RecommendationsSystem.tsx(384,19): error TS2322: Type '{ recommendations: Recommendation[]; onSelectRecommendation: (recommendation: Recommendation) => void; }' is not assignable to type 'IntrinsicAttributes & RecommendationsListProps'.
+  Property 'recommendations' does not exist on type 'IntrinsicAttributes & RecommendationsListProps'.
+components/Services.tsx(111,11): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Services.tsx(127,15): error TS2322: Type '{ children: Element[]; key: number; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; delay: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Team.tsx(31,7): error TS2322: Type '{ children: Element[]; className: string; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; transition: { duration: number; }; viewport: { once: true; }; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Team.tsx(190,10): error TS6133: 'uniqueDepartments' is declared but its value is never read.
+components/Team.tsx(190,29): error TS6133: 'setUniqueDepartments' is declared but its value is never read.
+components/Team.tsx(191,21): error TS6133: 'setIsLoading' is declared but its value is never read.
+components/Team.tsx(198,5): error TS2322: Type 'TeamMember[]' is not assignable to type 'import("C:/Users/HOME/.trae/rules/types/teamTypes").TeamMember[]'.
+  Type 'TeamMember' is missing the following properties from type 'TeamMember': position, bio, imageUrl
+components/Team.tsx(198,35): error TS2345: Argument of type 'import("C:/Users/HOME/.trae/rules/types/teamTypes").TeamMember[]' is not assignable to parameter of type 'TeamMember[]'.
+  Type 'TeamMember' is missing the following properties from type 'TeamMember': email, role, availability, workload
+components/Team.tsx(201,5): error TS2322: Type 'TeamMember[]' is not assignable to type 'import("C:/Users/HOME/.trae/rules/types/teamTypes").TeamMember[]'.
+  Type 'TeamMember' is missing the following properties from type 'TeamMember': position, bio, imageUrl
+components/Team.tsx(201,32): error TS2345: Argument of type 'import("C:/Users/HOME/.trae/rules/types/teamTypes").TeamMember[]' is not assignable to parameter of type 'TeamMember[]'.
+  Type 'TeamMember' is missing the following properties from type 'TeamMember': email, role, availability, workload
+components/Team.tsx(204,5): error TS2322: Type 'TeamMember[]' is not assignable to type 'import("C:/Users/HOME/.trae/rules/types/teamTypes").TeamMember[]'.
+  Type 'TeamMember' is missing the following properties from type 'TeamMember': position, bio, imageUrl
+components/Team.tsx(204,54): error TS2554: Expected 2 arguments, but got 3.
+components/Team.tsx(211,43): error TS2345: Argument of type 'import("C:/Users/HOME/.trae/rules/types/teamTypes").TeamMember[]' is not assignable to parameter of type 'TeamMember[]'.
+  Type 'TeamMember' is missing the following properties from type 'TeamMember': email, role, availability, workload
+components/Team.tsx(222,9): error TS6133: 'handleDepartmentChange' is declared but its value is never read.
+components/Team.tsx(281,11): error TS2322: Type '{ children: Element[]; className: string; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; transition: { duration: number; }; viewport: { once: true; }; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Team.tsx(293,11): error TS2322: Type '{ children: Element[]; className: string; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; transition: { duration: number; }; viewport: { once: true; }; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Team.tsx(374,13): error TS2322: Type '{ children: Element[]; className: string; variants: { hidden: { opacity: number; }; visible: { opacity: number; transition: { staggerChildren: number; }; }; }; initial: string; whileInView: string; viewport: { ...; }; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Team.tsx(386,13): error TS2322: Type '{ children: Element[]; className: string; initial: { opacity: number; }; animate: { opacity: number; }; transition: { duration: number; }; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Testimonials.tsx(39,11): error TS2322: Type '{ children: Element[]; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/Testimonials.tsx(55,15): error TS2322: Type '{ children: Element[]; key: string; initial: { opacity: number; y: number; }; whileInView: { opacity: number; y: number; }; viewport: { once: true; }; transition: { duration: number; delay: number; }; className: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/ThemeToggle.tsx(2,17): error TS6133: 'useEffect' is declared but its value is never read.
+components/ThemeToggle.tsx(2,28): error TS6133: 'useState' is declared but its value is never read.
+components/ui/Button.tsx(63,7): error TS2322: Type '{ children: (ReactNode | Element)[]; type: "button" | "submit" | "reset"; className: string; onClick: () => void; onKeyDown: (event: KeyboardEvent<Element>) => void; ... 4 more ...; whileTap: { ...; }; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'type' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+components/UserActivityDashboard.tsx(83,22): error TS2352: Conversion of type 'UserAction[]' to type 'ActivityResponse' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'UserAction[]' is missing the following properties from type 'ActivityResponse': data, pagination
+components/UserActivityDashboard.tsx(83,54): error TS2345: Argument of type '{ userId: string | undefined; actionType: string | undefined; resourceType: string | undefined; limit: number; offset: number; startDate: Date | undefined; endDate: Date | undefined; }' is not assignable to parameter of type 'string'.
+components/UserActivityDashboard.tsx(166,9): error TS6133: 'handlePeriodChange' is declared but its value is never read.
+components/UserActivityDashboard.tsx(180,9): error TS6133: 'handlePageChange' is declared but its value is never read.
+components/UserActivityDashboard.tsx(184,9): error TS6133: 'formatDate' is declared but its value is never read.
+components/UserActivityDashboard.tsx(432,21): error TS2322: Type '(activity: UserActivityRecord) => void' is not assignable to type '(activity: ActivityData) => void'.
+  Types of parameters 'activity' and 'activity' are incompatible.
+    Type 'ActivityData' is not assignable to type 'UserActivityRecord'.
+      Types of property 'timestamp' are incompatible.
+        Type 'string' is not assignable to type 'Date'.
+components/UserActivityExportAdvanced.tsx(47,22): error TS6133: 'setDateFormat' is declared but its value is never read.
+components/UserActivityExportAdvanced.tsx(283,9): error TS2353: Object literal may only specify known properties, and 'fields' does not exist in type 'ExportParams'.
+components/UserActivityList.tsx(65,53): error TS2345: Argument of type '{ userId: string | undefined; actionType: string | undefined; resourceType: string | undefined; limit: number; offset: number; startDate: Date | undefined; endDate: Date | undefined; }' is not assignable to parameter of type 'string'.
+components/UserActivityList.tsx(75,18): error TS2339: Property 'success' does not exist on type 'UserAction[]'.
+components/UserActivityList.tsx(75,46): error TS2339: Property 'error' does not exist on type 'UserAction[]'.
+components/UserActivityList.tsx(76,25): error TS2339: Property 'error' does not exist on type 'UserAction[]'.
+components/UserActivityList.tsx(80,28): error TS2339: Property 'data' does not exist on type 'UserAction[]'.
+components/UserActivityList.tsx(81,28): error TS2339: Property 'pagination' does not exist on type 'UserAction[]'.
+components/UserActivityStats.tsx(39,10): error TS6133: 'selectedFields' is declared but its value is never read.
+components/UserActivityStats.tsx(39,26): error TS6133: 'setSelectedFields' is declared but its value is never read.
+components/UserActivityStats.tsx(128,11): error TS6133: 'newPeriod' is declared but its value is never read.
+hooks/useContentful.ts(34,66): error TS2769: No overload matches this call.
+  Overload 1 of 9, '(queryKey: QueryKey, queryFn: QueryFunction<TypePageSkeleton, QueryKey>, options?: (Omit<UseQueryOptions<TypePageSkeleton, Error, TypePageSkeleton, QueryKey>, "initialData" | ... 1 more ... | "queryKey"> & { ...; }) | undefined): UseQueryResult<...>', gave the following error.
+    Type 'Promise<null>' is not assignable to type 'TypePageSkeleton | Promise<TypePageSkeleton>'.
+      Type 'Promise<null>' is not assignable to type 'Promise<TypePageSkeleton>'.
+        Type 'null' is not assignable to type 'TypePageSkeleton'.
+  Overload 2 of 9, '(queryKey: QueryKey, queryFn: QueryFunction<TypePageSkeleton, QueryKey>, options?: (Omit<UseQueryOptions<TypePageSkeleton, Error, TypePageSkeleton, QueryKey>, "initialData" | ... 1 more ... | "queryKey"> & { ...; }) | undefined): DefinedUseQueryResult<...>', gave the following error.
+    Type 'Promise<null>' is not assignable to type 'TypePageSkeleton | Promise<TypePageSkeleton>'.
+      Type 'Promise<null>' is not assignable to type 'Promise<TypePageSkeleton>'.
+        Type 'null' is not assignable to type 'TypePageSkeleton'.
+  Overload 3 of 9, '(queryKey: QueryKey, queryFn: QueryFunction<TypePageSkeleton, QueryKey>, options?: Omit<UseQueryOptions<TypePageSkeleton, Error, TypePageSkeleton, QueryKey>, "queryFn" | "queryKey"> | undefined): UseQueryResult<...>', gave the following error.
+    Type 'Promise<null>' is not assignable to type 'TypePageSkeleton | Promise<TypePageSkeleton>'.
+      Type 'Promise<null>' is not assignable to type 'Promise<TypePageSkeleton>'.
+        Type 'null' is not assignable to type 'TypePageSkeleton'.
+hooks/usePerformanceOptimization.ts(17,13): error TS7034: Variable 'links' implicitly has type 'any[]' in some locations where its type cannot be determined.
+hooks/usePerformanceOptimization.ts(22,7): error TS7005: Variable 'links' implicitly has an 'any[]' type.
+lib/documentation/autoDocGenerator.ts(220,11): error TS6133: 'lines' is declared but its value is never read.
+lib/index.ts(21,3): error TS1205: Re-exporting a type when 'isolatedModules' is enabled requires using 'export type'.
+lib/index.ts(22,3): error TS1205: Re-exporting a type when 'isolatedModules' is enabled requires using 'export type'.
+lib/index.ts(23,3): error TS1205: Re-exporting a type when 'isolatedModules' is enabled requires using 'export type'.
+lib/index.ts(27,32): error TS1205: Re-exporting a type when 'isolatedModules' is enabled requires using 'export type'.
+lib/index.ts(27,43): error TS1205: Re-exporting a type when 'isolatedModules' is enabled requires using 'export type'.
+lib/index.ts(31,3): error TS1205: Re-exporting a type when 'isolatedModules' is enabled requires using 'export type'.
+lib/index.ts(32,3): error TS1205: Re-exporting a type when 'isolatedModules' is enabled requires using 'export type'.
+lib/index.ts(33,3): error TS1205: Re-exporting a type when 'isolatedModules' is enabled requires using 'export type'.
+lib/index.ts(40,3): error TS1205: Re-exporting a type when 'isolatedModules' is enabled requires using 'export type'.
+lib/index.ts(43,3): error TS1205: Re-exporting a type when 'isolatedModules' is enabled requires using 'export type'.
+lib/index.ts(193,11): error TS6133: 'readme' is declared but its value is never read.
+lib/index.ts(245,26): error TS6133: 'args' is declared but its value is never read.
+lib/mcp/client.ts(23,11): error TS6133: 'connections' is declared but its value is never read.
+middleware.ts(4,7): error TS6133: 'publicRoutes' is declared but its value is never read.
+middleware/accessControl.ts(82,35): error TS6133: 'userId' is declared but its value is never read.
+middleware/api.ts(69,25): error TS6133: 'req' is declared but its value is never read.
+middleware/twoFactorAuth.ts(108,41): error TS2339: Property 'HIGH' does not exist on type 'typeof SecurityEventSeverity'.
+middleware/twoFactorAuth.ts(214,36): error TS2339: Property 'SUSPICIOUS_ACTIVITY' does not exist on type 'typeof SecurityEventType'.
+middleware/twoFactorAuth.ts(216,39): error TS2339: Property 'HIGH' does not exist on type 'typeof SecurityEventSeverity'.
+middleware/twoFactorAuth.ts(284,36): error TS2339: Property 'TWO_FACTOR_AUTH' does not exist on type 'typeof SecurityEventType'.
+middleware/twoFactorAuth.ts(315,3): error TS6133: 'userId' is declared but its value is never read.
+middleware/twoFactorAuth.ts(317,3): error TS6133: 'sessionLifetime' is declared but its value is never read.
+middleware/twoFactorAuth.ts(353,11): error TS6133: 'code' is declared but its value is never read.
+pages/_document.tsx(4,16): error TS4114: This member must have an 'override' modifier because it overrides a member in the base class 'Document<{}>'.
+pages/_document.tsx(9,3): error TS4114: This member must have an 'override' modifier because it overrides a member in the base class 'Document<{}>'.
+pages/admin/security-dashboard.tsx(16,70): error TS6133: 'userRole' is declared but its value is never read.
+pages/admin/user-activity.tsx(6,1): error TS6133: 'withApiMiddleware' is declared but its value is never read.
+pages/admin/user-activity.tsx(54,61): error TS6133: 'context' is declared but its value is never read.
+pages/api/content/[slug].ts(44,18): error TS2339: Property 'sys' does not exist on type 'never'.
+pages/api/content/[slug].ts(45,21): error TS2339: Property 'fields' does not exist on type 'never'.
+pages/api/content/[slug].ts(46,20): error TS2339: Property 'fields' does not exist on type 'never'.
+pages/api/content/[slug].ts(47,27): error TS2339: Property 'fields' does not exist on type 'never'.
+pages/api/content/[slug].ts(48,25): error TS2339: Property 'sys' does not exist on type 'never'.
+pages/api/content/[slug].ts(65,3): error TS2554: Expected 1 arguments, but got 2.
+pages/api/recommendations/create.ts(49,7): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'Omit<SecurityEvent, "timestamp" | "ipAddress" | "userAgent">'.
+pages/api/recommendations/create.ts(69,7): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'Omit<SecurityEvent, "timestamp" | "ipAddress" | "userAgent">'.
+pages/api/recommendations/create.ts(69,31): error TS2339: Property 'SYSTEM_ERROR' does not exist on type 'typeof SecurityEventType'.
+pages/api/recommendations/create.ts(70,39): error TS2339: Property 'HIGH' does not exist on type 'typeof SecurityEventSeverity'.
+pages/api/recommendations/create.ts(85,43): error TS2345: Argument of type 'string[]' is not assignable to parameter of type 'keyof Permission'.
+pages/daily-work-summary.tsx(25,9): error TS6133: 't' is declared but its value is never read.
+pages/daily-work-summary.tsx(26,9): error TS6133: 'router' is declared but its value is never read.
+pages/dashboard.tsx(9,33): error TS6133: 'user' is declared but its value is never read.
+pages/integrated-agent-hub.tsx(29,9): error TS6133: 't' is declared but its value is never read.
+pages/meat-industry-dashboard.tsx(16,9): error TS6133: 't' is declared but its value is never read.
+pages/meat-industry-dashboard.tsx(174,72): error TS6133: 'req' is declared but its value is never read.
+pages/recommendations/[resourceType]/[resourceId].tsx(19,8): error TS2307: Cannot find module '@chakra-ui/react' or its corresponding type declarations.
+pages/recommendations/index.tsx(20,8): error TS2307: Cannot find module '@chakra-ui/react' or its corresponding type declarations.
+pages/recommendations/index.tsx(45,37): error TS2554: Expected 2 arguments, but got 1.
+pages/recommendations/index.tsx(65,9): error TS6133: 'handleNavigateToResource' is declared but its value is never read.
+pages/sign-in/[[...index]].tsx(8,9): error TS2322: Type '{ children: Element[]; className: string; initial: { opacity: number; y: number; }; animate: { opacity: number; y: number; }; transition: { duration: number; }; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+pages/sign-up/[[...index]].tsx(8,9): error TS2322: Type '{ children: Element[]; className: string; initial: { opacity: number; y: number; }; animate: { opacity: number; y: number; }; transition: { duration: number; }; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & HTMLAttributesWithoutMotionProps<unknown, unknown> & MotionProps & RefAttributes<unknown>'.
+tests/Team.test.tsx(113,11): error TS6133: 'createElementMock' is declared but its value is never read.
+utils/browserUtils.ts(108,3): error TS6133: 'token' is declared but its value is never read.
+utils/meatIndustryAnalytics.ts(37,11): error TS6196: 'MarketingCampaign' is declared but never used.
+utils/meatIndustryAnalytics.ts(109,28): error TS2304: Cannot find name 'getMGXUserInfo'.
+utils/meatIndustryAnalytics.ts(216,28): error TS2304: Cannot find name 'getMGXUserInfo'.
+utils/meatIndustryAnalytics.ts(346,28): error TS2304: Cannot find name 'getMGXUserInfo'.
+utils/meatIndustryAnalytics.ts(456,9): error TS2322: Type '{ month: string; expectedSales: number; confidenceInterval: { lower: number; upper: number; }; factors: { factor: string; impact: string; weight: number; }[]; }[]' is not assignable to type '{ month: string; expectedSales: number; confidenceInterval: { lower: number; upper: number; }; factors: { factor: string; impact: "positive" | "negative" | "neutral"; weight: number; }[]; }[]'.
+  Type '{ month: string; expectedSales: number; confidenceInterval: { lower: number; upper: number; }; factors: { factor: string; impact: string; weight: number; }[]; }' is not assignable to type '{ month: string; expectedSales: number; confidenceInterval: { lower: number; upper: number; }; factors: { factor: string; impact: "positive" | "negative" | "neutral"; weight: number; }[]; }'.
+    Types of property 'factors' are incompatible.
+      Type '{ factor: string; impact: string; weight: number; }[]' is not assignable to type '{ factor: string; impact: "positive" | "negative" | "neutral"; weight: number; }[]'.
+        Type '{ factor: string; impact: string; weight: number; }' is not assignable to type '{ factor: string; impact: "positive" | "negative" | "neutral"; weight: number; }'.
+          Types of property 'impact' are incompatible.
+            Type 'string' is not assignable to type '"positive" | "negative" | "neutral"'.
+utils/meatIndustryAnalytics.ts(506,28): error TS2304: Cannot find name 'getMGXUserInfo'.
+utils/mgxUtils.ts(6,7): error TS6133: 'MGX_API_BASE_URL' is declared but its value is never read.

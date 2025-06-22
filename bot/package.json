@@ -1,0 +1,125 @@
+{
+  "name": "techmoneybot",
+  "version": "1.0.0",
+  "description": "Telegram bot for automating freelance project search and proposal generation",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "dev": "nodemon bot.js",
+    "test": "mocha tests/**/*.test.js --timeout 10000",
+    "test:watch": "mocha tests/**/*.test.js --watch --timeout 10000",
+    "test:coverage": "nyc mocha tests/**/*.test.js --timeout 10000",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix",
+    "format": "prettier --write .",
+    "docker:build": "docker build -t techmoneybot .",
+    "docker:run": "docker run -d --name techmoneybot-container techmoneybot",
+    "docker:compose": "docker-compose up -d",
+    "docker:logs": "docker-compose logs -f bot",
+    "health": "node healthcheck.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop techmoneybot",
+    "pm2:restart": "pm2 restart techmoneybot"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "freelance",
+    "automation",
+    "upwork",
+    "freelancer",
+    "fiverr",
+    "ai",
+    "proposal",
+    "generator"
+  ],
+  "author": "TechMoneyBot Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "telegraf": "^4.15.6",
+    "mongoose": "^8.0.3",
+    "redis": "^4.6.11",
+    "axios": "^1.6.2",
+    "openai": "^4.20.1",
+    "node-cron": "^3.0.3",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^4.7.1",
+    "joi": "^17.11.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "cors": "^2.8.5",
+    "compression": "^1.7.4",
+    "dotenv": "^16.3.1",
+    "moment": "^2.29.4",
+    "lodash": "^4.17.21",
+    "cheerio": "^1.0.0-rc.12",
+    "sharp": "^0.33.1",
+    "validator": "^13.11.0",
+    "sanitize-html": "^2.11.0",
+    "rate-limiter-flexible": "^4.0.1",
+    "ioredis": "^5.3.2",
+    "nodemailer": "^6.9.7",
+    "uuid": "^9.0.1",
+    "natural": "^6.8.0",
+    "sentiment": "^5.0.2",
+    "node-fetch": "^3.3.2",
+    "form-data": "^4.0.0",
+    "retry": "^0.13.1",
+    "p-retry": "^6.2.0",
+    "bottleneck": "^2.19.5",
+    "async": "^3.2.5",
+    "debug": "^4.3.4",
+    "cross-env": "^7.0.3",
+    "pm2": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "mocha": "^10.2.0",
+    "chai": "^4.3.10",
+    "sinon": "^17.0.1",
+    "nyc": "^15.1.0",
+    "eslint": "^8.55.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-node": "^11.1.0",
+    "prettier": "^3.1.1",
+    "supertest": "^6.3.3",
+    "nock": "^13.4.0",
+    "@faker-js/faker": "^8.3.1"
+  },
+  "nyc": {
+    "include": [
+      "**/*.js"
+    ],
+    "exclude": [
+      "tests/**",
+      "node_modules/**",
+      "coverage/**"
+    ],
+    "reporter": [
+      "text",
+      "html",
+      "lcov"
+    ],
+    "check-coverage": true,
+    "lines": 80,
+    "functions": 80,
+    "branches": 70,
+    "statements": 80
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/techmoneybot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/techmoneybot/issues"
+  },
+  "homepage": "https://github.com/your-username/techmoneybot#readme"
+}

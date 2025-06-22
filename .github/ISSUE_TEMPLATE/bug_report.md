@@ -1,32 +1,90 @@
 ---
-name: Отчет об ошибке
-about: Создайте отчет, чтобы помочь нам улучшить проект
-title: '[БАГ] '
-labels: bug
+name: 🐛 Bug Report
+about: Create a report to help us improve
+title: '[BUG] '
+labels: ['bug', 'needs-triage']
 assignees: ''
-
 ---
 
-**Описание ошибки**
-Четкое и краткое описание ошибки.
+## 🐛 Bug Description
 
-**Шаги для воспроизведения**
-Шаги для воспроизведения проблемы:
-1. Перейти к '...'
-2. Нажать на '....'
-3. Прокрутить до '....'
-4. Увидеть ошибку
+A clear and concise description of what the bug is.
 
-**Ожидаемое поведение**
-Четкое и краткое описание того, что вы ожидали.
+## 🔄 Steps to Reproduce
 
-**Скриншоты**
-Если применимо, добавьте скриншоты, чтобы помочь объяснить вашу проблему.
+Steps to reproduce the behavior:
 
-**Окружение (пожалуйста, заполните следующую информацию):**
- - ОС: [например, iOS]
- - Браузер: [например, chrome, safari]
- - Версия: [например, 22]
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-**Дополнительный контекст**
-Добавьте любой другой контекст о проблеме здесь.
+## ✅ Expected Behavior
+
+A clear and concise description of what you expected to happen.
+
+## ❌ Actual Behavior
+
+A clear and concise description of what actually happened.
+
+## 📸 Screenshots
+
+If applicable, add screenshots to help explain your problem.
+
+## 🌐 Environment
+
+**Desktop:**
+
+- OS: [e.g. Windows 10, macOS Big Sur, Ubuntu 20.04]
+- Browser: [e.g. Chrome 96, Firefox 95, Safari 15]
+- Version: [e.g. 22]
+
+**Mobile:**
+
+- Device: [e.g. iPhone 13, Samsung Galaxy S21]
+- OS: [e.g. iOS 15.1, Android 12]
+- Browser: [e.g. Safari, Chrome]
+- Version: [e.g. 22]
+
+**Application:**
+
+- Version: [e.g. 1.0.0]
+- Environment: [e.g. Production, Staging, Development]
+- URL: [e.g. https://example.com]
+
+## 📋 Additional Context
+
+Add any other context about the problem here.
+
+## 🔍 Error Logs
+
+```
+Paste any relevant error logs here
+```
+
+## 🧪 Possible Solution
+
+If you have suggestions on a fix for the bug, please describe it here.
+
+## 📝 Checklist
+
+- [ ] I have searched for existing issues
+- [ ] I have provided all the required information
+- [ ] I have tested this on the latest version
+- [ ] I have included screenshots/videos if applicable
+- [ ] I have checked the browser console for errors
+
+## 🏷️ Labels
+
+Please add appropriate labels:
+
+- `critical` - System is unusable
+- `high` - Major functionality is impacted
+- `medium` - Minor functionality is impacted
+- `low` - Cosmetic issues
+- `security` - Security-related issue
+- `performance` - Performance-related issue
+- `accessibility` - Accessibility issue
+- `mobile` - Mobile-specific issue
+- `desktop` - Desktop-specific issue
+- `browser-specific` - Browser-specific issue

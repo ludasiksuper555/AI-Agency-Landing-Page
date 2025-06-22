@@ -1,0 +1,125 @@
+name: 🐛 Bug Report
+description: Create a report to help us improve
+title: '[Bug]: '
+labels: ['bug', 'triage']
+assignees:
+  - ai-agency-team
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо за сообщение об ошибке! 🐛
+
+        Пожалуйста, заполните форму ниже, чтобы помочь нам быстрее решить проблему.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Что произошло?
+      description: Опишите ошибку подробно
+      placeholder: Расскажите, что пошло не так...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемое поведение
+      description: Что должно было произойти?
+      placeholder: Опишите ожидаемый результат...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги для воспроизведения
+      description: Как воспроизвести эту ошибку?
+      placeholder: |
+        1. Перейти на страницу '...'
+        2. Нажать на '...'
+        3. Прокрутить до '...'
+        4. Увидеть ошибку
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Скриншоты
+      description: Если применимо, добавьте скриншоты для объяснения проблемы
+      placeholder: Перетащите изображения сюда или вставьте ссылки
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: Браузеры
+      description: В каких браузерах вы наблюдаете проблему?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Opera
+        - Другой (укажите в дополнительном контексте)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Операционная система
+      description: На какой ОС вы столкнулись с проблемой?
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - iOS
+        - Android
+        - Другая (укажите в дополнительном контексте)
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Устройство
+      description: На каком устройстве возникла проблема?
+      placeholder: 'например: iPhone 12, MacBook Pro, Samsung Galaxy S21'
+
+  - type: input
+    id: version
+    attributes:
+      label: Версия приложения
+      description: Какую версию приложения вы используете?
+      placeholder: 'например: v1.0.0'
+
+  - type: textarea
+    id: console-logs
+    attributes:
+      label: Логи консоли
+      description: Если есть ошибки в консоли браузера, вставьте их сюда
+      render: shell
+      placeholder: |
+        Откройте Developer Tools (F12) и скопируйте ошибки из консоли
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Дополнительный контекст
+      description: Добавьте любую другую информацию о проблеме
+      placeholder: Любая дополнительная информация, которая может помочь...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Подтверждение
+      description: Пожалуйста, подтвердите следующее
+      options:
+        - label: Я проверил существующие issues и не нашел дубликатов
+          required: true
+        - label: Я предоставил всю необходимую информацию
+          required: true
+        - label: Я готов предоставить дополнительную информацию при необходимости
+          required: true

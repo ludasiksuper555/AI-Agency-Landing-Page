@@ -3,6 +3,8 @@
  * Частина інтеграції між Trae, GitHub, MGX та браузером
  */
 
+import { logger } from './logger';
+
 /**
  * Інтерфейс для налаштувань кешування
  */
@@ -31,10 +33,10 @@ export const registerServiceWorker = async (): Promise<boolean> => {
   if ('serviceWorker' in navigator) {
     try {
       const registration = await navigator.serviceWorker.register('/sw.js');
-      console.log('Service Worker registered with scope:', registration.scope);
+      logger.info('Service Worker registered', { scope: registration.scope });
       return true;
     } catch (error) {
-      console.error('Service Worker registration failed:', error);
+      logger.error('Service Worker registration failed', { error });
       return false;
     }
   }
@@ -46,9 +48,11 @@ export const registerServiceWorker = async (): Promise<boolean> => {
  * @param resourceType Тип ресурсу ('image', 'script', 'style', 'font', 'data')
  * @returns Налаштування кешування для вказаного типу ресурсу
  */
-export const getCacheSettings = (resourceType: 'image' | 'script' | 'style' | 'font' | 'data'): CacheSettings => {
+export const getCacheSettings = (
+  resourceType: 'image' | 'script' | 'style' | 'font' | 'data'
+): CacheSettings => {
   const day = 24 * 60 * 60 * 1000;
-  
+
   switch (resourceType) {
     case 'image':
       return { maxAge: 30 * day, immutable: true };
@@ -73,25 +77,25 @@ export const collectPerformanceMetrics = (): PerformanceMetrics | null => {
   if (!window.performance || !window.performance.timing) {
     return null;
   }
-  
+
   const timing = window.performance.timing;
-  
+
   // Базові метрики на основі Performance API
   const ttfb = timing.responseStart - timing.navigationStart;
   const navigationStart = timing.navigationStart;
-  
+
   // Для LCP, FID і CLS потрібна підтримка Web Vitals API
   // Тут використовуємо заглушки, в реальному додатку слід використовувати web-vitals бібліотеку
   const lcp = 0;
   const fid = 0;
   const cls = 0;
-  
+
   return {
     lcp,
     fid,
     cls,
     ttfb,
-    navigationStart
+    navigationStart,
   };
 };
 
@@ -101,15 +105,18 @@ export const collectPerformanceMetrics = (): PerformanceMetrics | null => {
  * @param token Токен авторизації MGX
  * @returns Promise<boolean> Успішність надсилання метрик
  */
-export const sendMetricsToMGX = async (metrics: PerformanceMetrics, token: string): Promise<boolean> => {
+export const sendMetricsToMGX = async (
+  metrics: PerformanceMetrics,
+  _token: string
+): Promise<boolean> => {
   try {
     // Тут буде реальний запит до API MGX для аналізу метрик
-    console.log('Sending performance metrics to MGX:', metrics);
-    
+    logger.info('Sending performance metrics to MGX', { metrics });
+
     // Імітація успішного надсилання
     return true;
   } catch (error) {
-    console.error('Error sending metrics to MGX:', error);
+    logger.error('Error sending metrics to MGX', { error });
     return false;
   }
 };
@@ -120,8 +127,8 @@ export const sendMetricsToMGX = async (metrics: PerformanceMetrics, token: strin
  */
 export const setupLazyLoading = (imageSelector: string = 'img[data-src]'): void => {
   if ('IntersectionObserver' in window) {
-    const lazyImageObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    const lazyImageObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           const lazyImage = entry.target as HTMLImageElement;
           if (lazyImage.dataset.src) {
@@ -134,13 +141,13 @@ export const setupLazyLoading = (imageSelector: string = 'img[data-src]'): void 
     });
 
     const lazyImages = document.querySelectorAll(imageSelector);
-    lazyImages.forEach((image) => {
+    lazyImages.forEach(image => {
       lazyImageObserver.observe(image);
     });
   } else {
     // Fallback для браузерів без підтримки IntersectionObserver
     const lazyImages = document.querySelectorAll(imageSelector);
-    lazyImages.forEach((image) => {
+    lazyImages.forEach(image => {
       const img = image as HTMLImageElement;
       if (img.dataset.src) {
         img.src = img.dataset.src;
@@ -181,36 +188,38 @@ export const setupPrefetching = (resources: string[]): void => {
  * Ініціалізація оптимізацій для браузера
  * @param options Опції ініціалізації
  */
-export const initBrowserOptimizations = async (options: {
-  enableServiceWorker?: boolean;
-  enableLazyLoading?: boolean;
-  prefetchResources?: string[];
-  collectMetrics?: boolean;
-  mgxToken?: string;
-} = {}): Promise<void> => {
+export const initBrowserOptimizations = async (
+  options: {
+    enableServiceWorker?: boolean;
+    enableLazyLoading?: boolean;
+    prefetchResources?: string[];
+    collectMetrics?: boolean;
+    mgxToken?: string;
+  } = {}
+): Promise<void> => {
   const {
     enableServiceWorker = true,
     enableLazyLoading = true,
     prefetchResources = [],
     collectMetrics = true,
-    mgxToken
+    mgxToken,
   } = options;
-  
+
   // Реєстрація Service Worker
   if (enableServiceWorker) {
     await registerServiceWorker();
   }
-  
+
   // Налаштування lazy loading для зображень
   if (enableLazyLoading) {
     setupLazyLoading();
   }
-  
+
   // Налаштування prefetching для ресурсів
   if (prefetchResources.length > 0) {
     setupPrefetching(prefetchResources);
   }
-  
+
   // Збір та надсилання метрик продуктивності
   if (collectMetrics && mgxToken) {
     window.addEventListener('load', async () => {

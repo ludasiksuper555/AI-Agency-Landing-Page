@@ -1,0 +1,21 @@
+{
+  "projectName": "ai-agency-landing-page",
+  "projectOwner": "ai-agency-team",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": ["README.md"],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "ai-agency-team",
+      "name": "AI Agency Team",
+      "avatar_url": "https://github.com/ai-agency-team.png",
+      "profile": "https://github.com/ai-agency-team",
+      "contributions": ["code", "doc", "design", "infra", "test"]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "linkToUsage": true
+}

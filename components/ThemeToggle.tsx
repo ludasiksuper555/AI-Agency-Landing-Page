@@ -1,25 +1,33 @@
-import React from 'react';
-import { useTheme } from './ClerkProvider';
 import { useTranslation } from 'next-i18next';
+import React, { useEffect, useState } from 'react';
+
+// Імпортуємо useTheme з MockClerkProvider замість ClerkProvider
+import { useTheme } from './MockClerkProvider';
 
 interface ThemeToggleProps {
   className?: string;
 }
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '' }) => {
+  // Використовуємо useTheme з MockClerkProvider
   const { theme, setTheme } = useTheme();
   const { t } = useTranslation('common', { useSuspense: false });
 
   const handleToggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
   };
 
   return (
     <button
       onClick={handleToggleTheme}
-      onKeyDown={(e) => e.key === 'Enter' && handleToggleTheme()}
+      onKeyDown={e => e.key === 'Enter' && handleToggleTheme()}
       className={`p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 ${theme === 'dark' ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} ${className}`}
-      aria-label={theme === 'light' ? t('theme.dark', 'Перемкнути на темну тему') : t('theme.light', 'Перемкнути на світлу тему')}
+      aria-label={
+        theme === 'light'
+          ? t('theme.dark', 'Перемкнути на темну тему')
+          : t('theme.light', 'Перемкнути на світлу тему')
+      }
       tabIndex={0}
     >
       {theme === 'light' ? (

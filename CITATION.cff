@@ -1,0 +1,61 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: AI Agency Landing Page
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Your
+    family-names: Name
+    email: your.email@example.com
+    orcid: 'https://orcid.org/0000-0000-0000-0000'
+    affiliation: Your Organization
+identifiers:
+  - type: url
+    value: 'https://github.com/your-username/ai-agency-landing-page'
+    description: GitHub Repository
+repository-code: 'https://github.com/your-username/ai-agency-landing-page'
+url: 'https://your-domain.com'
+abstract: >-
+  A modern, secure, and scalable landing page platform for AI agencies
+  specializing in meat industry consulting. Built with Next.js, TypeScript,
+  and following ISO 27001 security standards. Features include multi-language
+  support, user authentication, analytics dashboard, recommendation system,
+  and comprehensive security monitoring.
+keywords:
+  - ai-agency
+  - landing-page
+  - nextjs
+  - typescript
+  - react
+  - meat-industry
+  - consulting
+  - iso27001
+  - security
+  - authentication
+  - internationalization
+  - analytics
+  - recommendations
+  - tailwindcss
+  - chakra-ui
+license: MIT
+commit: main
+version: 1.0.0
+date-released: '2024-01-01'
+preferred-citation:
+  type: software
+  title: 'AI Agency Landing Page: A Secure Platform for Meat Industry Consulting'
+  authors:
+    - given-names: Your
+      family-names: Name
+      email: your.email@example.com
+      orcid: 'https://orcid.org/0000-0000-0000-0000'
+      affiliation: Your Organization
+  year: 2024
+  url: 'https://github.com/your-username/ai-agency-landing-page'
+  repository-code: 'https://github.com/your-username/ai-agency-landing-page'
+  license: MIT
+  version: 1.0.0

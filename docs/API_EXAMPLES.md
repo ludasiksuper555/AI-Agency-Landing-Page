@@ -243,15 +243,15 @@ async function getUserProfile() {
     const response = await fetch('https://api.example.com/v1/users/profile', {
       method: 'GET',
       headers: {
-        'Authorization': 'Bearer YOUR_JWT_TOKEN',
-        'Content-Type': 'application/json'
-      }
+        Authorization: 'Bearer YOUR_JWT_TOKEN',
+        'Content-Type': 'application/json',
+      },
     });
-    
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
+
     const data = await response.json();
     console.log('Профіль користувача:', data);
     return data;
@@ -280,7 +280,11 @@ interface UserProfile {
 }
 
 // Оновлення профілю користувача
-async function updateUserProfile(name: string, bio: string, location: string): Promise<UserProfile> {
+async function updateUserProfile(
+  name: string,
+  bio: string,
+  location: string
+): Promise<UserProfile> {
   try {
     const { data } = await axios.put<UserProfile>(
       'https://api.example.com/v1/users/profile',
@@ -288,17 +292,17 @@ async function updateUserProfile(name: string, bio: string, location: string): P
         name,
         profile: {
           bio,
-          location
-        }
+          location,
+        },
       },
       {
         headers: {
-          'Authorization': 'Bearer YOUR_JWT_TOKEN',
-          'Content-Type': 'application/json'
-        }
+          Authorization: 'Bearer YOUR_JWT_TOKEN',
+          'Content-Type': 'application/json',
+        },
       }
     );
-    
+
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -323,9 +327,9 @@ def get_projects():
         "Authorization": "Bearer YOUR_JWT_TOKEN",
         "Content-Type": "application/json"
     }
-    
+
     response = requests.get(url, headers=headers)
-    
+
     if response.status_code == 200:
         return response.json()
     else:
@@ -345,9 +349,9 @@ def create_project(name, description, status="active"):
         "description": description,
         "status": status
     }
-    
+
     response = requests.post(url, json=payload, headers=headers)
-    
+
     if response.status_code == 201:
         return response.json()
     else:

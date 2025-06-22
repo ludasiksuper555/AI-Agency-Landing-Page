@@ -1,6 +1,6 @@
 /**
  * Security Utilities Module
- * 
+ *
  * Цей модуль забезпечує функціональність безпеки для інтеграції з AWS AGI сервісами
  * відповідно до вимог ISO 27001.
  */
@@ -21,30 +21,30 @@ export function encryptData(data) {
   try {
     // Перетворення даних в рядок JSON, якщо це об'єкт
     const dataString = typeof data === 'object' ? JSON.stringify(data) : data;
-    
+
     // Генерація випадкового вектора ініціалізації
     const iv = crypto.randomBytes(16);
-    
+
     // Створення шифру
     const cipher = crypto.createCipheriv(ENCRYPTION_ALGORITHM, Buffer.from(ENCRYPTION_KEY), iv);
-    
+
     // Шифрування даних
     let encrypted = cipher.update(dataString, 'utf8', 'hex');
     encrypted += cipher.final('hex');
-    
+
     // Отримання тегу автентифікації
     const authTag = cipher.getAuthTag();
-    
+
     // Повернення зашифрованих даних з метаданими
     return {
       encryptedData: encrypted,
       iv: iv.toString('hex'),
       authTag: authTag.toString('hex'),
       algorithm: ENCRYPTION_ALGORITHM,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   } catch (error) {
-    console.error('Encryption failed:', error);
+    // console.error('Encryption failed:', error);
     throw new Error(`Data encryption failed: ${error.message}`);
   }
 }
@@ -57,22 +57,27 @@ export function encryptData(data) {
 export function decryptData(encryptedPackage) {
   try {
     // Перевірка наявності необхідних полів
-    if (!encryptedPackage || !encryptedPackage.encryptedData || !encryptedPackage.iv || !encryptedPackage.authTag) {
+    if (
+      !encryptedPackage ||
+      !encryptedPackage.encryptedData ||
+      !encryptedPackage.iv ||
+      !encryptedPackage.authTag
+    ) {
       throw new Error('Invalid encrypted package format');
     }
-    
+
     // Перетворення IV та тегу автентифікації з hex в буфери
     const iv = Buffer.from(encryptedPackage.iv, 'hex');
     const authTag = Buffer.from(encryptedPackage.authTag, 'hex');
-    
+
     // Створення дешифратора
     const decipher = crypto.createDecipheriv(ENCRYPTION_ALGORITHM, Buffer.from(ENCRYPTION_KEY), iv);
     decipher.setAuthTag(authTag);
-    
+
     // Розшифрування даних
     let decrypted = decipher.update(encryptedPackage.encryptedData, 'hex', 'utf8');
     decrypted += decipher.final('utf8');
-    
+
     // Спроба розпарсити JSON, якщо це можливо
     try {
       return JSON.parse(decrypted);
@@ -81,7 +86,7 @@ export function decryptData(encryptedPackage) {
       return decrypted;
     }
   } catch (error) {
-    console.error('Decryption failed:', error);
+    // console.error('Decryption failed:', error);
     throw new Error(`Data decryption failed: ${error.message}`);
   }
 }
@@ -136,7 +141,7 @@ export function validateCertificate(certificate) {
     // В реальному середовищі тут має бути повноцінна перевірка
     return certificate && certificate.length > 0;
   } catch (error) {
-    console.error('Certificate validation failed:', error);
+    // console.error('Certificate validation failed:', error);
     return false;
   }
 }
@@ -150,34 +155,38 @@ export function checkISO27001Compliance(securityConfig) {
   const complianceResults = {
     compliant: true,
     issues: [],
-    recommendations: []
+    recommendations: [],
   };
-  
+
   // Перевірка наявності необхідних політик безпеки
   if (!securityConfig.dataEncryption) {
     complianceResults.compliant = false;
     complianceResults.issues.push('Відсутнє шифрування даних');
-    complianceResults.recommendations.push('Впровадити шифрування даних у спокої та під час передачі');
+    complianceResults.recommendations.push(
+      'Впровадити шифрування даних у спокої та під час передачі'
+    );
   }
-  
+
   if (!securityConfig.accessControl) {
     complianceResults.compliant = false;
     complianceResults.issues.push('Відсутній контроль доступу');
     complianceResults.recommendations.push('Впровадити систему контролю доступу на основі ролей');
   }
-  
+
   if (!securityConfig.auditLogging) {
     complianceResults.compliant = false;
     complianceResults.issues.push('Відсутній аудит безпеки');
     complianceResults.recommendations.push('Впровадити систему аудиту та моніторингу безпеки');
   }
-  
+
   if (!securityConfig.incidentResponse) {
     complianceResults.compliant = false;
     complianceResults.issues.push('Відсутні процедури реагування на інциденти');
-    complianceResults.recommendations.push('Розробити та впровадити процедури реагування на інциденти безпеки');
+    complianceResults.recommendations.push(
+      'Розробити та впровадити процедури реагування на інциденти безпеки'
+    );
   }
-  
+
   return complianceResults;
 }
 
@@ -193,12 +202,12 @@ export function generateSecurityReport(securityData) {
     complianceStatus: securityData.compliance || 'unknown',
     vulnerabilities: securityData.vulnerabilities || [],
     recommendations: securityData.recommendations || [],
-    auditResults: securityData.auditResults || {}
+    auditResults: securityData.auditResults || {},
   };
 }
 
 // Експорт додаткових утиліт безпеки
-export default {
+export const securityUtils = {
   encryptData,
   decryptData,
   generateSecureHash,
@@ -207,5 +216,5 @@ export default {
   secureCompare,
   validateCertificate,
   checkISO27001Compliance,
-  generateSecurityReport
+  generateSecurityReport,
 };

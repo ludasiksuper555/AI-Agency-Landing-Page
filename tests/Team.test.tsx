@@ -1,182 +1,200 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Team from '../components/Team';
-import teamData from '../data/teamData';
 
-// Мокуємо модулі, які використовуються в компоненті
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+
+import Team from '../components/Team';
+import type { MockComponentProps } from '../types/common';
+
+// Mock modules used in the component
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props: any) => {
     // eslint-disable-next-line jsx-a11y/alt-text
-    return <img {...props} />
+    return <img {...props} />;
   },
-}))
+}));
 
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    span: ({ children, ...props }: any) => <span {...props}>{children}</span>,
+    div: ({ children, ...props }: MockComponentProps) => <div {...props}>{children}</div>,
+    span: ({ children, ...props }: MockComponentProps) => <span {...props}>{children}</span>,
   },
-  AnimatePresence: ({ children }: any) => <>{children}</>,
-}))
+  AnimatePresence: ({ children }: MockComponentProps) => <>{children}</>,
+}));
 
-jest.mock('../data/teamData', () => ([
-  {
-    id: 'tm-001',
-    name: 'Олександр Петренко',
-    position: 'Головний AI розробник',
-    bio: 'Експерт з машинного навчання',
-    imageUrl: '/images/team/alex.jpg',
-    department: 'Розробка',
-    skills: ['AI', 'Machine Learning'],
-    socialLinks: {
-      linkedin: 'https://linkedin.com/in/oleksandr',
-      email: 'oleksandr@example.com'
-    }
-  },
-  {
-    id: 'tm-002',
-    name: 'Марія Коваленко',
-    position: 'AI дизайнер',
-    bio: 'Дизайнер інтерфейсів',
-    imageUrl: '/images/team/maria.jpg',
-    department: 'Дизайн',
-    skills: ['UI/UX', 'AI Design'],
-    socialLinks: {
-      linkedin: 'https://linkedin.com/in/maria',
-      twitter: 'https://twitter.com/maria'
-    }
-  },
-]))
+jest.mock('next-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'team.title': 'Our Team',
+        'team.filters.searchPlaceholder': 'Search by name or position',
+        'team.filters.positionLabel': 'Filter by position',
+        'team.filters.resetButton': 'Reset filters',
+        'team.noResults': 'No team members found',
+        'team.export.button': 'Export data',
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
 
-describe('Компонент Team', () => {
+jest.mock('../data/teamData', () => ({
+  teamData: [
+    {
+      id: 'tm-001',
+      name: 'Alexander Petrenko',
+      position: 'Lead AI Developer',
+      bio: 'Expert in machine learning',
+      imageUrl: '/images/team/alex.jpg',
+      department: 'Development',
+      skills: ['AI', 'Machine Learning'],
+      socialLinks: {
+        linkedin: 'https://linkedin.com/in/alexander',
+        email: 'alexander@example.com',
+      },
+    },
+    {
+      id: 'tm-002',
+      name: 'Maria Kovalenko',
+      position: 'AI Designer',
+      bio: 'Interface designer',
+      imageUrl: '/images/team/maria.jpg',
+      department: 'Design',
+      skills: ['UI/UX', 'AI Design'],
+      socialLinks: {
+        linkedin: 'https://linkedin.com/in/maria',
+        twitter: 'https://twitter.com/maria',
+      },
+    },
+  ],
+}));
+
+describe('Team Component', () => {
   beforeEach(() => {
-    // Очищаємо моки перед кожним тестом
+    // Clear mocks before each test
     jest.clearAllMocks();
   });
 
-  test('Рендерить компонент без помилок', async () => {
+  test('renders component without errors', async () => {
     render(<Team />);
-    
-    // Перевіряємо, що заголовок відображається
-    expect(screen.getByText('Наша команда')).toBeInTheDocument();
-    
-    // Перевіряємо, що картки співробітників відображаються
+
+    // Check that the title is displayed
+    expect(screen.getByText('Our Team')).toBeInTheDocument();
+
+    // Check that team member cards are displayed
     await waitFor(() => {
-      expect(screen.getByText('Олександр Петренко')).toBeInTheDocument();
-      expect(screen.getByText('Марія Коваленко')).toBeInTheDocument();
+      expect(screen.getByText('Alexander Petrenko')).toBeInTheDocument();
+      expect(screen.getByText('Maria Kovalenko')).toBeInTheDocument();
     });
   });
 
-  test('Фільтрація за пошуковим запитом працює коректно', async () => {
+  test('search filtering works correctly', async () => {
     render(<Team />);
-    
-    // Чекаємо завантаження даних
+
+    // Wait for data to load
     await waitFor(() => {
-      expect(screen.getByText('Олександр Петренко')).toBeInTheDocument();
+      expect(screen.getByText('Alexander Petrenko')).toBeInTheDocument();
     });
-    
-    // Вводимо пошуковий запит
-    const searchInput = screen.getByPlaceholderText('Пошук за ім\'ям або посадою');
-    fireEvent.change(searchInput, { target: { value: 'дизайнер' } });
-    
-    // Перевіряємо результати фільтрації
+
+    // Enter search query
+    const searchInput = screen.getByPlaceholderText('Search by name or position');
+    fireEvent.change(searchInput, { target: { value: 'designer' } });
+
+    // Check filtering results
     await waitFor(() => {
-      expect(screen.queryByText('Олександр Петренко')).not.toBeInTheDocument();
-      expect(screen.getByText('Марія Коваленко')).toBeInTheDocument();
+      expect(screen.queryByText('Alexander Petrenko')).not.toBeInTheDocument();
+      expect(screen.getByText('Maria Kovalenko')).toBeInTheDocument();
     });
   });
 
-  test('Фільтрація за відділом працює коректно', async () => {
+  test('department filtering works correctly', async () => {
     render(<Team />);
-    
-    // Чекаємо завантаження даних
+
+    // Wait for data to load
     await waitFor(() => {
-      expect(screen.getByText('Олександр Петренко')).toBeInTheDocument();
+      expect(screen.getByText('Alexander Petrenko')).toBeInTheDocument();
     });
-    
-    // Вибираємо фільтр за відділом
-    const departmentSelect = screen.getByLabelText('Фільтр за відділом');
-    fireEvent.change(departmentSelect, { target: { value: 'дизайн' } });
-    
-    // Перевіряємо результати фільтрації
+
+    // Select department filter
+    const departmentSelect = screen.getByLabelText('Filter by position');
+    fireEvent.change(departmentSelect, { target: { value: 'design' } });
+
+    // Check filtering results
     await waitFor(() => {
-      expect(screen.queryByText('Олександр Петренко')).not.toBeInTheDocument();
-      expect(screen.getByText('Марія Коваленко')).toBeInTheDocument();
+      expect(screen.queryByText('Alexander Petrenko')).not.toBeInTheDocument();
+      expect(screen.getByText('Maria Kovalenko')).toBeInTheDocument();
     });
   });
 
-  test('Кнопка експорту даних працює коректно', async () => {
-    // Мокуємо функції для тестування експорту
+  test('data export button works correctly', async () => {
+    // Mock functions for export testing
     const createObjectURLMock = jest.fn();
-    const createElementMock = jest.fn();
     const appendChildMock = jest.fn();
     const clickMock = jest.fn();
     const removeChildMock = jest.fn();
-    
-    // Зберігаємо оригінальні функції
+
+    // Store original functions
     const originalCreateObjectURL = URL.createObjectURL;
     const originalCreateElement = document.createElement;
     const originalAppendChild = document.body.appendChild;
     const originalRemoveChild = document.body.removeChild;
-    
-    // Підміняємо функції моками
+
+    // Replace functions with mocks
     URL.createObjectURL = createObjectURLMock;
     document.createElement = jest.fn().mockImplementation(() => ({
       setAttribute: jest.fn(),
       style: {},
-      click: clickMock
+      click: clickMock,
     }));
     document.body.appendChild = appendChildMock;
     document.body.removeChild = removeChildMock;
-    
+
     render(<Team />);
-    
-    // Чекаємо завантаження даних
+
+    // Wait for data to load
     await waitFor(() => {
-      expect(screen.getByText('Експортувати дані')).toBeInTheDocument();
+      expect(screen.getByText('Export data')).toBeInTheDocument();
     });
-    
-    // Клікаємо на кнопку експорту
-    fireEvent.click(screen.getByText('Експортувати дані'));
-    
-    // Перевіряємо, що функції були викликані
+
+    // Click export button
+    fireEvent.click(screen.getByText('Export data'));
+
+    // Check that functions were called
     expect(createObjectURLMock).toHaveBeenCalled();
     expect(document.createElement).toHaveBeenCalledWith('a');
     expect(clickMock).toHaveBeenCalled();
-    
-    // Відновлюємо оригінальні функції
+
+    // Restore original functions
     URL.createObjectURL = originalCreateObjectURL;
     document.createElement = originalCreateElement;
     document.body.appendChild = originalAppendChild;
     document.body.removeChild = originalRemoveChild;
   });
 
-  test('Кнопка скидання фільтрів працює коректно', async () => {
+  test('filter reset button works correctly', async () => {
     render(<Team />);
-    
-    // Чекаємо завантаження даних
+
+    // Wait for data to load
     await waitFor(() => {
-      expect(screen.getByText('Олександр Петренко')).toBeInTheDocument();
+      expect(screen.getByText('Alexander Petrenko')).toBeInTheDocument();
     });
-    
-    // Вводимо пошуковий запит, який не дасть результатів
-    const searchInput = screen.getByPlaceholderText('Пошук за ім\'ям або посадою');
-    fireEvent.change(searchInput, { target: { value: 'неіснуючий запит' } });
-    
-    // Чекаємо появи кнопки скидання фільтрів
+
+    // Enter search query that will return no results
+    const searchInput = screen.getByPlaceholderText('Search by name or position');
+    fireEvent.change(searchInput, { target: { value: 'nonexistent query' } });
+
+    // Wait for reset filters button to appear
     await waitFor(() => {
-      expect(screen.getByText('Скинути фільтри')).toBeInTheDocument();
+      expect(screen.getByText('Reset filters')).toBeInTheDocument();
     });
-    
-    // Клікаємо на кнопку скидання фільтрів
-    fireEvent.click(screen.getByText('Скинути фільтри'));
-    
-    // Перевіряємо, що всі співробітники знову відображаються
+
+    // Click reset filters button
+    fireEvent.click(screen.getByText('Reset filters'));
+
+    // Check that all team members are displayed again
     await waitFor(() => {
-      expect(screen.getByText('Олександр Петренко')).toBeInTheDocument();
-      expect(screen.getByText('Марія Коваленко')).toBeInTheDocument();
+      expect(screen.getByText('Alexander Petrenko')).toBeInTheDocument();
+      expect(screen.getByText('Maria Kovalenko')).toBeInTheDocument();
     });
   });
 });

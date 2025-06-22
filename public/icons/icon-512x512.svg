@@ -1,0 +1,54 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="64" fill="#667eea"/>
+  <rect width="512" height="512" rx="64" fill="url(#gradient)"/>
+
+  <!-- AI Brain Icon -->
+  <g transform="translate(128, 128)">
+    <!-- Brain outline -->
+    <path d="M128 64C128 28.7 156.7 0 192 0C227.3 0 256 28.7 256 64C256 99.3 227.3 128 192 128H64C28.7 128 0 99.3 0 64C0 28.7 28.7 0 64 0C99.3 0 128 28.7 128 64Z" fill="white" opacity="0.95"/>
+
+    <!-- Neural network nodes -->
+    <circle cx="64" cy="64" r="8" fill="#667eea"/>
+    <circle cx="128" cy="42" r="8" fill="#667eea"/>
+    <circle cx="192" cy="64" r="8" fill="#667eea"/>
+    <circle cx="96" cy="96" r="8" fill="#667eea"/>
+    <circle cx="160" cy="96" r="8" fill="#667eea"/>
+    <circle cx="128" cy="80" r="6" fill="#764ba2"/>
+    <circle cx="80" cy="50" r="6" fill="#764ba2"/>
+    <circle cx="176" cy="50" r="6" fill="#764ba2"/>
+
+    <!-- Neural connections -->
+    <line x1="64" y1="64" x2="128" y2="42" stroke="#667eea" stroke-width="4" opacity="0.7"/>
+    <line x1="128" y1="42" x2="192" y2="64" stroke="#667eea" stroke-width="4" opacity="0.7"/>
+    <line x1="64" y1="64" x2="96" y2="96" stroke="#667eea" stroke-width="4" opacity="0.7"/>
+    <line x1="192" y1="64" x2="160" y2="96" stroke="#667eea" stroke-width="4" opacity="0.7"/>
+    <line x1="96" y1="96" x2="160" y2="96" stroke="#667eea" stroke-width="4" opacity="0.7"/>
+    <line x1="128" y1="42" x2="128" y2="80" stroke="#764ba2" stroke-width="3" opacity="0.6"/>
+    <line x1="80" y1="50" x2="128" y2="80" stroke="#764ba2" stroke-width="3" opacity="0.6"/>
+    <line x1="176" y1="50" x2="128" y2="80" stroke="#764ba2" stroke-width="3" opacity="0.6"/>
+
+    <!-- Additional neural pathways -->
+    <path d="M64 64 Q 96 32 128 42" stroke="#667eea" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M192 64 Q 160 32 128 42" stroke="#667eea" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M96 96 Q 128 112 160 96" stroke="#667eea" stroke-width="2" fill="none" opacity="0.5"/>
+
+    <!-- Text -->
+    <text x="128" y="180" text-anchor="middle" fill="white" font-family="Inter, sans-serif" font-size="32" font-weight="700">TRAE AI</text>
+    <text x="128" y="210" text-anchor="middle" fill="white" font-family="Inter, sans-serif" font-size="20" opacity="0.9">AGENCY</text>
+    <text x="128" y="235" text-anchor="middle" fill="white" font-family="Inter, sans-serif" font-size="14" opacity="0.7">Artificial Intelligence Solutions</text>
+  </g>
+
+  <!-- Decorative elements -->
+  <circle cx="80" cy="80" r="3" fill="white" opacity="0.3"/>
+  <circle cx="432" cy="80" r="3" fill="white" opacity="0.3"/>
+  <circle cx="80" cy="432" r="3" fill="white" opacity="0.3"/>
+  <circle cx="432" cy="432" r="3" fill="white" opacity="0.3"/>
+
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

@@ -397,10 +397,7 @@ const Header: React.FC<HeaderProps> = ({
             </>
           ) : (
             <>
-              <a
-                href="/sign-in"
-                className="text-gray-700 hover:text-blue-600"
-              >
+              <a href="/sign-in" className="text-gray-700 hover:text-blue-600">
                 {t('header.login')}
               </a>
               <a
@@ -452,10 +449,10 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = '' }) =
     <div className={`language-switcher ${className}`}>
       <select
         value={i18n.language}
-        onChange={(e) => handleLanguageChange(e.target.value)}
+        onChange={e => handleLanguageChange(e.target.value)}
         className="bg-white border border-gray-300 rounded px-2 py-1 text-sm"
       >
-        {Object.keys(locales).map((locale) => (
+        {Object.keys(locales).map(locale => (
           <option key={locale} value={locale}>
             {locales[locale]}
           </option>
@@ -492,14 +489,10 @@ const Footer: React.FC<FooterProps> = ({
     <footer className="bg-gray-800 text-white py-12">
       <div className="container mx-auto px-4">
         {/* ... існуючий код */}
-        
+
         <div className="mt-8 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400">
-            {t('footer.copyright', { year: currentYear })}
-          </p>
-          {showLanguageSwitcher && (
-            <LanguageSwitcher className="mt-4 md:mt-0" />
-          )}
+          <p className="text-gray-400">{t('footer.copyright', { year: currentYear })}</p>
+          {showLanguageSwitcher && <LanguageSwitcher className="mt-4 md:mt-0" />}
         </div>
       </div>
     </footer>
@@ -531,40 +524,40 @@ const HomePage = () => {
   return (
     <div className="landing-page">
       <Header />
-      <Hero 
-        title={t('home:hero.title')} 
-        subtitle={t('home:hero.subtitle')} 
-        ctaText={t('home:hero.cta')} 
-        onCtaClick={() => {}} 
+      <Hero
+        title={t('home:hero.title')}
+        subtitle={t('home:hero.subtitle')}
+        ctaText={t('home:hero.cta')}
+        onCtaClick={() => {}}
       />
-      <Features 
-        title={t('home:features.title')} 
-        subtitle={t('home:features.subtitle')} 
+      <Features
+        title={t('home:features.title')}
+        subtitle={t('home:features.subtitle')}
         features={[
           {
             id: '1',
             title: t('home:features.items.dataAnalysis.title'),
             description: t('home:features.items.dataAnalysis.description'),
-            icon: 'chart-bar'
+            icon: 'chart-bar',
           },
           {
             id: '2',
             title: t('home:features.items.machineLearning.title'),
             description: t('home:features.items.machineLearning.description'),
-            icon: 'brain'
+            icon: 'brain',
           },
           // Інші функції
-        ]} 
+        ]}
       />
-      <Testimonials 
-        title={t('home:testimonials.title')} 
-        subtitle={t('home:testimonials.subtitle')} 
-        testimonials={[]} 
+      <Testimonials
+        title={t('home:testimonials.title')}
+        subtitle={t('home:testimonials.subtitle')}
+        testimonials={[]}
       />
-      <Contact 
-        title={t('home:contact.title')} 
-        subtitle={t('home:contact.subtitle')} 
-        onSubmit={() => {}} 
+      <Contact
+        title={t('home:contact.title')}
+        subtitle={t('home:contact.subtitle')}
+        onSubmit={() => {}}
       />
       <Footer showLanguageSwitcher={true} />
     </div>
@@ -624,11 +617,7 @@ const BlogPage = () => {
     return <div>Loading...</div>;
   }
 
-  return (
-    <div className="blog-page">
-      {/* Відображення постів */}
-    </div>
-  );
+  return <div className="blog-page">{/* Відображення постів */}</div>;
 };
 
 export default BlogPage;

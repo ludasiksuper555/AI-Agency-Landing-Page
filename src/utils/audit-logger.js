@@ -1,6 +1,6 @@
 /**
  * Audit Logger Module
- * 
+ *
  * Цей модуль забезпечує функціональність аудиту безпеки для інтеграції з AWS AGI сервісами
  * відповідно до вимог ISO 27001.
  */
@@ -8,6 +8,7 @@
 // Імпорт залежностей
 import fs from 'fs';
 import path from 'path';
+
 import { generateSecureHash } from './security-utils';
 
 // Конфігурація логера
@@ -24,7 +25,8 @@ function initLogDirectory() {
       fs.mkdirSync(LOG_DIRECTORY, { recursive: true });
     }
   } catch (error) {
-    console.error(`Failed to initialize log directory: ${error.message}`);
+    // Используем stderr для критических ошибок инициализации
+    process.stderr.write(`Failed to initialize log directory: ${error.message}\n`);
   }
 }
 
@@ -46,7 +48,7 @@ export function logSecurityEvent(eventData) {
       timestamp: eventData.timestamp || new Date().toISOString(),
       environment: process.env.NODE_ENV || 'development',
       applicationName: 'Trae',
-      eventId: generateSecureHash(`${eventData.eventType}-${eventData.service}-${Date.now()}`)
+      eventId: generateSecureHash(`${eventData.eventType}-${eventData.service}-${Date.now()}`),
     };
 
     // Форматування запису логу
@@ -61,18 +63,19 @@ export function logSecurityEvent(eventData) {
 
     // Виведення в консоль, якщо увімкнено
     if (ENABLE_CONSOLE_LOGGING) {
-      console.log(`[SECURITY AUDIT] ${logEntry}`);
+      // console.log(`[SECURITY AUDIT] ${logEntry}`);
     }
 
     return true;
   } catch (error) {
-    console.error(`Security event logging failed: ${error.message}`);
-    
+    // Используем stderr для критических ошибок логирования
+    process.stderr.write(`Security event logging failed: ${error.message}\n`);
+
     // Спроба аварійного логування в консоль
     if (ENABLE_CONSOLE_LOGGING) {
-      console.error('[SECURITY AUDIT FAILURE]', error, eventData);
+      // console.error('[SECURITY AUDIT FAILURE]', error, eventData);
     }
-    
+
     return false;
   }
 }
@@ -96,13 +99,15 @@ export function getSecurityLogs(startDate, endDate) {
     const logLines = logContent.split('\n').filter(line => line.trim());
 
     // Парсинг та фільтрація записів логу за датою
-    const logs = logLines.map(line => {
-      try {
-        return JSON.parse(line);
-      } catch {
-        return null;
-      }
-    }).filter(log => log !== null);
+    const logs = logLines
+      .map(line => {
+        try {
+          return JSON.parse(line);
+        } catch {
+          return null;
+        }
+      })
+      .filter(log => log !== null);
 
     // Фільтрація за датою, якщо вказано
     if (startDate || endDate) {
@@ -116,7 +121,7 @@ export function getSecurityLogs(startDate, endDate) {
 
     return logs;
   } catch (error) {
-    console.error(`Failed to retrieve security logs: ${error.message}`);
+    // console.error(`Failed to retrieve security logs: ${error.message}`);
     return [];
   }
 }
@@ -141,19 +146,19 @@ export function generateAuditReport(startDate, endDate) {
     logs.forEach(log => {
       // Підрахунок за типом події
       eventTypes[log.eventType] = (eventTypes[log.eventType] || 0) + 1;
-      
+
       // Підрахунок за сервісом
       services[log.service] = (services[log.service] || 0) + 1;
-      
+
       // Підрахунок за статусом
       statuses[log.status] = (statuses[log.status] || 0) + 1;
-      
+
       // Додавання до таймлайну
       timeline.push({
         timestamp: log.timestamp,
         eventType: log.eventType,
         service: log.service,
-        status: log.status
+        status: log.status,
       });
     });
 
@@ -165,24 +170,24 @@ export function generateAuditReport(startDate, endDate) {
       reportGeneratedAt: new Date().toISOString(),
       period: {
         startDate: startDate ? startDate.toISOString() : 'beginning',
-        endDate: endDate ? endDate.toISOString() : 'now'
+        endDate: endDate ? endDate.toISOString() : 'now',
       },
       summary: {
         totalEvents: logs.length,
         eventTypes,
         services,
-        statuses
+        statuses,
       },
       timeline,
       complianceStatus: {
-        iso27001: checkISO27001Compliance(logs)
-      }
+        iso27001: checkISO27001Compliance(logs),
+      },
     };
   } catch (error) {
-    console.error(`Failed to generate audit report: ${error.message}`);
+    // console.error(`Failed to generate audit report: ${error.message}`);
     return {
       error: error.message,
-      reportGeneratedAt: new Date().toISOString()
+      reportGeneratedAt: new Date().toISOString(),
     };
   }
 }
@@ -199,7 +204,7 @@ function checkISO27001Compliance(logs) {
     'authorization',
     'data_access',
     'configuration_change',
-    'security_alert'
+    'security_alert',
   ];
 
   const presentEventTypes = new Set(logs.map(log => log.eventType));
@@ -210,14 +215,18 @@ function checkISO27001Compliance(logs) {
   const hasSuccessEvents = logs.some(log => log.status === 'success');
 
   // Оцінка відповідності
-  const complianceScore = missingEventTypes.length === 0 && hasFailedEvents && hasSuccessEvents ? 'high' : 
-                          missingEventTypes.length <= 2 ? 'medium' : 'low';
+  const complianceScore =
+    missingEventTypes.length === 0 && hasFailedEvents && hasSuccessEvents
+      ? 'high'
+      : missingEventTypes.length <= 2
+        ? 'medium'
+        : 'low';
 
   return {
     compliant: missingEventTypes.length === 0,
     complianceScore,
     missingEventTypes,
-    recommendations: missingEventTypes.map(type => `Додати логування подій типу '${type}'`)
+    recommendations: missingEventTypes.map(type => `Додати логування подій типу '${type}'`),
   };
 }
 
@@ -230,41 +239,35 @@ export function cleanupOldLogs(daysToKeep = 90) {
   try {
     // Отримання всіх логів
     const logs = getSecurityLogs();
-    
+
     // Визначення дати відсікання
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - daysToKeep);
-    
+
     // Фільтрація логів, які потрібно зберегти
     const logsToKeep = logs.filter(log => {
       const logDate = new Date(log.timestamp);
       return logDate >= cutoffDate;
     });
-    
+
     // Запис відфільтрованих логів назад у файл
     const logFilePath = path.join(LOG_DIRECTORY, SECURITY_LOG_FILE);
     fs.writeFileSync(logFilePath, logsToKeep.map(log => JSON.stringify(log)).join('\n') + '\n');
-    
+
     // Логування події очищення
     logSecurityEvent({
       eventType: 'log_cleanup',
       status: 'success',
       service: 'audit_logger',
       details: `Cleaned up logs older than ${daysToKeep} days. Kept ${logsToKeep.length} of ${logs.length} logs.`,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-    
+
     return true;
   } catch (error) {
-    console.error(`Log cleanup failed: ${error.message}`);
+    // console.error(`Log cleanup failed: ${error.message}`);
     return false;
   }
 }
 
-// Експорт функцій
-export default {
-  logSecurityEvent,
-  getSecurityLogs,
-  generateAuditReport,
-  cleanupOldLogs
-};
+// Функції вже експортовані індивідуально вище
