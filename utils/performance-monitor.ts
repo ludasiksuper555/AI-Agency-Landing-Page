@@ -1,4 +1,3 @@
-
 // Performance monitoring utilities
 export class PerformanceMonitor {
   private static instance: PerformanceMonitor;
@@ -47,9 +46,7 @@ export class PerformanceMonitor {
 
   // Отримання статистики
   getStats(name?: string) {
-    const filteredMetrics = name
-      ? this.metrics.filter(m => m.name === name)
-      : this.metrics;
+    const filteredMetrics = name ? this.metrics.filter(m => m.name === name) : this.metrics;
 
     if (filteredMetrics.length === 0) return null;
 
@@ -93,9 +90,6 @@ export function performanceMiddleware(handler: any) {
   return async (req: any, res: any) => {
     const monitor = PerformanceMonitor.getInstance();
 
-    return monitor.measureAsyncTime(
-      `API_${req.method}_${req.url}`,
-      () => handler(req, res)
-    );
+    return monitor.measureAsyncTime(`API_${req.method}_${req.url}`, () => handler(req, res));
   };
 }

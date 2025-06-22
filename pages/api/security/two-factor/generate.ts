@@ -1,10 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { ApiResponse } from '../../../../types/global';
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ApiResponse>
-): void {
+export default function handler(req: NextApiRequest, res: NextApiResponse<ApiResponse>): void {
   if (req.method !== 'POST') {
     res.status(405).json({ success: false, message: 'Method not allowed' });
     return;

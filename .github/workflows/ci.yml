@@ -66,7 +66,12 @@ jobs:
         run: npm ci
 
       - name: 🧪 Run tests
-        run: npm run test
+        run: npm run test:ci
+
+      - name: 🔍 PWA Tests
+        run: npm run test:pwa:headless
+        env:
+          TEST_URL: http://localhost:3000
 
       - name: 📊 Upload coverage
         if: matrix.node-version == '18.x'
@@ -99,6 +104,18 @@ jobs:
           NEXT_PUBLIC_SITE_URL: ${{ env.NEXT_PUBLIC_SITE_URL }}
           NODE_ENV: production
         run: npm run build
+
+      - name: 🚀 Start application for testing
+        run: |
+          npm start &
+          sleep 30
+        env:
+          NODE_ENV: production
+
+      - name: 🧪 Run PWA Production Tests
+        run: npm run test:pwa:headless
+        env:
+          TEST_URL: http://localhost:3000
 
       - name: 📦 Create deployment artifact
         run: tar -czf deployment.tar.gz .next public package.json
@@ -163,6 +180,18 @@ jobs:
           NEXT_PUBLIC_SITE_URL: ${{ env.NEXT_PUBLIC_SITE_URL }}
           NODE_ENV: production
         run: npm run build
+
+      - name: 🚀 Start application for testing
+        run: |
+          npm start &
+          sleep 30
+        env:
+          NODE_ENV: production
+
+      - name: 🧪 Run PWA Production Tests
+        run: npm run test:pwa:headless
+        env:
+          TEST_URL: http://localhost:3000
 
       - name: 📦 Package release
         run: |

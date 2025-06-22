@@ -200,18 +200,12 @@ export function useScrollAnimation<T extends Element = HTMLDivElement>(
  * @param options - Intersection Observer options
  * @returns Object with addRef function and entries map
  */
-export function useMultipleIntersectionObserver(
-  options: UseIntersectionObserverOptions = {}
-) {
+export function useMultipleIntersectionObserver(options: UseIntersectionObserverOptions = {}) {
   const [entries, setEntries] = useState<Map<Element, IntersectionObserverEntry>>(new Map());
   const observer = useRef<IntersectionObserver | null>(null);
   const elements = useRef<Set<Element>>(new Set());
 
-  const {
-    threshold = 0,
-    root = null,
-    rootMargin = '0%',
-  } = options;
+  const { threshold = 0, root = null, rootMargin = '0%' } = options;
 
   useEffect(() => {
     if (!window.IntersectionObserver) {
@@ -220,7 +214,7 @@ export function useMultipleIntersectionObserver(
     }
 
     observer.current = new IntersectionObserver(
-      (observerEntries) => {
+      observerEntries => {
         setEntries(prev => {
           const newEntries = new Map(prev);
           observerEntries.forEach(entry => {

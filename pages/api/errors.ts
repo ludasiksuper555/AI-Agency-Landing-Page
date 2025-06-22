@@ -109,15 +109,12 @@ interface ErrorResponse {
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ErrorResponse>
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ErrorResponse>) {
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      message: 'Method not allowed. Only POST requests are accepted.'
+      message: 'Method not allowed. Only POST requests are accepted.',
     });
   }
 
@@ -128,7 +125,7 @@ export default async function handler(
     if (!errorData.message || !errorData.timestamp || !errorData.userAgent || !errorData.url) {
       return res.status(400).json({
         success: false,
-        message: 'Missing required fields: message, timestamp, userAgent, url'
+        message: 'Missing required fields: message, timestamp, userAgent, url',
       });
     }
 
@@ -143,9 +140,9 @@ export default async function handler(
       ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'unknown',
       headers: {
         'user-agent': req.headers['user-agent'],
-        'referer': req.headers.referer,
-        'accept-language': req.headers['accept-language']
-      }
+        referer: req.headers.referer,
+        'accept-language': req.headers['accept-language'],
+      },
     };
 
     // Log to console in development
@@ -154,7 +151,7 @@ export default async function handler(
         id: errorId,
         message: errorData.message,
         url: errorData.url,
-        timestamp: errorData.timestamp
+        timestamp: errorData.timestamp,
       });
     }
 
@@ -181,15 +178,14 @@ export default async function handler(
     res.status(200).json({
       success: true,
       message: 'Error logged successfully',
-      errorId
+      errorId,
     });
-
   } catch (error) {
     console.error('Error in error logging endpoint:', error);
 
     res.status(500).json({
       success: false,
-      message: 'Internal server error while logging error'
+      message: 'Internal server error while logging error',
     });
   }
 }
@@ -220,12 +216,12 @@ function isCriticalError(errorData: ErrorLogData): boolean {
     'Network Error',
     'Failed to fetch',
     'Script error',
-    'SecurityError'
+    'SecurityError',
   ];
 
-  return criticalKeywords.some(keyword =>
-    errorData.message.includes(keyword) ||
-    (errorData.stack && errorData.stack.includes(keyword))
+  return criticalKeywords.some(
+    keyword =>
+      errorData.message.includes(keyword) || (errorData.stack && errorData.stack.includes(keyword))
   );
 }
 

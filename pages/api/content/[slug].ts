@@ -32,8 +32,8 @@ const mockContent: ContentItem[] = [
     status: 'published',
     tags: ['sample', 'test'],
     createdAt: new Date('2024-01-01'),
-    updatedAt: new Date('2024-01-01')
-  }
+    updatedAt: new Date('2024-01-01'),
+  },
 ];
 
 class ContentService {
@@ -55,7 +55,7 @@ class ContentService {
       mockContent[index] = {
         ...mockContent[index],
         ...updates,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       };
 
       return mockContent[index];
@@ -78,12 +78,14 @@ class ContentService {
     }
   }
 
-  async createContent(data: Omit<ContentItem, 'id' | 'createdAt' | 'updatedAt'>): Promise<ContentItem> {
+  async createContent(
+    data: Omit<ContentItem, 'id' | 'createdAt' | 'updatedAt'>
+  ): Promise<ContentItem> {
     const newItem: ContentItem = {
       ...data,
       id: Date.now().toString(),
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
 
     mockContent.push(newItem);
@@ -102,7 +104,7 @@ export default async function handler(
   if (typeof slug !== 'string') {
     return res.status(400).json({
       success: false,
-      error: 'Invalid slug parameter'
+      error: 'Invalid slug parameter',
     });
   }
 
@@ -113,12 +115,12 @@ export default async function handler(
         if (!content) {
           return res.status(404).json({
             success: false,
-            error: 'Content not found'
+            error: 'Content not found',
           });
         }
         return res.status(200).json({
           success: true,
-          data: content
+          data: content,
         });
 
       case 'PUT':
@@ -126,13 +128,13 @@ export default async function handler(
         if (!updatedContent) {
           return res.status(404).json({
             success: false,
-            error: 'Content not found'
+            error: 'Content not found',
           });
         }
         return res.status(200).json({
           success: true,
           data: updatedContent,
-          message: 'Content updated successfully'
+          message: 'Content updated successfully',
         });
 
       case 'DELETE':
@@ -140,26 +142,26 @@ export default async function handler(
         if (!deleted) {
           return res.status(404).json({
             success: false,
-            error: 'Content not found'
+            error: 'Content not found',
           });
         }
         return res.status(200).json({
           success: true,
-          message: 'Content deleted successfully'
+          message: 'Content deleted successfully',
         });
 
       default:
         res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);
         return res.status(405).json({
           success: false,
-          error: `Method ${req.method} not allowed`
+          error: `Method ${req.method} not allowed`,
         });
     }
   } catch (error) {
     console.error('API error:', error);
     return res.status(500).json({
       success: false,
-      error: 'Internal server error'
+      error: 'Internal server error',
     });
   }
 }

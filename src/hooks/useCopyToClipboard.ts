@@ -17,14 +17,8 @@ type CopyToClipboardOptions = {
  * @param options - Configuration options
  * @returns Object with copy function, copied state, and reset function
  */
-export function useCopyToClipboard(
-  options: CopyToClipboardOptions = {}
-): CopyToClipboardResult {
-  const {
-    successDuration = 2000,
-    onSuccess,
-    onError,
-  } = options;
+export function useCopyToClipboard(options: CopyToClipboardOptions = {}): CopyToClipboardResult {
+  const { successDuration = 2000, onSuccess, onError } = options;
 
   const [isCopied, setIsCopied] = useState(false);
 
@@ -122,10 +116,7 @@ async function fallbackCopyToClipboard(text: string): Promise<void> {
  * @param options - Configuration options
  * @returns Object with copy function and feedback state
  */
-export function useCopyWithFeedback(
-  text: string,
-  options: CopyToClipboardOptions = {}
-) {
+export function useCopyWithFeedback(text: string, options: CopyToClipboardOptions = {}) {
   const { isCopied, copyToClipboard } = useCopyToClipboard(options);
 
   const copy = useCallback(() => {
@@ -144,9 +135,7 @@ export function useCopyWithFeedback(
  * @param options - Configuration options
  * @returns Object with copy functions for different formats
  */
-export function useCopyFormatted(
-  options: CopyToClipboardOptions = {}
-) {
+export function useCopyFormatted(options: CopyToClipboardOptions = {}) {
   const { copyToClipboard, isCopied, reset } = useCopyToClipboard(options);
 
   const copyAsPlainText = useCallback(
@@ -212,17 +201,13 @@ function stripHTML(html: string): string {
  * @param options - Configuration options
  * @returns Object with copy function for code
  */
-export function useCopyCode(
-  options: CopyToClipboardOptions = {}
-) {
+export function useCopyCode(options: CopyToClipboardOptions = {}) {
   const { copyToClipboard, isCopied, reset } = useCopyToClipboard(options);
 
   const copyCode = useCallback(
     (code: string, language?: string) => {
       // Add language comment if specified
-      const codeWithLanguage = language
-        ? `// Language: ${language}\n${code}`
-        : code;
+      const codeWithLanguage = language ? `// Language: ${language}\n${code}` : code;
 
       return copyToClipboard(codeWithLanguage);
     },
@@ -242,12 +227,10 @@ export function useCopyCode(
  */
 export function isClipboardSupported(): boolean {
   return (
-    typeof navigator !== 'undefined' &&
-    typeof navigator.clipboard !== 'undefined' &&
-    typeof window !== 'undefined' &&
-    window.isSecureContext
-  ) || (
-    typeof document !== 'undefined' &&
-    typeof document.execCommand === 'function'
+    (typeof navigator !== 'undefined' &&
+      typeof navigator.clipboard !== 'undefined' &&
+      typeof window !== 'undefined' &&
+      window.isSecureContext) ||
+    (typeof document !== 'undefined' && typeof document.execCommand === 'function')
   );
 }

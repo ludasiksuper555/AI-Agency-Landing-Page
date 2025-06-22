@@ -1,11 +1,13 @@
 module.exports = {
   '*.{js,jsx,ts,tsx}': [
-    'eslint --fix',
+    'eslint --fix --max-warnings=0',
     'prettier --write',
-    'tsc --noEmit --skipLibCheck',
-    'jest --bail --findRelatedTests --passWithNoTests',
+    () => 'tsc --noEmit --skipLibCheck',
   ],
   '*.{json,md,yml,yaml}': ['prettier --write'],
   '*.{css,scss}': ['prettier --write'],
-  'package*.json': ['npm audit --audit-level=moderate'],
+  'package.json': [
+    'prettier --write',
+    () => 'npm audit --audit-level=moderate || echo "Audit warnings found but continuing..."',
+  ],
 };

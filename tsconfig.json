@@ -27,20 +27,12 @@
       "@/pages/*": ["./pages/*"],
       "@/utils/*": ["./utils/*"],
       "@/middleware/*": ["./middleware/*"]
-    }
+    },
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    ".next",
-    "out",
-    "dist",
-    "cypress.config.ts",
-    "cypress/**/*"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next", "out", "dist", "cypress.config.ts", "cypress/**/*"]
 }

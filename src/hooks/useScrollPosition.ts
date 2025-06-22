@@ -19,12 +19,7 @@ type UseScrollPositionOptions = {
  * @returns Current scroll position
  */
 export function useScrollPosition(options: UseScrollPositionOptions = {}): ScrollPosition {
-  const {
-    element,
-    useWindow = true,
-    wait = 0,
-    axis = 'both'
-  } = options;
+  const { element, useWindow = true, wait = 0, axis = 'both' } = options;
 
   const [position, setPosition] = useState<ScrollPosition>({ x: 0, y: 0 });
   const debouncedPosition = useDebounce(position, wait);
@@ -81,7 +76,9 @@ type UseScrollDirectionReturn = {
   position: ScrollPosition;
 };
 
-export function useScrollDirection(options: UseScrollPositionOptions = {}): UseScrollDirectionReturn {
+export function useScrollDirection(
+  options: UseScrollPositionOptions = {}
+): UseScrollDirectionReturn {
   const position = useScrollPosition(options);
   const [scrollDirection, setScrollDirection] = useState<ScrollDirection>(null);
   const [lastPosition, setLastPosition] = useState<ScrollPosition>({ x: 0, y: 0 });

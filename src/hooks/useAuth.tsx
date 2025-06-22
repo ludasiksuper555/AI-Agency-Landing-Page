@@ -133,15 +133,11 @@ export function useAuth(config: AuthConfig = {}): AuthContextType {
     { method: 'POST' }
   );
 
-  const refreshMutation = useMutation<{ tokens: AuthTokens }>(
-    `${authConfig.apiBaseUrl}/refresh`,
-    { method: 'POST' }
-  );
+  const refreshMutation = useMutation<{ tokens: AuthTokens }>(`${authConfig.apiBaseUrl}/refresh`, {
+    method: 'POST',
+  });
 
-  const logoutMutation = useMutation(
-    `${authConfig.apiBaseUrl}/logout`,
-    { method: 'POST' }
-  );
+  const logoutMutation = useMutation(`${authConfig.apiBaseUrl}/logout`, { method: 'POST' });
 
   // Check if token is expired
   const isTokenExpired = useCallback((): boolean => {
@@ -153,7 +149,7 @@ export function useAuth(config: AuthConfig = {}): AuthContextType {
   const needsRefresh = useCallback((): boolean => {
     if (!state.tokens?.expiresAt || !authConfig.autoRefresh) return false;
     const thresholdMs = authConfig.refreshThreshold! * 60 * 1000;
-    return Date.now() >= (state.tokens.expiresAt - thresholdMs);
+    return Date.now() >= state.tokens.expiresAt - thresholdMs;
   }, [state.tokens, authConfig.autoRefresh, authConfig.refreshThreshold]);
 
   // Get authorization header
@@ -181,77 +177,84 @@ export function useAuth(config: AuthConfig = {}): AuthContextType {
   }, [setStoredTokens, setStoredUser, updateAuthState]);
 
   // Login function
-  const login = useCallback(async (credentials: LoginCredentials) => {
-    try {
-      updateAuthState({ isLoading: true, error: null });
+  const login = useCallback(
+    async (credentials: LoginCredentials) => {
+      try {
+        updateAuthState({ isLoading: true, error: null });
 
-      const result = await loginMutation.mutate(credentials);
+        const result = await loginMutation.mutate(credentials);
 
-      if (result) {
-        const { user, tokens } = result;
+        if (result) {
+          const { user, tokens } = result;
 
-        setStoredUser(user);
-        setStoredTokens(tokens);
+          setStoredUser(user);
+          setStoredTokens(tokens);
 
-        updateAuthState({
-          user,
-          tokens,
-          isAuthenticated: true,
-          isLoading: false,
-          error: null,
-        });
+          updateAuthState({
+            user,
+            tokens,
+            isAuthenticated: true,
+            isLoading: false,
+            error: null,
+          });
 
-        // Redirect to appropriate page
-        if (typeof window !== 'undefined') {
-          const redirectPath = user.role && authConfig.rolePaths?.[user.role]
-            ? authConfig.rolePaths[user.role]
-            : authConfig.homePath;
-          window.location.href = redirectPath!;
+          // Redirect to appropriate page
+          if (typeof window !== 'undefined') {
+            const redirectPath =
+              user.role && authConfig.rolePaths?.[user.role]
+                ? authConfig.rolePaths[user.role]
+                : authConfig.homePath;
+            window.location.href = redirectPath!;
+          }
         }
+      } catch (error) {
+        updateAuthState({
+          isLoading: false,
+          error: error instanceof Error ? error.message : 'Login failed',
+        });
+        throw error;
       }
-    } catch (error) {
-      updateAuthState({
-        isLoading: false,
-        error: error instanceof Error ? error.message : 'Login failed',
-      });
-      throw error;
-    }
-  }, [loginMutation, setStoredUser, setStoredTokens, updateAuthState, authConfig]);
+    },
+    [loginMutation, setStoredUser, setStoredTokens, updateAuthState, authConfig]
+  );
 
   // Register function
-  const register = useCallback(async (data: RegisterData) => {
-    try {
-      updateAuthState({ isLoading: true, error: null });
+  const register = useCallback(
+    async (data: RegisterData) => {
+      try {
+        updateAuthState({ isLoading: true, error: null });
 
-      const result = await registerMutation.mutate(data);
+        const result = await registerMutation.mutate(data);
 
-      if (result) {
-        const { user, tokens } = result;
+        if (result) {
+          const { user, tokens } = result;
 
-        setStoredUser(user);
-        setStoredTokens(tokens);
+          setStoredUser(user);
+          setStoredTokens(tokens);
 
-        updateAuthState({
-          user,
-          tokens,
-          isAuthenticated: true,
-          isLoading: false,
-          error: null,
-        });
+          updateAuthState({
+            user,
+            tokens,
+            isAuthenticated: true,
+            isLoading: false,
+            error: null,
+          });
 
-        // Redirect to home
-        if (typeof window !== 'undefined') {
-          window.location.href = authConfig.homePath!;
+          // Redirect to home
+          if (typeof window !== 'undefined') {
+            window.location.href = authConfig.homePath!;
+          }
         }
+      } catch (error) {
+        updateAuthState({
+          isLoading: false,
+          error: error instanceof Error ? error.message : 'Registration failed',
+        });
+        throw error;
       }
-    } catch (error) {
-      updateAuthState({
-        isLoading: false,
-        error: error instanceof Error ? error.message : 'Registration failed',
-      });
-      throw error;
-    }
-  }, [registerMutation, setStoredUser, setStoredTokens, updateAuthState, authConfig]);
+    },
+    [registerMutation, setStoredUser, setStoredTokens, updateAuthState, authConfig]
+  );
 
   // Refresh token function
   const refreshToken = useCallback(async () => {
@@ -301,13 +304,16 @@ export function useAuth(config: AuthConfig = {}): AuthContextType {
   }, [state.tokens, logoutMutation, clearAuthData, authConfig]);
 
   // Update user data
-  const updateUser = useCallback((userData: Partial<User>) => {
-    if (state.user) {
-      const updatedUser = { ...state.user, ...userData };
-      setStoredUser(updatedUser);
-      updateAuthState({ user: updatedUser });
-    }
-  }, [state.user, setStoredUser, updateAuthState]);
+  const updateUser = useCallback(
+    (userData: Partial<User>) => {
+      if (state.user) {
+        const updatedUser = { ...state.user, ...userData };
+        setStoredUser(updatedUser);
+        updateAuthState({ user: updatedUser });
+      }
+    },
+    [state.user, setStoredUser, updateAuthState]
+  );
 
   // Clear error
   const clearError = useCallback(() => {
@@ -315,21 +321,33 @@ export function useAuth(config: AuthConfig = {}): AuthContextType {
   }, [updateAuthState]);
 
   // Permission checks
-  const hasPermission = useCallback((permission: string): boolean => {
-    return state.user?.permissions?.includes(permission) ?? false;
-  }, [state.user]);
+  const hasPermission = useCallback(
+    (permission: string): boolean => {
+      return state.user?.permissions?.includes(permission) ?? false;
+    },
+    [state.user]
+  );
 
-  const hasRole = useCallback((role: string): boolean => {
-    return state.user?.role === role;
-  }, [state.user]);
+  const hasRole = useCallback(
+    (role: string): boolean => {
+      return state.user?.role === role;
+    },
+    [state.user]
+  );
 
-  const hasAnyRole = useCallback((roles: string[]): boolean => {
-    return roles.some(role => hasRole(role));
-  }, [hasRole]);
+  const hasAnyRole = useCallback(
+    (roles: string[]): boolean => {
+      return roles.some(role => hasRole(role));
+    },
+    [hasRole]
+  );
 
-  const hasAllRoles = useCallback((roles: string[]): boolean => {
-    return roles.every(role => hasRole(role));
-  }, [hasRole]);
+  const hasAllRoles = useCallback(
+    (roles: string[]): boolean => {
+      return roles.every(role => hasRole(role));
+    },
+    [hasRole]
+  );
 
   // Auto-refresh token
   useEffect(() => {
@@ -362,7 +380,15 @@ export function useAuth(config: AuthConfig = {}): AuthContextType {
         }
       }
     }
-  }, [mounted, state.isAuthenticated, isTokenExpired, state.tokens, refreshToken, clearAuthData, authConfig]);
+  }, [
+    mounted,
+    state.isAuthenticated,
+    isTokenExpired,
+    state.tokens,
+    refreshToken,
+    clearAuthData,
+    authConfig,
+  ]);
 
   return {
     ...state,
@@ -405,31 +431,34 @@ export function useSimpleAuth() {
 
   const isAuthenticated = !!(user && token);
 
-  const login = useCallback(async (credentials: LoginCredentials) => {
-    setIsLoading(true);
-    setError(null);
+  const login = useCallback(
+    async (credentials: LoginCredentials) => {
+      setIsLoading(true);
+      setError(null);
 
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials),
-      });
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(credentials),
+        });
 
-      if (!response.ok) {
-        throw new Error('Login failed');
+        if (!response.ok) {
+          throw new Error('Login failed');
+        }
+
+        const data = await response.json();
+        setUser(data.user);
+        setToken(data.token);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Login failed');
+        throw err;
+      } finally {
+        setIsLoading(false);
       }
-
-      const data = await response.json();
-      setUser(data.user);
-      setToken(data.token);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed');
-      throw err;
-    } finally {
-      setIsLoading(false);
-    }
-  }, [setUser, setToken]);
+    },
+    [setUser, setToken]
+  );
 
   const logout = useCallback(() => {
     setUser(null);
@@ -462,9 +491,7 @@ export function useSimpleAuth() {
 export function useRoleAccess(allowedRoles: string[], requireAll: boolean = false) {
   const { user, hasRole, hasAnyRole, hasAllRoles } = useAuthContext();
 
-  const hasAccess = requireAll
-    ? hasAllRoles(allowedRoles)
-    : hasAnyRole(allowedRoles);
+  const hasAccess = requireAll ? hasAllRoles(allowedRoles) : hasAnyRole(allowedRoles);
 
   return {
     hasAccess,
@@ -500,12 +527,14 @@ export function usePermissionAccess(requiredPermissions: string[], requireAll: b
  * @param config - Route protection configuration
  * @returns Route protection state
  */
-export function useProtectedRoute(config: {
-  requireAuth?: boolean;
-  allowedRoles?: string[];
-  requiredPermissions?: string[];
-  redirectTo?: string;
-} = {}) {
+export function useProtectedRoute(
+  config: {
+    requireAuth?: boolean;
+    allowedRoles?: string[];
+    requiredPermissions?: string[];
+    redirectTo?: string;
+  } = {}
+) {
   const {
     requireAuth = true,
     allowedRoles = [],
@@ -515,13 +544,11 @@ export function useProtectedRoute(config: {
 
   const { isAuthenticated, isLoading } = useAuthContext();
   const roleAccess = allowedRoles.length > 0 ? useRoleAccess(allowedRoles) : { hasAccess: true };
-  const permissionAccess = requiredPermissions.length > 0
-    ? usePermissionAccess(requiredPermissions)
-    : { hasAccess: true };
+  const permissionAccess =
+    requiredPermissions.length > 0 ? usePermissionAccess(requiredPermissions) : { hasAccess: true };
 
-  const hasAccess = (!requireAuth || isAuthenticated) &&
-                   roleAccess.hasAccess &&
-                   permissionAccess.hasAccess;
+  const hasAccess =
+    (!requireAuth || isAuthenticated) && roleAccess.hasAccess && permissionAccess.hasAccess;
 
   const shouldRedirect = !isLoading && !hasAccess;
 
@@ -553,11 +580,7 @@ export type AuthProviderProps = {
 export function AuthProvider({ children, config = {} }: AuthProviderProps) {
   const authValue = useAuth(config);
 
-  return (
-    <AuthContext.Provider value={authValue}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>;
 }
 
 /**

@@ -49,45 +49,45 @@ class RecommendationService {
   // Calculate estimated impact
   private calculateImpact(type: string, priority: string): number {
     const typeMultiplier = {
-      'performance': 0.8,
-      'security': 1.0,
-      'optimization': 0.6,
-      'feature': 0.7
+      performance: 0.8,
+      security: 1.0,
+      optimization: 0.6,
+      feature: 0.7,
     };
 
     const priorityMultiplier = {
-      'low': 0.3,
-      'medium': 0.6,
-      'high': 0.8,
-      'critical': 1.0
+      low: 0.3,
+      medium: 0.6,
+      high: 0.8,
+      critical: 1.0,
     };
 
     return Math.round(
       (typeMultiplier[type as keyof typeof typeMultiplier] || 0.5) *
-      (priorityMultiplier[priority as keyof typeof priorityMultiplier] || 0.5) *
-      100
+        (priorityMultiplier[priority as keyof typeof priorityMultiplier] || 0.5) *
+        100
     );
   }
 
   // Calculate implementation cost
   private calculateCost(type: string, priority: string): number {
     const baseCost = {
-      'performance': 5,
-      'security': 8,
-      'optimization': 3,
-      'feature': 10
+      performance: 5,
+      security: 8,
+      optimization: 3,
+      feature: 10,
     };
 
     const priorityMultiplier = {
-      'low': 0.5,
-      'medium': 1.0,
-      'high': 1.5,
-      'critical': 2.0
+      low: 0.5,
+      medium: 1.0,
+      high: 1.5,
+      critical: 2.0,
     };
 
     return Math.round(
       (baseCost[type as keyof typeof baseCost] || 5) *
-      (priorityMultiplier[priority as keyof typeof priorityMultiplier] || 1.0)
+        (priorityMultiplier[priority as keyof typeof priorityMultiplier] || 1.0)
     );
   }
 
@@ -108,7 +108,7 @@ class RecommendationService {
         createdAt: new Date(),
         updatedAt: new Date(),
         estimatedImpact: this.calculateImpact(data.type, data.priority),
-        implementationCost: this.calculateCost(data.type, data.priority)
+        implementationCost: this.calculateCost(data.type, data.priority),
       };
 
       recommendations.push(recommendation);
@@ -159,14 +159,11 @@ class RecommendationService {
 const recommendationService = new RecommendationService();
 
 // API handler
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ApiResponse>
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method ' + req.method + ' not allowed'
+      error: 'Method ' + req.method + ' not allowed',
     });
   }
 
@@ -176,7 +173,7 @@ export default async function handler(
     if (validationErrors.length > 0) {
       return res.status(400).json({
         success: false,
-        error: 'Validation failed: ' + validationErrors.join(', ')
+        error: 'Validation failed: ' + validationErrors.join(', '),
       });
     }
 
@@ -186,13 +183,13 @@ export default async function handler(
     return res.status(201).json({
       success: true,
       data: recommendation,
-      message: 'Recommendation created successfully'
+      message: 'Recommendation created successfully',
     });
   } catch (error) {
     console.error('API error:', error);
     return res.status(500).json({
       success: false,
-      error: 'Internal server error'
+      error: 'Internal server error',
     });
   }
 }

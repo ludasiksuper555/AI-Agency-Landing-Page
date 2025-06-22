@@ -477,24 +477,24 @@ paths:
                   type: string
                   format: date-time
                   description: When the error occurred
-                  example: "2024-01-20T10:30:00Z"
+                  example: '2024-01-20T10:30:00Z'
                 userAgent:
                   type: string
                   description: Browser user agent
-                  example: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                  example: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
                 url:
                   type: string
                   format: uri
                   description: URL where error occurred
-                  example: "https://example.com/dashboard"
+                  example: 'https://example.com/dashboard'
                 userId:
                   type: string
                   description: ID of the user (if authenticated)
-                  example: "user_123"
+                  example: 'user_123'
                 sessionId:
                   type: string
                   description: Session identifier
-                  example: "session_456"
+                  example: 'session_456'
       responses:
         '200':
           description: Error logged successfully
@@ -524,7 +524,7 @@ paths:
                     example: false
                   message:
                     type: string
-                    example: "Missing required fields: message, timestamp, userAgent, url"
+                    example: 'Missing required fields: message, timestamp, userAgent, url'
         '405':
           description: Method not allowed
           content:
@@ -537,7 +537,7 @@ paths:
                     example: false
                   message:
                     type: string
-                    example: "Method not allowed. Only POST requests are accepted."
+                    example: 'Method not allowed. Only POST requests are accepted.'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
@@ -625,11 +625,11 @@ components:
         createdAt:
           type: string
           format: date-time
-          example: "2024-01-15T10:30:00Z"
+          example: '2024-01-15T10:30:00Z'
         lastLoginAt:
           type: string
           format: date-time
-          example: "2024-01-20T14:22:00Z"
+          example: '2024-01-20T14:22:00Z'
 
     UserProfile:
       allOf:
@@ -683,21 +683,21 @@ components:
           type: array
           items:
             type: string
-          example: ["javascript", "react", "api"]
+          example: ['javascript', 'react', 'api']
         author:
           $ref: '#/components/schemas/User'
         createdAt:
           type: string
           format: date-time
-          example: "2024-01-15T10:30:00Z"
+          example: '2024-01-15T10:30:00Z'
         updatedAt:
           type: string
           format: date-time
-          example: "2024-01-16T12:45:00Z"
+          example: '2024-01-16T12:45:00Z'
         publishedAt:
           type: string
           format: date-time
-          example: "2024-01-15T14:00:00Z"
+          example: '2024-01-15T14:00:00Z'
         viewsCount:
           type: integer
           example: 1250
@@ -730,7 +730,7 @@ components:
           type: array
           items:
             type: string
-          example: ["javascript", "tutorial"]
+          example: ['javascript', 'tutorial']
         status:
           type: string
           enum: [draft, published]
@@ -743,7 +743,7 @@ components:
         publishAt:
           type: string
           format: date-time
-          example: "2024-01-20T10:00:00Z"
+          example: '2024-01-20T10:00:00Z'
 
     File:
       type: object
@@ -774,7 +774,7 @@ components:
         uploadedAt:
           type: string
           format: date-time
-          example: "2024-01-20T10:30:00Z"
+          example: '2024-01-20T10:30:00Z'
 
     Pagination:
       type: object
